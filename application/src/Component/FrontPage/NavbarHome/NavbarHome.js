@@ -34,19 +34,17 @@ const NavbarHome = () => {
                     <a href="" className="nav-link">Home</a>
                     </li>
                     <li className="nav-item ">
-                    <a href="" className="nav-link">Plans</a>
+                    <a href="#insurance-plans-link" className="nav-link">Insurance Plans</a>
                     </li>
                     <li className="nav-item ">
                     <a href="" className="nav-link">About Us</a>
                     </li>
                     <li className="nav-item ">
-                    <a href="" className="nav-link">Others</a>
+                    <a href="" className="nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="navbar-right">
-                    <li className="nav-item">
-                    <a href="" className="nav-link">Blog</a>
-                    </li>
+                    
                     <li className="nav-item">
                       <button  className="nav-link" onClick={toggleRegistrationModal}>
                         <i className="ri-user-add-fill" style={{height:"2rem"}}></i>

@@ -13,8 +13,10 @@ function App() {
      <Routes>
         <Route exact path='/' element ={<Home/>}/>
         <Route exact path='/adminDashboard' element={<Admin/>} />
-        <Route exact path='/customerDashboard' element={<Customer/>} />
-        <Route exact path='/agentDashboard' element={<Agent/>} />
+       
+        <Route exact path='/customerDashboard/:username' element={<Customer/>} />
+       
+       <Route exact path='/agentDashboard' element={<Agent/>} />
         <Route exact path='/employeeDashboard' element={<Employee/>} />
       </Routes>
     </>

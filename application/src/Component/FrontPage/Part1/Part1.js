@@ -49,7 +49,7 @@ const Part1 = () => {
 
                 </div>
             </div>
-            <div className='insurancePlanCards'>
+            <div className='insurancePlanCards' id="insurance-plans-link">
                 <div className='content'>
                     <div className='insurancePlanCard_content'>
                         <div className="insurance-tc">
@@ -99,11 +99,8 @@ const Part1 = () => {
     
                     </div>
                 </div>
-
-
-
-
-        </div>
+            </div>
+            
 
 
         </div>

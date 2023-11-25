@@ -34,6 +34,7 @@ const Login = () => {
             {
 
                 localStorage.setItem('authentication',response.headers['bearer-token'])
+                console.log("customer ---", response.data.username)
                 navigate(`/customerDashboard/${response.data.username}`) 
             }
             else if(response.data.roles[0].rolename=='ROLE_EMPLOYEE')
