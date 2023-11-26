@@ -36,7 +36,6 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
         
-       
       >
         
 

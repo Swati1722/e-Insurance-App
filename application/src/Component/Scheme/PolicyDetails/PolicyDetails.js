@@ -36,13 +36,35 @@ const PolicyDetails = ({value}) => {
     const [interestAmount, setInterestAmount] = useState();
     const [totalAmount, setTotalAmount] = useState();
 
+    // const calculateInterest = () => {
+    //     let noOfInstallment= (noOfYear*12)/premiumType
+    //     setInstallmentAmount(totalInvestmentAmount/noOfInstallment)
+    //     let interest=(profitRatio/100)*totalInvestmentAmount
+    //     setInterestAmount((profitRatio/100)*totalInvestmentAmount)
+    //     let sum  =(interest*noOfYear)+totalInvestmentAmount
+    //     console.log(sum)
+    //     setTotalAmount(sum)
+    // };
     const calculateInterest = () => {
-        let noOfInstallment= (noOfYear*12)/premiumType
-        setInstallmentAmount(totalInvestmentAmount/noOfInstallment)
-        let interest=(profitRatio/100)*totalInvestmentAmount
-        setInterestAmount((profitRatio/100)*totalInvestmentAmount)
-        let sum  =(interest*noOfYear)+totalInvestmentAmount
-        setTotalAmount(sum)
+       
+        const parsedNoOfYear = parseFloat(noOfYear);
+        const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
+        const parsedPremiumType = parseFloat(premiumType);
+
+        if (isNaN(parsedNoOfYear) || isNaN(parsedTotalInvestmentAmount) || isNaN(parsedPremiumType)) {
+
+            console.error("Invalid input. Please enter valid numbers.");
+            return;
+        }
+    
+        const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
+        setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
+    
+        const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
+        setInterestAmount(interest);
+    
+        const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
+        setTotalAmount(sum);
     };
 
 

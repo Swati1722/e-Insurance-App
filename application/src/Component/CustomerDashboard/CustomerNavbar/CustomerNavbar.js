@@ -1,12 +1,20 @@
 import React, {useState} from 'react'
 import "./Navbar.css"
 import { Link } from 'react-router-dom';
+import QueryModel from '../QueryModel';
 
 const CustomerNavbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isQueryModalOpen, setIsQueryModalOpen] = useState(false);
+
 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
+  };
+
+  const toggleQueryModel = () => {
+    console.log("indide")
+    setIsQueryModalOpen(!isQueryModalOpen);
   };
 
 
@@ -49,6 +57,13 @@ const CustomerNavbar = () => {
                         
                         <a href="">My Profile</a>
                         <a href="">Edit Profile</a>
+                        <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleQueryModel(); }}>Query</a>
+   
+                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
+                          <button type="button" style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', transition: "background-color 0.3s" }} onClick={toggleQueryModel}>
+                            Query
+                          </button>
+                        </div> */}
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>
@@ -59,6 +74,11 @@ const CustomerNavbar = () => {
               </div>
           </div>
         </nav>
+
+        <div>
+          {isQueryModalOpen && ( <QueryModel isOpen={isQueryModalOpen} toggleQueryModel={toggleQueryModel} />
+          )}
+        </div>
     </>
     
   )
