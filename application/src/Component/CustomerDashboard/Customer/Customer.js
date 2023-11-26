@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../CustomerNavbar/Navbar'
+import CustomerNavbar from '../CustomerNavbar/CustomerNavbar'
 import Part1 from "../../FrontPage/Part1/Part1"
 import Footer from "../../FrontPage/Footer/Footer"
 
@@ -7,7 +7,8 @@ import Footer from "../../FrontPage/Footer/Footer"
 const Customer = () => {
   return (
     <>
-        <Navbar/>
+    
+        <CustomerNavbar/>
         <Part1/>
         <Footer/>
         <div>

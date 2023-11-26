@@ -1,7 +1,11 @@
 .section {
-    max-height: 2000px;
+    max-height: 2500px;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
+    background: url('../../../Image/example-19.svg') center/cover no-repeat;
+    background-size: 1100px 1400px;
+    /* background-position: 0 .001px;  */
+   
     
 }
 .section-header .text-title {
@@ -30,7 +34,7 @@
     /* width: 100%; */
     /* padding-right: 15px; */
     padding-left: 15px;
-    margin-right: 1rem;
+
     margin-left: 1rem;
     margin-top: 4rem;
     /* display: flex; */
@@ -53,7 +57,7 @@
     width: 160px;
 }
 .part-right{
-    flex: 3;
+    flex: 1;
     max-height: 550px;
     max-width: 900px;
 }

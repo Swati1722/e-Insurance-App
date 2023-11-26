@@ -5,6 +5,7 @@ import Admin from './Component/AdminDashboard/Admin/Admin'
 import Agent from './Component/AgentDashboard/Agent/Agent';
 import Employee from './Component/EmployeeDashboard/Employee/Employee';
 import Customer from './Component/CustomerDashboard/Customer/Customer';
+import SchemeHome from './Component/Scheme/SchemeHome'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     
      <Routes>
         <Route exact path='/' element ={<Home/>}/>
+        <Route path="/insurance-plan" element={<SchemeHome/>} />
         <Route exact path='/adminDashboard' element={<Admin/>} />
        
         <Route exact path='/customerDashboard/:username' element={<Customer/>} />

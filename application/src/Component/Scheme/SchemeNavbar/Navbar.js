@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
-import "./NavbarHome.css"
-import LoginModal from '../Modal/LoginModel'
-import RegisterModel from '../Modal/RegisterModel'
+import "./Navbar.css"
+import LoginModal from '../../FrontPage/Modal/LoginModel'
+import RegisterModel from '../../FrontPage/Modal/RegisterModel'
 
-const NavbarHome = () => {
+
+const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
- 
   const toggleRegistrationModal = () => {
     setShowRegistrationModal(!showRegistrationModal);
   };
@@ -17,10 +17,13 @@ const NavbarHome = () => {
   const toggleLoginModal = () => {
     setShowLoginModal(!showLoginModal);
   };
+
+
+
+
   return (
-  
     <>
-        <nav className="navbar navbar-expand-lg navbar-transparent navbar-light fixed-top" id="nav">
+           <nav className="navbar navbar-expand-lg navbar-transparent navbar-light fixed-top" id="nav">
           <div className="nav-container">
               <a className="navbar-brand" href="">
                  Insurance App
@@ -31,16 +34,17 @@ const NavbarHome = () => {
               <div className="collapsed " id="navbarSupportedContent">
                 <ul className="navbar-left mr-auto">
                     <li className="nav-item ">
-                    <a href="" className="nav-link">Home</a>
+                    <a href="#home-page" className="nav-link">Home</a>
+                    </li>
+                    
+                    <li className="nav-item ">
+                      <a href="#insurance-plans-link" className="nav-link">Insurance Plans</a>
                     </li>
                     <li className="nav-item ">
-                    <a href="#insurance-plans-link" className="nav-link">Insurance Plans</a>
+                    <a href="" className="nav-link">About Us</a>
                     </li>
                     <li className="nav-item ">
-                    <a href="#About-Us" className="nav-link">About Us</a>
-                    </li>
-                    <li className="nav-item ">
-                    <a href="#Contact-Us" className="nav-link">Contact Us</a>
+                    <a href="" className="nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="navbar-right">
@@ -61,7 +65,6 @@ const NavbarHome = () => {
               </div>
           </div>
         </nav>
-
         <div>
           {showLoginModal && <LoginModal  showLoginModal={showLoginModal} toggleLoginModal={toggleLoginModal} />}
         </div>
@@ -70,11 +73,12 @@ const NavbarHome = () => {
           showRegistrationModal={showRegistrationModal}
           toggleRegistrationModal={toggleRegistrationModal}/>}
         </div>
-      
-        
+    
+
+    
+    
     </>
   )
 }
 
-
-export default NavbarHome
+export default Navbar

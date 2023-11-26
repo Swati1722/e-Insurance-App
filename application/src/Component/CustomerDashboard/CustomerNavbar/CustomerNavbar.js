@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 import "./Navbar.css"
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
- const [isProfileOpen, setIsProfileOpen] = useState(false);
+const CustomerNavbar = () => {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
+
+
+
   return (
     <>
         <nav className="customer-navbar navbar-expand-lg navbar-transparent navbar-light customer-fixed-top" id="nav">
@@ -45,8 +49,8 @@ const Navbar = () => {
                         
                         <a href="">My Profile</a>
                         <a href="">Edit Profile</a>
-                        <a href="">Logout</a>
-                       
+                        <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
+                        
                     </div>
                     )}
                     
@@ -56,7 +60,8 @@ const Navbar = () => {
           </div>
         </nav>
     </>
+    
   )
 }
 
-export default Navbar
+export default CustomerNavbar

@@ -8,8 +8,13 @@ import image2 from '../../../Image/accident.svg'
 import image3 from '../../../Image/Insurance.svg'
 import image4 from '../../../Image/check.svg'
 import './Part1.css'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Part1 = () => {
+  const params =useParams()
+
+
   return (
     <>
         <div className='main'>
@@ -17,13 +22,14 @@ const Part1 = () => {
                 <div className="part1-container">
                     <div className="row">
                         <div className="part-left">
+                            <h6 className="text-title" style={{fontWeight:200}}>Welcome {params.username}</h6>
                             <h2 className="text-title">Insurance</h2>
                             <h1 className="text-title">The need of the hour</h1>
                             <p className="text-description">Streamline claims, enhance policy management, and prioritize user security with our innovative insurance app</p>
                         
                         </div>
                         <div className="part-right">
-                            <img  src={logo1} alt="asd" class="part1-image d-lg-block d-none"/>
+                            {/* <img  src={logo1} alt="asd" class="part1-image d-lg-block d-none"/> */}
                             <div className="white-space"></div>
                         </div>
                     </div>
@@ -58,7 +64,8 @@ const Part1 = () => {
                             <p className="insurance-tc__subtext">Life insurance plans primarily cover the risk of untimely demise of the insured. In case of an unforeseen demise of the insured, a death benefit is paid, which helps the family face the financial loss.</p>
                         </div>
                         <div className="insurancePlanCards__exploreMore">
-                            <a href="">Explore More</a>
+                            <Link to="/insurance-plan">Explore More</Link>
+                            {/* <a hExplore More</a> */}
                         </div>
 
                         <div className="insurancePlanCards__content__container">

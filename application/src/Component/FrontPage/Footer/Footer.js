@@ -7,14 +7,14 @@ const Footer = () => {
         <div>
             <footer className='footer-Container'>
                 <div className="footer-column-1">
-                    <div className='footer-left-element'>
+                    <div className='footer-left-element' id="Contact-Us">
                         <h2>Contact Us</h2>
                         <div className="contact-info">
-                            <div><i class="ri-mail-fill" style={{marginRight:"1rem"}}></i>Email: contact@example.com</div>
+                            <div ><i class="ri-mail-fill" style={{marginRight:"1rem"}}></i>Email: contact@example.com</div>
                             <div>< i class="ri-phone-fill" style={{marginRight:"1rem"}}></i>Phone: +123 456 789</div>
                         </div>
                     </div>
-                    <div className='footer-right-element'>
+                    <div className='footer-right-element' id="About-Us">
 
                         <h2>Useful Link</h2>
                         <div className='support-link'>

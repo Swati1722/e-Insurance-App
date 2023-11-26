@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import './Register.css'
 import image from "../../Image/Register.svg"
+import { addCustomer } from '../../Service/CustomerService'
 
 const Register = () => {
     
@@ -9,6 +10,68 @@ const Register = () => {
     const[userName,setUserName] = useState()
     const[password, setPassword] = useState()
     const[email,setEmail] = useState()
+
+    const isEmailValid = (email) => {
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        return emailRegex.test(email);
+    };
+
+    
+
+    const isPasswordValid = (password) => {
+        return password.length >= 6;
+    };
+
+
+    const AddCustomers = async() =>{
+
+        if (!firstName|| !lastName || !userName || !password ||  !email) {
+            alert('Please fill in all required fields.');
+            return;
+        } else if (!firstName) {
+            alert('Please fill Name.');
+            return;
+        } else if (!lastName) {
+            alert('Please fill Name.');
+            return;
+        }
+        else if (!userName) {
+            alert('Please fill User Name.');
+            return;
+        } else if (!password) {
+            alert('Please fill password (min 6 characters).');
+            return;
+        } else if (!isPasswordValid(password)) {
+            alert('Password must be at least 6 characters long.');
+            return;
+        } else if (!email) {
+            alert('Please fill email (valid format).');
+            return;
+        } else if (!isEmailValid(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+
+        try{
+            let response = await addCustomer(firstName, lastName,userName,password,email)
+            // console.log(response)
+            setFirstName('');
+            setLastName('');
+            setUserName('');
+            setPassword('');
+            setEmail('');
+            if(response)
+            {
+                    alert("Customer is added successfully")
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
+    }
     
 
 
@@ -50,7 +113,7 @@ const Register = () => {
                             <input type="email" className="register-form-control" id="email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className='register-button-group'>
-                            <button type="button" className="btn btn-primary register-button"  >Register</button>
+                            <button type="button" className="btn btn-primary register-button" onClick={ AddCustomers}>Register</button>
                         </div>
                         
                                 

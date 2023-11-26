@@ -2,27 +2,33 @@ import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 
 import Button from 'react-bootstrap/Button';
-import Login from '../../Login/Login';
+import PolicyDetails from '../PolicyDetails/PolicyDetails';
 
 
-const LoginModel = ({ showLoginModal, toggleLoginModal }) => {
-    const [show, setShow] = useState(showLoginModal);
 
-    if (show !== showLoginModal) {
-        setShow(showLoginModal);
+const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
+
+    const [value,setValue] =useState(data)
+    const [show, setShow] = useState(showDetailsModal);
+
+    if (show !== showDetailsModal) {
+        setShow(showDetailsModal);
+        console.log(value)
     }
 
     const handleClose = () => {
         setShow(false);
-        toggleLoginModal();
+        togglePlanDetails();
     };
 
 
 
 
+
+
   return (
-    <>
-         <Modal
+   <>
+        <Modal
         show={show}
         onHide={(handleClose)}
         size="lg" 
@@ -31,16 +37,10 @@ const LoginModel = ({ showLoginModal, toggleLoginModal }) => {
         
        
       >
-        {/* <Modal.Header closeButton> */}
-          {/* <Modal.Title id="example-custom-modal-styling-title">
-           
-          </Modal.Title> */}
-        {/* </Modal.Header> */}
+        
 
-        {/* <Modal.Backdrop  /> */}
-
-        <Modal.Body>
-          <Login/>
+        <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
+            <PolicyDetails value={value}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -49,12 +49,11 @@ const LoginModel = ({ showLoginModal, toggleLoginModal }) => {
           
         </Modal.Footer>
       </Modal>
+    \
     
-    
-    
-    
-    </>
+   
+   </>
   )
 }
 
-export default LoginModel
+export default PolicyModel
