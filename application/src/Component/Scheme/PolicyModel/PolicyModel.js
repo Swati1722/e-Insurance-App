@@ -8,12 +8,12 @@ import PolicyDetails from '../PolicyDetails/PolicyDetails';
 
 const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
 
-    const [value,setValue] =useState(data)
+    // const [value,setValue] =useState(data)
     const [show, setShow] = useState(showDetailsModal);
 
     if (show !== showDetailsModal) {
         setShow(showDetailsModal);
-        console.log(value)
+        // console.log(value)
     }
 
     const handleClose = () => {
@@ -22,6 +22,7 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
     };
 
 
+   
 
 
 
@@ -40,7 +41,8 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
         
 
         <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
-            <PolicyDetails value={value}/>
+            {/* {console.log( data) && <PolicyDetails value={data}/>} */}
+            <PolicyDetails value={data}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

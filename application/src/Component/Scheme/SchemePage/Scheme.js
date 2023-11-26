@@ -6,41 +6,44 @@ import { getSchemeDetails } from '../../../Service/SchemeService';
 
 const Scheme = () => {
 
-    const[schemeId, setSchemeId] =useState();
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const[scheme,setScheme]=useState();
 
-    const getSchemes = async() =>{
-        try{
-            let response = await getSchemeDetails(schemeId)
-            console.log("respnse-->",response)
-            if(response.data)
-            {
-                setScheme(response.data)
 
+    const getSchemes = async (manualSchemeId) => {
+        try {
+            let response = await getSchemeDetails(manualSchemeId);
+            console.log("response-->", response);
+            if (response.data) {
+                setScheme(response.data);
             }
+        } catch (error) {
+            console.log(error);
+            alert(error.message);
         }
-        catch(error)
-        {
-            console.log(error)
-            alert(error.message)
-        }
+    };
+
     
     
-    }
+    // }
     // const togglePlanDetails = () => {
        
     //   setShowDetailsModal(!showDetailsModal);
     //   getSchemes();
     // };
-
     const togglePlanDetails = (manualSchemeId) => {
-        // Use manualSchemeId if provided, otherwise use the state value
-        setSchemeId(manualSchemeId || schemeId);
+        console.log("manualSchemeID--->", manualSchemeId);
+    
+    
         setShowDetailsModal(!showDetailsModal);
-        getSchemes();
-      };
-  
+        if(!showDetailsModal){
+        getSchemes(manualSchemeId);
+        }
+    };
+    
+    
+
+
   return (
     <>
         <div className='scheme-main'>
@@ -120,7 +123,7 @@ const Scheme = () => {
                                     
                                 </li>
                             </div>
-                            <button className='plan-details-button' onClick={()=>togglePlanDetails(1) }>
+                            <button className='plan-details-button' type="button" onClick={()=>togglePlanDetails(1) }>
 
                                 Plan details...
                             </button>

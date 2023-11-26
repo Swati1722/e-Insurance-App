@@ -1,22 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from "./SchemeNavbar/Navbar"
 import Scheme from './SchemePage/Scheme'
 import CustomerNavbar from '../CustomerDashboard/CustomerNavbar/CustomerNavbar'
 
 
 const SchemeHome = () => {
-  // const [login,setLogin] = useState(false)
+  const [login,setLogin] = useState(false)
 
-  // if(localStorage.getItem('authentication'))
-  // {
-  //   setLogin(true)
-  // }
-
+  useEffect(() => {
+    // Check for authentication in localStorage and update the state accordingly
+    if (localStorage.getItem('authentication')) {
+      setLogin(true);
+    }
+  }, []);
 
   return (
     <>
-          {/* <CustomerNavbar/>  */}
-        <Navbar/>
+        
+        {login ? <CustomerNavbar /> : <Navbar />}
         
          <Scheme/>
     
