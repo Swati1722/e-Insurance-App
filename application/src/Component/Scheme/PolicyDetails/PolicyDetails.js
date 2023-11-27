@@ -1,8 +1,11 @@
+
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { validateUser as validate } from '../../../Service/Authentication';
 
 const PolicyDetails = ({value,schemeId}) => {
+
+
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
     const [minAmount, setMinAmount] = useState(value?.minAmount || "");
@@ -12,10 +15,12 @@ const PolicyDetails = ({value,schemeId}) => {
     const [maxTime, setMaxTime] = useState(value?.maxTime || "");
     const [profitRatio, setProfitRatio] = useState(value?.profitRatio || "");
 
+
     
     const [noOfYear,setNoOfYear] = useState()
+
     const [totalInvestmentAmount, setTotalInvestmentAmount] = useState()
-    const [premiumType,setPremiumType]=useState()
+    const [premiumType, setPremiumType] = useState()
     const [installmentAmount, setInstallmentAmount] = useState();
     const [interestAmount, setInterestAmount] = useState();
     const [totalAmount, setTotalAmount] = useState();
@@ -48,7 +53,7 @@ const PolicyDetails = ({value,schemeId}) => {
 
     }
     const calculateInterest = () => {
-       
+
         const parsedNoOfYear = parseFloat(noOfYear);
         const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
         const parsedPremiumType = parseFloat(premiumType);
@@ -58,13 +63,13 @@ const PolicyDetails = ({value,schemeId}) => {
             console.error("Invalid input. Please enter valid numbers.");
             return;
         }
-    
+
         const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
         setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
-    
+
         const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
         setInterestAmount(interest);
-    
+
         const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
         setTotalAmount(sum);
     };
@@ -163,12 +168,9 @@ const PolicyDetails = ({value,schemeId}) => {
             </div>
         </form>
 
-            <h4 className='investment-heading' style={{textAlign:"center"}}>Interest Calculate</h4>
-            <form className='investment-postdata'>
-                <div className='investment-form-group'>
-                    <label htmlFor="noOfYear">Number of year*</label>
-                    <input
+
                
+
                         type="text"
                         className="form-control"
                         id="noOfYear"
@@ -255,12 +257,9 @@ const PolicyDetails = ({value,schemeId}) => {
             </form>
             
 
-
-        
-        
             {/* onClick={submitInvestmentDetails} */}
-    </>
-  )
+        </>
+    )
 }
 
 export default PolicyDetails
