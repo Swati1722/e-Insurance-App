@@ -6,7 +6,7 @@ import PolicyDetails from '../PolicyDetails/PolicyDetails';
 
 
 
-const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
+const PolicyModel = ({showDetailsModal,togglePlanDetails,data,schemeId}) => {
 
     // const [value,setValue] =useState(data)
     const [show, setShow] = useState(showDetailsModal);
@@ -41,7 +41,7 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data}) => {
 
         <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
             {/* {console.log( data) && <PolicyDetails value={data}/>} */}
-            <PolicyDetails value={data}/>
+            <PolicyDetails value={data} schemeId={schemeId}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

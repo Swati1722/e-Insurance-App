@@ -7,7 +7,7 @@ export const authslogin = async(username, password) => {
             password:password
         })
     
-        console.log(response)
+        // console.log(response)
     return response
     }
     catch (error){
@@ -16,13 +16,13 @@ export const authslogin = async(username, password) => {
 }
 
 export const validateUser = async (token)=>{
-    console.log(token)
-    let response = await axios.get('http://localhost:8080/api/auth/validate',{
+    // console.log(token)
+    let response = await axios.get('http://localhost:8080/insuranceapp/validate',{
         headers:{
             Authorization :'Bearer ' + token
         }
     })
 
-    console.log(response)
+    // console.log(response)
     return response
 }

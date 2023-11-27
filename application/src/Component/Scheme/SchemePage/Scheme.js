@@ -8,10 +8,12 @@ const Scheme = () => {
 
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const[scheme,setScheme]=useState();
+    const [schemeId, setSchemeId] = useState();
 
 
     const getSchemes = async (manualSchemeId) => {
         try {
+            setSchemeId(manualSchemeId)
             let response = await getSchemeDetails(manualSchemeId);
             console.log("response-->", response);
             if (response.data) {
@@ -135,7 +137,7 @@ const Scheme = () => {
              </div>
 
              {showDetailsModal && (
-            <PolicyModel showDetailsModal={showDetailsModal} togglePlanDetails={togglePlanDetails} data={scheme}/>
+            <PolicyModel showDetailsModal={showDetailsModal} togglePlanDetails={togglePlanDetails} data={scheme} schemeId={schemeId}/>
             )}
 
 

@@ -1,22 +1,67 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import CustomerNavbar from '../CustomerNavbar/CustomerNavbar'
 import Part1 from "../../FrontPage/Part1/Part1"
 import Footer from "../../FrontPage/Footer/Footer"
+import { validateUser as validate } from '../../../Service/Authentication';
+
 
 
 const Customer = () => {
-  return (
-    <>
-    
-        <CustomerNavbar/>
-        <Part1/>
-        <Footer/>
-        <div>
-            
-        </div>
-    
-    </>
-  )
+  const [isUserValid, setIsUserValid] = useState(false)
+
+  const validateUser = async() =>{
+    const authToken = localStorage.getItem('authentication')
+    if(!authToken)
+    {
+      setIsUserValid(false)
+    }
+    console.log("authtoken--->"+authToken)
+    let resp = await validate(authToken)
+    console.log(resp)
+
+    if(resp.data.role[0].authority !='ROLE_CUSTOMER')
+    {
+        setIsUserValid(false)
+    }
+    else{
+      setIsUserValid(true)
+    }
+    return 
+ }
+ useEffect(()=>{
+  validateUser()
+},[])
+
+
+
+
+
+ if(isUserValid)
+  {
+    return (
+      <>
+      
+          <CustomerNavbar/>
+          <Part1/>
+          <Footer/>
+          <div>
+              
+          </div>
+      
+      </>
+    )
+  }
+    else{
+      return (
+        <>
+        <a href='/'>Please Login First</a>
+        {/* navigate('/') */}
+        
+        </>
+  
+      )
+    }
+  
 }
 
 export default Customer

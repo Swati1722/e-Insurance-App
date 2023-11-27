@@ -7,6 +7,7 @@ import Agent from './Component/AgentDashboard/Agent/Agent';
 import Employee from './Component/EmployeeDashboard/Employee/Employee';
 import Customer from './Component/CustomerDashboard/Customer/Customer';
 import SchemeHome from './Component/Scheme/SchemeHome'
+import AddPolicy from './Component/CustomerDashboard/AddPolicy/AddPolicy'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/adminDashboard' element={<Admin/>} />
        
         <Route exact path='/customerDashboard/:username' element={<Customer/>} />
+        <Route exact path='/customerDashboard/policy' element={<AddPolicy/>} />
        
        <Route exact path='/agentDashboard' element={<Agent/>} />
         <Route exact path='/employeeDashboard' element={<Employee/>} />
