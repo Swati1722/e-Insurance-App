@@ -132,9 +132,7 @@
     transition: color 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #ffca28;
-}
+
 
 .fixed-top {
     position: fixed;
@@ -174,17 +172,10 @@
 /* Add the following styles to your CSS file */
 
 .navbar a {
-    text-decoration: red;
     color: hsl(260, 88%, 3%); /* Default color for inactive links */
     margin: 0 15px;
     font-weight: normal;
-    font-weight: bold;
+
   }
   
-  .navbar a:hover,
-  .navbar a:active,
-  .navbar a:focus {
-    color: #ffca28; /* Strong color for active/hovered links */
-    font-weight: bold; /* Make the font weight bold for active/hovered links */
-  }
   
