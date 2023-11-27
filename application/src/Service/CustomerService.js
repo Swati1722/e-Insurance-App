@@ -16,7 +16,7 @@ export const authslogin = async(username, password) => {
 }
 
 export const addCustomer = async(firstName,lastName,userName,password,email)=>{
-    console.log("firstname-->",firstName)
+
     let response = await axios.post('http://localhost:8080/insuranceapp/customer',{
        
         userdetails: {
@@ -32,4 +32,44 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
     })
     console.log('Data saved successfully:', response.data);
     return response;
+  }
+
+
+  export const getUserName = async(username)=>{
+   
+    let response = await axios.get('http://localhost:8080/insuranceapp/customer',{
+       
+    params:{
+       username:username
+    },
+    headers :{
+        Authorization: 'Bearer '+localStorage.getItem('authentication')
+      }
+      
+    })
+    console.log('Geting data:', response);
+    return response;
+  }
+
+  export const updateCustomerdetails = async(username,mobileNumber,dateOfBirth,address,state,city,pincode) => {
+    let response = await axios.put('http://localhost:8080/insuranceapp/customer',{
+        
+          mobileNumber:mobileNumber,
+          dateOfBirth:dateOfBirth,
+          address:address,
+          state:state,
+          city:city,
+          pincode:pincode
+        },
+        {
+          params:{
+            username:username
+          },
+          // headers :{
+          //   Authorization: 'Bearer '+localStorage.getItem('authentication')
+          // }
+        })
+        console.log(response)
+        console.log('Data saved successfully:', response.data)
+     return response
   }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import logo1 from '../../../Image/example-19.svg'
 import logo2 from '../../../Image/image3.png'
 import logo3 from '../../../Image/Medicine-bro.svg'
@@ -10,9 +10,37 @@ import image4 from '../../../Image/check.svg'
 import './Part1.css'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import { getUserName } from '../../../Service/CustomerService'
+import { useHistory } from 'react-router-dom';
 
 const Part1 = () => {
   const params =useParams()
+  const [login,setLogin] = useState(false)
+  const [firstName,setFirstName] =useState()
+
+    const getNameOfUser = async() =>{
+
+        let response =await  getUserName(params.username)
+        setFirstName(response.data)
+        console.log(response);
+    }
+
+
+  useEffect(() => {
+    // Check for authentication in localStorage and update the state accordingly
+    if (localStorage.getItem('authentication')) {
+      setLogin(true);
+    }
+    if (login) {
+        // console.log(login)
+        // getNameOfUser();
+      }
+  },  [login]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
 
 
   return (
@@ -22,7 +50,13 @@ const Part1 = () => {
                 <div className="part1-container">
                     <div className="row">
                         <div className="part-left">
-                            <h6 className="text-title" style={{fontWeight:200}}>Welcome {params.username}</h6>
+                            
+                        {login ? (
+                        <h3 className="text-title" style={{ fontWeight: 200 }}>
+                            Welcome {firstName} !
+                        </h3>
+                        ) : null}
+                            
                             <h2 className="text-title">Insurance</h2>
                             <h1 className="text-title">The need of the hour</h1>
                             <p className="text-description">Streamline claims, enhance policy management, and prioritize user security with our innovative insurance app</p>
@@ -64,7 +98,7 @@ const Part1 = () => {
                             <p className="insurance-tc__subtext">Life insurance plans primarily cover the risk of untimely demise of the insured. In case of an unforeseen demise of the insured, a death benefit is paid, which helps the family face the financial loss.</p>
                         </div>
                         <div className="insurancePlanCards__exploreMore">
-                            <Link to="/insurance-plan">Explore More</Link>
+                            <Link to="/insurance-plan" onClick={scrollToTop}>Explore More</Link>
                             {/* <a hExplore More</a> */}
                         </div>
 

@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { validateUser as validate } from '../../../Service/Authentication';
 
-const PolicyDetails = ({value}) => {
+const PolicyDetails = ({value,schemeId}) => {
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
     const [minAmount, setMinAmount] = useState(value?.minAmount || "");
@@ -10,25 +12,7 @@ const PolicyDetails = ({value}) => {
     const [maxTime, setMaxTime] = useState(value?.maxTime || "");
     const [profitRatio, setProfitRatio] = useState(value?.profitRatio || "");
 
-    // const [maxAmount, setMaxAmount] = useState(value.maxAmount);
-    // const [minAmount, setMinAmount] = useState(value.minAmount);
-    // const [minAge, setMinAge] = useState(value.minAge);
-    // const [maxAge, setMaxAge] = useState(value.maxAge);
-    // const [minTime, setMinTime] = useState(value.minTime);
-    // const [maxTime, setMaxTime] = useState(value.maxTime);
-    // const [profitRatio, setProfitRatio] = useState(value.profitRatio);
-  
     
-    // const [maxAmount, setMaxAmount] = useState();
-    // const [minAmount, setMinAmount] = useState();
-    
-    // const [minAge, setMinAge] = useState();
-    // const [maxAge, setMaxAge] = useState();
-    // const [minTime, setMinTime] = useState();
-    // const [maxTime, setMaxTime] = useState();
-    // const [profitRatio, setProfitRatio] = useState();
-  
-   
     const [noOfYear,setNoOfYear] = useState()
     const [totalInvestmentAmount, setTotalInvestmentAmount] = useState()
     const [premiumType,setPremiumType]=useState()
@@ -36,15 +20,33 @@ const PolicyDetails = ({value}) => {
     const [interestAmount, setInterestAmount] = useState();
     const [totalAmount, setTotalAmount] = useState();
 
-    // const calculateInterest = () => {
-    //     let noOfInstallment= (noOfYear*12)/premiumType
-    //     setInstallmentAmount(totalInvestmentAmount/noOfInstallment)
-    //     let interest=(profitRatio/100)*totalInvestmentAmount
-    //     setInterestAmount((profitRatio/100)*totalInvestmentAmount)
-    //     let sum  =(interest*noOfYear)+totalInvestmentAmount
-    //     console.log(sum)
-    //     setTotalAmount(sum)
-    // };
+    const navigate=new useNavigate();
+    const openPolicy =async() =>{
+
+        const dataToSend = {
+            noOfYear,
+            totalInvestmentAmount,
+            premiumType,
+            installmentAmount,
+            interestAmount,
+            totalAmount,
+          };
+      
+        if(localStorage.getItem('authentication'))
+        {
+            const authToken = localStorage.getItem('authentication')
+            console.log("authtoken--->"+authToken)
+            // let resp = await validate(authToken)
+            // console.log(resp)
+            // navigate(`/customerDashboard/Policy/${resp.data.sub}`)
+            navigate('/customerDashboard/Policy', { state: dataToSend });
+        }
+        else{
+            alert("First login")
+            navigate('/')
+        }
+
+    }
     const calculateInterest = () => {
        
         const parsedNoOfYear = parseFloat(noOfYear);
@@ -76,7 +78,7 @@ const PolicyDetails = ({value}) => {
         <h1 className='investment-heading' style={{textAlign:"center"}}>Investment Details</h1>
         <div className="investment-blur" style={{ background: "rgb(238 210 255)" }}></div>
         <form className='investment-postdata'>
-            {console.log(value)}
+            
             <div className='investment-form-group'>
                 <label htmlFor="investmentAmount">Minimum Investment Amount *</label>
                 <input
@@ -243,6 +245,11 @@ const PolicyDetails = ({value}) => {
                        
                         required
                     />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
+                    <button  type="button"  onClick={openPolicy}>
+                        BuyNow
+                    </button>
                 </div>
                 
             </form>

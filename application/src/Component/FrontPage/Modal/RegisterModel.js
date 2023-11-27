@@ -39,7 +39,7 @@ const RegisterModel = ({ showRegistrationModal, toggleRegistrationModal}) => {
 
         {/* <Modal.Backdrop  /> */}
 
-        <Modal.Body>
+        <Modal.Body >
           <Register/>
         </Modal.Body>
         <Modal.Footer>

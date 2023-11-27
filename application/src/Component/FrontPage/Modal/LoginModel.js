@@ -39,7 +39,7 @@ const LoginModel = ({ showLoginModal, toggleLoginModal }) => {
 
         {/* <Modal.Backdrop  /> */}
 
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
           <Login/>
         </Modal.Body>
         <Modal.Footer>
