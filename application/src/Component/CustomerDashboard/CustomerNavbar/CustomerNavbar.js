@@ -1,22 +1,26 @@
 import React, {useState} from 'react'
 import "./Navbar.css"
 import { Link } from 'react-router-dom';
-import QueryModel from '../QueryModel';
+import QueryModel from '../Models/QueryModel';
+import EditProfileModel from '../Models/EditProfileModel';
 
 const CustomerNavbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isQueryModalOpen, setIsQueryModalOpen] = useState(false);
-
+  const [isEditProfileModalOpen,setIsEditProfileModalOpen] =useState(false);
 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
   const toggleQueryModel = () => {
-    console.log("indide")
+    // console.log("indide")
     setIsQueryModalOpen(!isQueryModalOpen);
   };
-
+  const toggleEditProfileModel = () => {
+    // console.log("indide")
+    setIsEditProfileModalOpen(!isEditProfileModalOpen);
+  };
 
 
   return (
@@ -32,7 +36,9 @@ const CustomerNavbar = () => {
               <div className="customer-collapsed " id="navbarSupportedContent">
                 <ul className="customer-navbar-left mr-auto">
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">Home</a>
+                    
+                      <Link to="/" className='customer-nav-link' >Home</Link>
+                        
                     </li>
                     <li className="nav-item ">
                     <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a>
@@ -56,7 +62,7 @@ const CustomerNavbar = () => {
                     <div className="profile-popup">
                         
                         <a href="">My Profile</a>
-                        <a href="">Edit Profile</a>
+                        <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEditProfileModel(); }}>Edit Profile</a>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleQueryModel(); }}>Query</a>
    
                         {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
@@ -75,6 +81,10 @@ const CustomerNavbar = () => {
           </div>
         </nav>
 
+        <div>
+          {isEditProfileModalOpen && ( <EditProfileModel isOpen={isEditProfileModalOpen} toggleEditProfileModel={toggleEditProfileModel} />
+          )}
+        </div>
         <div>
           {isQueryModalOpen && ( <QueryModel isOpen={isQueryModalOpen} toggleQueryModel={toggleQueryModel} />
           )}

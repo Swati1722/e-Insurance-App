@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import './PolicyDetails.css';
-const PolicyDetails = ({ value }) => {
+import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { validateUser as validate } from '../../../Service/Authentication';
+
+const PolicyDetails = ({value,schemeId}) => {
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
     const [minAmount, setMinAmount] = useState(value?.minAmount || "");
@@ -10,41 +12,41 @@ const PolicyDetails = ({ value }) => {
     const [maxTime, setMaxTime] = useState(value?.maxTime || "");
     const [profitRatio, setProfitRatio] = useState(value?.profitRatio || "");
 
-    // const [maxAmount, setMaxAmount] = useState(value.maxAmount);
-    // const [minAmount, setMinAmount] = useState(value.minAmount);
-    // const [minAge, setMinAge] = useState(value.minAge);
-    // const [maxAge, setMaxAge] = useState(value.maxAge);
-    // const [minTime, setMinTime] = useState(value.minTime);
-    // const [maxTime, setMaxTime] = useState(value.maxTime);
-    // const [profitRatio, setProfitRatio] = useState(value.profitRatio);
-
-
-    // const [maxAmount, setMaxAmount] = useState();
-    // const [minAmount, setMinAmount] = useState();
-
-    // const [minAge, setMinAge] = useState();
-    // const [maxAge, setMaxAge] = useState();
-    // const [minTime, setMinTime] = useState();
-    // const [maxTime, setMaxTime] = useState();
-    // const [profitRatio, setProfitRatio] = useState();
-
-
-    const [noOfYear, setNoOfYear] = useState()
+    
+    const [noOfYear,setNoOfYear] = useState()
     const [totalInvestmentAmount, setTotalInvestmentAmount] = useState()
     const [premiumType, setPremiumType] = useState()
     const [installmentAmount, setInstallmentAmount] = useState();
     const [interestAmount, setInterestAmount] = useState();
     const [totalAmount, setTotalAmount] = useState();
 
-    // const calculateInterest = () => {
-    //     let noOfInstallment= (noOfYear*12)/premiumType
-    //     setInstallmentAmount(totalInvestmentAmount/noOfInstallment)
-    //     let interest=(profitRatio/100)*totalInvestmentAmount
-    //     setInterestAmount((profitRatio/100)*totalInvestmentAmount)
-    //     let sum  =(interest*noOfYear)+totalInvestmentAmount
-    //     console.log(sum)
-    //     setTotalAmount(sum)
-    // };
+    const navigate=new useNavigate();
+    const openPolicy =async() =>{
+
+        const dataToSend = {
+            noOfYear,
+            totalInvestmentAmount,
+            premiumType,
+            installmentAmount,
+            interestAmount,
+            totalAmount,
+          };
+      
+        if(localStorage.getItem('authentication'))
+        {
+            const authToken = localStorage.getItem('authentication')
+            console.log("authtoken--->"+authToken)
+            // let resp = await validate(authToken)
+            // console.log(resp)
+            // navigate(`/customerDashboard/Policy/${resp.data.sub}`)
+            navigate('/customerDashboard/Policy', { state: dataToSend });
+        }
+        else{
+            alert("First login")
+            navigate('/')
+        }
+
+    }
     const calculateInterest = () => {
 
         const parsedNoOfYear = parseFloat(noOfYear);
@@ -70,10 +72,102 @@ const PolicyDetails = ({ value }) => {
 
 
 
-    return (
-        <>
-            <div className="investment-card">
-                <div className="investment-blur" style={{ background: "rgb(238 210 255)" }}></div>
+  return (
+    <>
+    
+        <h1 className='investment-heading' style={{textAlign:"center"}}>Investment Details</h1>
+        <div className="investment-blur" style={{ background: "rgb(238 210 255)" }}></div>
+        <form className='investment-postdata'>
+            
+            <div className='investment-form-group'>
+                <label htmlFor="investmentAmount">Minimum Investment Amount *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="investmentAmount"
+                    value={minAmount}
+                
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="investmentAmount">Maximum Investment Amount *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="investmentAmount"
+                    value={maxAmount}
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="minAge">Minimum Age *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="minAge"
+                    value={minAge}
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="maxAge">Maximum Age *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="maxAge"
+                    value={maxAge}
+                    onChange={(e) => setMaxAge(e.target.value)}
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="minPolicyTerm">Minimum Policy Term *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="minPolicyTerm"
+                    value={minTime}
+                    onChange={(e) => setMinTime(e.target.value)}
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="maxPolicyTerm">Maximum Policy Term *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="maxPolicyTerm"
+                    value={maxTime}
+                    onChange={(e) => setMaxTime(e.target.value)}
+                    required
+                />
+            </div>
+            <div className='investment-form-group'>
+                <label htmlFor="profitRatio">Profit Ratio *</label>
+                <input
+                    disabled={true}
+                    type="text"
+                    className="form-control"
+                    id="profitRatio"
+                    value={profitRatio}
+                    onChange={(e) => setProfitRatio(e.target.value)}
+                    required
+                />
+            </div>
+        </form>
+
+            <h4 className='investment-heading' style={{textAlign:"center"}}>Interest Calculate</h4>
+            <form className='investment-postdata'>
+                <div className='investment-form-group'>
+                    <label htmlFor="noOfYear">Number of year*</label>
+                    <input
                
                 <form className='investment-postdata'>
                 <h1 className="investment-heading">Investment Details</h1>
@@ -252,6 +346,51 @@ const PolicyDetails = ({ value }) => {
 
             </div>
 
+            <form className='investment-postdata'>
+                <div className='investment-form-group'>
+                    <label htmlFor="installmentAmount">Installment Amount*</label>
+                    <input
+                        disabled={true}
+                        type="text"
+                        className="form-control"
+                        id="installmentAmount"
+                        value={installmentAmount}
+                        
+                    
+                        required
+                    />
+                </div>
+                <div className='investment-form-group'>
+                    <label htmlFor="interestAmount">Interest Amount *</label>
+                    <input
+                        disabled={true}
+                        type="text"
+                        className="form-control"
+                        id="Interest Amount"
+                        value={interestAmount}
+                        required
+                    />
+                </div>
+                <div className='investment-form-group'>
+                    <label htmlFor="totalAmount">Total Amount *</label>
+                    <input
+                        disabled={true}
+                        type="text"
+                        className="form-control"
+                        id="totalAmount"
+                        value={totalAmount}
+                       
+                        required
+                    />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
+                    <button  type="button"  onClick={openPolicy}>
+                        BuyNow
+                    </button>
+                </div>
+                
+            </form>
+            
 
 
             {/* onClick={submitInvestmentDetails} */}
