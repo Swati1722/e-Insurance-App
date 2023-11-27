@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-
-const PolicyDetails = ({value}) => {
+import React, { useState } from 'react'
+import './PolicyDetails.css';
+const PolicyDetails = ({ value }) => {
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
     const [minAmount, setMinAmount] = useState(value?.minAmount || "");
@@ -17,21 +17,21 @@ const PolicyDetails = ({value}) => {
     // const [minTime, setMinTime] = useState(value.minTime);
     // const [maxTime, setMaxTime] = useState(value.maxTime);
     // const [profitRatio, setProfitRatio] = useState(value.profitRatio);
-  
-    
+
+
     // const [maxAmount, setMaxAmount] = useState();
     // const [minAmount, setMinAmount] = useState();
-    
+
     // const [minAge, setMinAge] = useState();
     // const [maxAge, setMaxAge] = useState();
     // const [minTime, setMinTime] = useState();
     // const [maxTime, setMaxTime] = useState();
     // const [profitRatio, setProfitRatio] = useState();
-  
-   
-    const [noOfYear,setNoOfYear] = useState()
+
+
+    const [noOfYear, setNoOfYear] = useState()
     const [totalInvestmentAmount, setTotalInvestmentAmount] = useState()
-    const [premiumType,setPremiumType]=useState()
+    const [premiumType, setPremiumType] = useState()
     const [installmentAmount, setInstallmentAmount] = useState();
     const [interestAmount, setInterestAmount] = useState();
     const [totalAmount, setTotalAmount] = useState();
@@ -46,7 +46,7 @@ const PolicyDetails = ({value}) => {
     //     setTotalAmount(sum)
     // };
     const calculateInterest = () => {
-       
+
         const parsedNoOfYear = parseFloat(noOfYear);
         const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
         const parsedPremiumType = parseFloat(premiumType);
@@ -56,13 +56,13 @@ const PolicyDetails = ({value}) => {
             console.error("Invalid input. Please enter valid numbers.");
             return;
         }
-    
+
         const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
         setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
-    
+
         const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
         setInterestAmount(interest);
-    
+
         const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
         setTotalAmount(sum);
     };
@@ -70,190 +70,193 @@ const PolicyDetails = ({value}) => {
 
 
 
-  return (
-    <>
-    
-        <h1 className='investment-heading' style={{textAlign:"center"}}>Investment Details</h1>
-        <div className="investment-blur" style={{ background: "rgb(238 210 255)" }}></div>
-        <form className='investment-postdata'>
-            {console.log(value)}
-            <div className='investment-form-group'>
-                <label htmlFor="investmentAmount">Minimum Investment Amount *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="investmentAmount"
-                    value={minAmount}
-                
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="investmentAmount">Maximum Investment Amount *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="investmentAmount"
-                    value={maxAmount}
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="minAge">Minimum Age *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="minAge"
-                    value={minAge}
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="maxAge">Maximum Age *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="maxAge"
-                    value={maxAge}
-                    onChange={(e) => setMaxAge(e.target.value)}
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="minPolicyTerm">Minimum Policy Term *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="minPolicyTerm"
-                    value={minTime}
-                    onChange={(e) => setMinTime(e.target.value)}
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="maxPolicyTerm">Maximum Policy Term *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="maxPolicyTerm"
-                    value={maxTime}
-                    onChange={(e) => setMaxTime(e.target.value)}
-                    required
-                />
-            </div>
-            <div className='investment-form-group'>
-                <label htmlFor="profitRatio">Profit Ratio *</label>
-                <input
-                    disabled={true}
-                    type="text"
-                    className="form-control"
-                    id="profitRatio"
-                    value={profitRatio}
-                    onChange={(e) => setProfitRatio(e.target.value)}
-                    required
-                />
-            </div>
-        </form>
-
-            <h4 className='investment-heading' style={{textAlign:"center"}}>Interest Calculate</h4>
-            <form className='investment-postdata'>
-                <div className='investment-form-group'>
-                    <label htmlFor="noOfYear">Number of year*</label>
-                    <input
+    return (
+        <>
+            <div className="investment-card">
+                <div className="investment-blur" style={{ background: "rgb(238 210 255)" }}></div>
                
-                        type="text"
-                        className="form-control"
-                        id="noOfYear"
-                        value={noOfYear}
-                        onChange={(e) => setNoOfYear(e.target.value)}
-                    
-                        required
-                    />
-                </div>
-                <div className='investment-form-group'>
-                    <label htmlFor="totalInvestmentAmount">Total Investment Amount *</label>
-                    <input
-                        
-                        type="text"
-                        className="form-control"
-                        id="totalInvestmentAmount"
-                        value={totalInvestmentAmount}
-                        onChange={(e) => setTotalInvestmentAmount(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className='investment-form-group'>
-                    <label htmlFor="premiumType">Premium Type *</label>
-                    <input
-                        
-                        type="text"
-                        className="form-control"
-                        id="premiumType"
-                        value={premiumType}
-                        onChange={(e) => setPremiumType(e.target.value)}
-                        required
-                    />
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
-                    <button  type="button"  onClick={calculateInterest}>
-                        Calculate
-                    </button>
-                </div>
-            </form>
+                <form className='investment-postdata'>
+                <h1 className="investment-heading">Investment Details</h1>
+                    {console.log(value)}
+                    <div className='investment-form-group'>
+                        <label htmlFor="investmentAmount">Minimum Investment Amount *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="investmentAmount"
+                            value={minAmount}
 
-            <form className='investment-postdata'>
-                <div className='investment-form-group'>
-                    <label htmlFor="installmentAmount">Installment Amount*</label>
-                    <input
-                        disabled={true}
-                        type="text"
-                        className="form-control"
-                        id="installmentAmount"
-                        value={installmentAmount}
-                        
-                    
-                        required
-                    />
-                </div>
-                <div className='investment-form-group'>
-                    <label htmlFor="interestAmount">Interest Amount *</label>
-                    <input
-                        disabled={true}
-                        type="text"
-                        className="form-control"
-                        id="Interest Amount"
-                        value={interestAmount}
-                        required
-                    />
-                </div>
-                <div className='investment-form-group'>
-                    <label htmlFor="totalAmount">Total Amount *</label>
-                    <input
-                        disabled={true}
-                        type="text"
-                        className="form-control"
-                        id="totalAmount"
-                        value={totalAmount}
-                       
-                        required
-                    />
-                </div>
-                
-            </form>
-            
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="investmentAmount">Maximum Investment Amount *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="investmentAmount"
+                            value={maxAmount}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="minAge">Minimum Age *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="minAge"
+                            value={minAge}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="maxAge">Maximum Age *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="maxAge"
+                            value={maxAge}
+                            onChange={(e) => setMaxAge(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="minPolicyTerm">Minimum Policy Term *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="minPolicyTerm"
+                            value={minTime}
+                            onChange={(e) => setMinTime(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="maxPolicyTerm">Maximum Policy Term *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="maxPolicyTerm"
+                            value={maxTime}
+                            onChange={(e) => setMaxTime(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="profitRatio">Profit Ratio *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="profitRatio"
+                            value={profitRatio}
+                            onChange={(e) => setProfitRatio(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                </form>
+
+               
+                <form className='investment-postdata'>
+                <h4 className='investment-heading' style={{ textAlign: "center" }}>Interest Calculate</h4>
+                    <div className='investment-form-group'>
+                        <label htmlFor="noOfYear">Number of year*</label>
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            id="noOfYear"
+                            value={noOfYear}
+                            onChange={(e) => setNoOfYear(e.target.value)}
+
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="totalInvestmentAmount">Total Investment Amount *</label>
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            id="totalInvestmentAmount"
+                            value={totalInvestmentAmount}
+                            onChange={(e) => setTotalInvestmentAmount(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="premiumType">Premium Type *</label>
+                        <input
+
+                            type="text"
+                            className="form-control"
+                            id="premiumType"
+                            value={premiumType}
+                            onChange={(e) => setPremiumType(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "1rem" }}>
+                        <button type="button" onClick={calculateInterest}>
+                            Calculate
+                        </button>
+                    </div>
+                </form>
+
+                <form className='investment-postdata'>
+                    <div className='investment-form-group'>
+                        <label htmlFor="installmentAmount">Installment Amount*</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="installmentAmount"
+                            value={installmentAmount}
 
 
-        
-        
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="interestAmount">Interest Amount *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="Interest Amount"
+                            value={interestAmount}
+                            required
+                        />
+                    </div>
+                    <div className='investment-form-group'>
+                        <label htmlFor="totalAmount">Total Amount *</label>
+                        <input
+                            disabled={true}
+                            type="text"
+                            className="form-control"
+                            id="totalAmount"
+                            value={totalAmount}
+
+                            required
+                        />
+                    </div>
+
+                </form>
+
+            </div>
+
+
+
             {/* onClick={submitInvestmentDetails} */}
-    </>
-  )
+        </>
+    )
 }
 
 export default PolicyDetails

@@ -7,13 +7,11 @@
 .scheme-container{
     height :520px;
     max-width:1260px ;
-    /* width: 100%; */
-    /* padding-right: 15px; */
+   
     padding-left: 15px;
     margin-right: 1rem;
     margin-left: 1rem;
     margin-top: 4rem;
-    /* display: flex; */
 }
 .scheme-container >.scheme-row{
     display: flex;
@@ -150,3 +148,29 @@
     border-radius: 5px;
     font-weight: bold;
 }
+/* Add the following styles at the end of your Scheme.css file */
+
+.plan-details-button {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #28a745; /* Success color */
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #28a745; /* Border color */
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .plan-details-button:hover {
+    background-color: #218838; /* Darker shade for hover */
+    border-color: #218838;
+  }
+  
+  .plan-details-button:active {
+    background-color: #1e7e34; /* Even darker shade for active state */
+    border-color: #1e7e34;
+  }
+  

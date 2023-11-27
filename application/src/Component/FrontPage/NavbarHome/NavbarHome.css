@@ -1,4 +1,4 @@
-
+/* 
 .navbar{
     height:4rem;
     transition: all .3s ease 0s;
@@ -39,7 +39,7 @@
    
     padding-left: 0;
     padding-right: 0;
-    /* margin-right: 20px; */
+   
     text-decoration: none;
 }
 
@@ -84,17 +84,107 @@
 
 
 .navbar-right .nav-link i {
-    height: 2rem; /* for the first icon */
+    height: 2rem; 
    
   }
   
   .navbar-right .nav-link i.ri-user-2-fill {
-    font-size: 1.5rem; /* for the second icon */
-    /* margin-left: 2rem; */
+    font-size: 1.5rem;
+    
   }
   .navbar-right .nav-link i.ri-user-add-fill {
-    font-size: 1.5rem; /* for the second icon */
-    /* margin-left: 2rem; */
+    font-size: 1.5rem; 
+   
   }
   
+ */
+ .navbar {
+    height: 4rem;
+    transition: all 0.3s ease;
+    padding: 18px 28px;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 15px 30px 0 rgba(60, 72, 88, 0.05);
+}
 
+.navbar.scrolled {
+    background: linear-gradient(rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.5));
+    box-shadow: 0 15px 30px 0 rgba(60, 72, 88, 0.2);
+}
+
+.nav-container {
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar-brand,
+.nav-link {
+    color: #223464;
+    text-decoration: none;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ffca28;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.navbar-left {
+    flex: 2;
+    display: flex;
+    text-decoration: none;
+}
+
+.navbar-right {
+    flex: 1;
+    align-items: center;
+    display: flex;
+    margin-left: 5rem;
+    padding-left: 12rem;
+    padding-right: 0;
+}
+
+.nav-item {
+    list-style-type: none;
+}
+
+.navbar-right .nav-link i {
+    height: 2rem;
+}
+
+.navbar-right .nav-link i.ri-user-2-fill,
+.navbar-right .nav-link i.ri-user-add-fill {
+    font-size: 1.5rem;
+}
+/* Add the following styles to your CSS file */
+
+.navbar a {
+    text-decoration: red;
+    color: hsl(260, 88%, 3%); /* Default color for inactive links */
+    margin: 0 15px;
+    font-weight: normal;
+    font-weight: bold;
+  }
+  
+  .navbar a:hover,
+  .navbar a:active,
+  .navbar a:focus {
+    color: #ffca28; /* Strong color for active/hovered links */
+    font-weight: bold; /* Make the font weight bold for active/hovered links */
+  }
+  
