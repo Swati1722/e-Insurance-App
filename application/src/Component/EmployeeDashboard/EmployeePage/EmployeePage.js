@@ -11,7 +11,7 @@ const EmployeePage = () => {
 
 
 
-    
+
   return (
     <>
             <section className="vh-100 content">
@@ -26,7 +26,7 @@ const EmployeePage = () => {
                                 <div className="row mb-4">
                                     {/* First Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/addEmployeeTable" className="card-link" onClick = {AddEmployee}>
+                                        <Link to="" className="card-link" >
                                             <div className="card square-card">
                                                 <img
                                                     src={logo5}

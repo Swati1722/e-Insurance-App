@@ -50,7 +50,7 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data,schemeId}) => {
           
         </Modal.Footer>
       </Modal>
-    \
+    
     
    
    </>

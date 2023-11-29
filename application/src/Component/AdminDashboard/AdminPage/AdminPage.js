@@ -6,9 +6,17 @@ import logo2 from '../../../Image/Admin1.svg'
 import logo3 from '../../../Image/Admin2.svg'
 import logo4 from '../../../Image/Admin3.svg'
 import logo5 from '../../../Image/Admin4.svg'
+import AdminEditProfileModel from '../Models/AdminEditProfileModel';
 
 
 const AdminPage = () => {
+
+const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(false);
+
+ 
+  const toggleAdminRegistrationModal = () => {
+    setShowAdminRegistrationModal(!showAdminRegistrationModal);
+  };
   return (
     <>
            <section className="vh-100 content">
@@ -23,7 +31,7 @@ const AdminPage = () => {
                                 <div className="row mb-4">
                                     {/* First Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/addEmployeeTable" className="card-link">
+                                        <Link to="" className="card-link"   onClick={toggleAdminRegistrationModal}>
                                             <div className="card square-card">
                                                 <img
                                                     src={logo5}
@@ -106,6 +114,11 @@ const AdminPage = () => {
                 </div>
             </div>
         </section>
+        <div>
+        { showAdminRegistrationModal && <AdminEditProfileModel
+          showAdminRegistrationModal={showAdminRegistrationModal}
+          toggleAdminRegistrationModal={toggleAdminRegistrationModal}/>}
+        </div>
 
 
 
