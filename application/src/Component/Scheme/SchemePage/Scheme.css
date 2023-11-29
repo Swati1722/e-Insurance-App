@@ -154,7 +154,8 @@
     text-align: center;
     margin-top: 20px;
     color: #fff;
-    background-color: #28a745; /* Success color */
+    /* background-color: #28a745; */
+     /* Success color */
     text-decoration: none;
     cursor: pointer;
     border: 2px solid #28a745; /* Border color */

@@ -1,13 +1,12 @@
 import React from 'react'
+import AdminNavbar from "../AdminNavbar/AdminNavbar"
+import AdminPage from '../AdminPage/AdminPage'
 
 const Admin = () => {
   return (
     <>
-        <div>
-            <h1>
-                hiiiii admin
-            </h1>
-        </div>
+       <AdminNavbar/>
+       <AdminPage/>
     
     
     </>

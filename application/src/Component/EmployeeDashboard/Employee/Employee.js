@@ -1,13 +1,12 @@
 import React from 'react'
+import EmployeeNavbar from '../EmployeeNavbar/EmployeeNavbar'
+import EmployeePage from '../EmployeePage/EmployeePage'
 
 const Employee = () => {
   return (
     <>
-        <div>
-            <h1>
-                hiiiii agent
-            </h1>
-        </div>
+        <EmployeeNavbar/>
+        <EmployeePage/>
     </>
   )
 }
