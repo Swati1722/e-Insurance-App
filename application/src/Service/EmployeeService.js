@@ -1,5 +1,5 @@
 import axios from "axios";
-export const addCustomer = async(firstname,lastname,username,password,email)=>{
+export const addEmployee = async(firstname,lastname,username,password,email,salary,mobileNumber,dateOfBirth)=>{
 
     let response = await axios.post('http://localhost:8080/insuranceapp/employee',{
        
@@ -19,4 +19,23 @@ export const addCustomer = async(firstname,lastname,username,password,email)=>{
     console.log('Data saved successfully:', response.data);
     return response;
   }
+
+
+  export const getAllEmployee = async(pageNumber, pageSize)=>{
+    try{
+         let response = await axios.get('http://localhost:8080/insuranceapp/employees',{
+           params:{
+             pagesize: pageSize,
+             pagenumber: pageNumber
+         }
+           
+         })
+         console.log('Geting data:', response);
+         return response;
+       
+   }
+   catch (error){
+     throw error
+   }
+ }
 

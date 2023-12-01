@@ -40,8 +40,10 @@ const CustomerNavbar = () => {
                       <Link to="/" className='customer-nav-link' >Home</Link>
                         
                     </li>
-                    <li className="nav-item ">
-                    <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a>
+                    <li className="customer-nav-item ">
+                      <Link to="/plan" className='customer-nav-link '>Insurance Plan</Link>
+                        
+                    {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>
                     <li className="customer-nav-item ">
                     <a href="" className="customer-nav-link">About Us</a>
@@ -60,8 +62,9 @@ const CustomerNavbar = () => {
                     </li>
                     {isProfileOpen && (
                     <div className="profile-popup">
+                        <Link to="/customerDashboard/profile" className='d-text'>My Profile</Link>
                         
-                        <a href="">My Profile</a>
+                        {/* <a href="">My Profile</a> */}
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEditProfileModel(); }}>Edit Profile</a>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleQueryModel(); }}>Query</a>
    

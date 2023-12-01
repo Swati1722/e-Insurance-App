@@ -1,21 +1,21 @@
-import React from 'react'
-import "./AdminPage.css"
+import React, {useState} from 'react'
+// import "./AdminPage.css"
 import { Link } from 'react-router-dom';
 import logo1 from '../../../Image/Admin.svg'
 import logo2 from '../../../Image/Admin1.svg'
 import logo3 from '../../../Image/Admin2.svg'
 import logo4 from '../../../Image/Admin3.svg'
 import logo5 from '../../../Image/Admin4.svg'
-import AdminEditProfileModel from '../Models/AdminEditProfileModel';
+import AddEmoplyeeModel from '../Models/AddEmoplyeeModel';
 
 
 const AdminPage = () => {
 
-const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(false);
+const [showEmployeeRegistrationModal, setShowEmployeeRegistrationModal] = useState(false);
 
  
-  const toggleAdminRegistrationModal = () => {
-    setShowAdminRegistrationModal(!showAdminRegistrationModal);
+  const toggleEmployeeRegistrationModal = () => {
+    setShowEmployeeRegistrationModal(!showEmployeeRegistrationModal);
   };
   return (
     <>
@@ -27,37 +27,37 @@ const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(fal
                             <div className="card-header">
                                 <h2 className="fw-bold mb-5">Admin Dashboard</h2>
                             </div>
-                            <div className="card-body p-md-5 container-form">
+                            <div className="card-body p-md-4 container-form">
                                 <div className="row mb-4">
                                     {/* First Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="" className="card-link"   onClick={toggleAdminRegistrationModal}>
+                                        <Link to="" className="card-link"   onClick={toggleEmployeeRegistrationModal}>
                                             <div className="card square-card">
-                                                <img
+                                                <img style={{height:"8rem",width:"10rem",  padding:"1rem"}}
                                                     src={logo5}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">Add Employee</h5>
-                                                    <p className="card-text">Click to view Add Employee table</p>
-                                                </div>
+                                                    <h5 className="card-title" style={{textDecoration:"none"}}>Add Employee</h5>
+                                                 </div>
                                             </div>
                                         </Link>
                                     </div>
 
                                     {/* Second Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewCustomer" className="card-link">
+                                        <Link to="/adminDashboard/viewCustomer" className="card-link">
                                             <div className="card square-card">
                                                 <img
+                                                    style={{height:"8rem",  padding:"1rem"}}
                                                     src={logo2}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
                                                     <h5 className="card-title">View Customer</h5>
-                                                    <p className="card-text">Click to view View Customer table</p>
+                                                   
                                                 </div>
                                             </div>
                                         </Link>
@@ -65,16 +65,17 @@ const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(fal
 
                                     {/* Third Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewEmployee" className="card-link">
+                                        <Link to="/adminDashboard/viewEmployee" className="card-link">
                                             <div className="card square-card">
                                                 <img
+                                                    style={{height:"8rem",  padding:"1rem"}}
                                                     src={logo3}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
                                                     <h5 className="card-title">View Employee</h5>
-                                                    <p className="card-text">Click to view View Employee table</p>
+                                                   
                                                 </div>
                                             </div>
                                         </Link>
@@ -82,16 +83,16 @@ const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(fal
 
                                     {/* Fourth Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewAgent" className="card-link">
+                                        <Link to="/adminDashboard/viewAgent" className="card-link">
                                             <div className="card square-card">
-                                                <img
+                                                <img style={{height:"8rem",width:"10rem",  padding:"1rem"}}
                                                     src={logo4}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
                                                     <h5 className="card-title">View Agent</h5>
-                                                    <p className="card-text">Click to view View Agent table</p>
+                                                    
                                                 </div>
                                             </div>
                                         </Link>
@@ -115,9 +116,9 @@ const [showAdminRegistrationModal, setShowAdminRegistrationModal] = useState(fal
             </div>
         </section>
         <div>
-        { showAdminRegistrationModal && <AdminEditProfileModel
-          showAdminRegistrationModal={showAdminRegistrationModal}
-          toggleAdminRegistrationModal={toggleAdminRegistrationModal}/>}
+        { showEmployeeRegistrationModal && <AddEmoplyeeModel
+          showAdminRegistrationModal={showEmployeeRegistrationModal}
+          toggleAdminRegistrationModal={toggleEmployeeRegistrationModal}/>}
         </div>
 
 
