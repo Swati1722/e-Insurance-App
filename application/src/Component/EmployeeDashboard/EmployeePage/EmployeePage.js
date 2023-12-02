@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./EmployeePage.css"
 import { Link } from 'react-router-dom';
 import logo1 from '../../../Image/Admin.svg'
@@ -6,9 +6,15 @@ import logo2 from '../../../Image/Admin1.svg'
 import logo3 from '../../../Image/Admin2.svg'
 import logo4 from '../../../Image/Admin3.svg'
 import logo5 from '../../../Image/Admin4.svg'
+import AddAgentModel from '../Models/AddAgentModel';
 
 const EmployeePage = () => {
+    const [showAgentRegistrationModal, setShowAgentRegistrationModal] = useState(false);
 
+ 
+  const toggleAgentRegistrationModal = () => {
+    setShowAgentRegistrationModal(!showAgentRegistrationModal);
+  };
 
 
 
@@ -26,7 +32,7 @@ const EmployeePage = () => {
                                 <div className="row mb-4">
                                     {/* First Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="" className="card-link" >
+                                        <Link to="" className="card-link"  onClick={toggleAgentRegistrationModal}>
                                             <div className="card square-card">
                                                 <img style={{height:"8rem",width:"10rem",  padding:"1rem"}}
                                                     src={logo5}
@@ -34,7 +40,7 @@ const EmployeePage = () => {
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">Add Employee</h5>
+                                                    <h5 className="card-title">Add Agent</h5>
                                                 </div>
                                             </div>
                                         </Link>
@@ -42,7 +48,7 @@ const EmployeePage = () => {
 
                                     {/* Second Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewCustomer" className="card-link">
+                                        <Link to="/employeeDashboard/viewAgent" className="card-link">
                                             <div className="card square-card">
                                                 <img style={{height:"8rem",  padding:"1rem"}}
                                                     src={logo2}
@@ -50,7 +56,7 @@ const EmployeePage = () => {
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">View Customer</h5>
+                                                    <h5 className="card-title">View Agent</h5>
                                                    
                                                 </div>
                                             </div>
@@ -59,16 +65,16 @@ const EmployeePage = () => {
 
                                     {/* Third Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewEmployee" className="card-link">
+                                        <Link to="/employeeDashboard/message" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"8rem",  padding:"1rem"}}
-                                                    src={logo3}
+                                                    src={logo4}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">View Employee</h5>
+                                                    <h5 className="card-title">Message</h5>
                                                    
                                                 </div>
                                             </div>
@@ -77,16 +83,16 @@ const EmployeePage = () => {
 
                                     {/* Fourth Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/viewAgent" className="card-link">
+                                        <Link to="/employeeDashboard/viewCustomer" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"8rem", width:"11rem", padding:"1rem"}}
-                                                    src={logo4}
+                                                    src={logo3}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">View Agent</h5>
+                                                    <h5 className="card-title">View Customer</h5>
                                                     
                                                 </div>
                                             </div>
@@ -110,6 +116,11 @@ const EmployeePage = () => {
                 </div>
             </div>
         </section>
+        <div>
+        { showAgentRegistrationModal && <AddAgentModel
+          showAgentRegistrationModal={showAgentRegistrationModal}
+          toggleAgentRegistrationModal={toggleAgentRegistrationModal}/>}
+        </div>
     </>
   )
 }

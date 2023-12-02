@@ -38,6 +38,9 @@ function App() {
 
 
         <Route exact path='/employeeDashboard' element={<Employee/>} />
+        <Route exact path='/employeeDashboard/viewCustomer' element={<GetCustomer/>} />
+        <Route exact path='/employeeDashboard/viewAgent' element={<GetAgent/>} />
+        
       </Routes>
     </>
   );

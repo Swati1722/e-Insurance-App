@@ -1,7 +1,7 @@
  import React, { useState } from 'react'
 
 
-const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc}) => {
+const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, isCalculateButton,CalculateFunc}) => {
    const[isActive,setIsActive]= useState(true)
 
    const updateActiveStatus = (value, newStatus) => {
@@ -18,24 +18,19 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc}) =>
         keys =Object.keys(data.content[0])
         console.log("Keys:",keys)
         
-        if(isUpdateButton)
+        if(isSchemeButton)
         {
             console.log("inside update-->" +isUpdateButton)
-            keys.push('Update')
+            keys.push('Scheme')
         }
         if(isDeleteButton)
         {
             keys.push('Active')
         }
-        
-        // tableHeaderRow = keys.map(k=>{
-        //     return(
-                
-        //             <th scope="col">{k}</th>
-               
-        //     )
-        // })
-       
+        if(isCalculateButton)
+        {
+            keys.push('Calculate')
+        }
         tableHeaderRow = keys.map(k => {
             if (k !== "active") {
               return <th scope="col">{k}</th>;
@@ -67,16 +62,35 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc}) =>
                     </button>
                   </td>
                 )}
-          
+                {isSchemeButton && ( 
+                  <td>
+                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                        onClick={(e)=>{  
+                          e.preventDefault(); 
+                          SchemeFunc(value, isSchemeButton)
+                       }}  >Scheme</button>
+                  </td>
+                )}
+
                 {isDeleteButton && (
                   <td>
                     <select 
                       onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      style={{border: "1px" }}
+                      // style={{border: "1px" }}
                     >
                       <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
                       <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>
                     </select>
+                  </td>
+                )}
+
+                  {isCalculateButton && ( 
+                  <td>
+                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                        onClick={(e)=>{  
+                          e.preventDefault(); 
+                          CalculateFunc(value)
+                       }}  >Calculate</button>
                   </td>
                 )}
               </tr>
@@ -86,8 +100,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc}) =>
 
     return (
     <>
-        <table className="table table-striped " style={{"paddingLeft" :"1rem",
-    "marginRight":"1rem"}}>
+        <table className="table table-striped " style={{"paddingLeft" :"1rem", "marginRight":"1rem"}}>
             <thead>
                 <tr>
                 {tableHeaderRow}

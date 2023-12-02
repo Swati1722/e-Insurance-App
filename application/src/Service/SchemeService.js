@@ -16,3 +16,22 @@ export const getSchemeDetails= async (schemeId) => {
         throw error
     }
   }
+
+  export const getAllSchemes = async(pageNumber, pageSize,planId)=>{
+    try{
+         let response = await axios.get('http://localhost:8080/insuranceapp/planschemes',{
+           params:{
+             pagesize: pageSize,
+             pagenumber: pageNumber,
+             planId:planId
+         }
+           
+         })
+         console.log('Geting data:', response);
+         return response;
+       
+   }
+   catch (error){
+     throw error
+   }
+ }

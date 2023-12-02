@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
-
 import Button from 'react-bootstrap/Button';
 import ResgisterEmployee from '../RegisterEmployee/ResgisterEmployee';
 

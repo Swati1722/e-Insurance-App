@@ -62,7 +62,7 @@ const GetAgent = () => {
             
         </div>
       
-          <div style={{  margin: '1rem', borderRadius:'20%'}} className="agent-table-container">
+          <div style={{  margin: '1rem'}} className="agent-table-container">
             {console.log(data)}
             <Table data={data} isDeleteButton={true}   />
           </div>
