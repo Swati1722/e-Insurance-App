@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { validateUser as validate } from '../../../Service/Authentication';
 
 const PolicyDetails = ({value,schemeId}) => {
 
@@ -12,7 +11,6 @@ const PolicyDetails = ({value,schemeId}) => {
     const [maxTime, setMaxTime] = useState(value?.maxTime || "");
     const [profitRatio, setProfitRatio] = useState(value?.profitRatio || "");
 
-    
     const [noOfYear,setNoOfYear] = useState()
     const [totalInvestmentAmount, setTotalInvestmentAmount] = useState()
     const [premiumType, setPremiumType] = useState()
@@ -36,9 +34,6 @@ const PolicyDetails = ({value,schemeId}) => {
         {
             const authToken = localStorage.getItem('authentication')
             console.log("authtoken--->"+authToken)
-            // let resp = await validate(authToken)
-            // console.log(resp)
-            // navigate(`/customerDashboard/Policy/${resp.data.sub}`)
             navigate('/customerDashboard/Policy', { state: dataToSend });
         }
         else{
@@ -217,46 +212,7 @@ const PolicyDetails = ({value,schemeId}) => {
                     </div>
                 </form>
 
-                <form className='investment-postdata'>
-                    <div className='investment-form-group'>
-                        <label htmlFor="installmentAmount">Installment Amount*</label>
-                        <input
-                            disabled={true}
-                            type="text"
-                            className="form-control"
-                            id="installmentAmount"
-                            value={installmentAmount}
-
-
-                            required
-                        />
-                    </div>
-                    <div className='investment-form-group'>
-                        <label htmlFor="interestAmount">Interest Amount *</label>
-                        <input
-                            disabled={true}
-                            type="text"
-                            className="form-control"
-                            id="Interest Amount"
-                            value={interestAmount}
-                            required
-                        />
-                    </div>
-                    <div className='investment-form-group'>
-                        <label htmlFor="totalAmount">Total Amount *</label>
-                        <input
-                            disabled={true}
-                            type="text"
-                            className="form-control"
-                            id="totalAmount"
-                            value={totalAmount}
-
-                            required
-                        />
-                    </div>
-
-                </form>
-
+                
             
 
             <form className='investment-postdata'>

@@ -88,13 +88,13 @@ const ResgisterEmployee = () => {
    <>
           <div className='register-employee-container'>
             <div class="register-employee-left-element">
-                <img style ={{ height:"100vh", width:"80vh", paddingLeft:"1rem"}} src={image} alt="Phone image"/>
+                <img style ={{ height:"100vh", width:"80vh", paddingLeft:"1rem" }} src={image} alt="Phone image"/>
             </div>
 
             
             <div className="register-employee-right-element">
                 <div className='register-employee-box'>
-                    <h1 className='register-employee-heading'>Register Employee </h1>
+                    <h1 className='register-employee-heading' >Register Employee </h1>
                     {/* <div className="n-blur" style={{ background: "rgb(238 210 255)" }}></div> */}
                     <form className ='register-employee-postdata' >
                         <div className='register-employee-form-group'>

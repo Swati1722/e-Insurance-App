@@ -8,7 +8,7 @@
     
   }
   .register-left-element{
-  
+  flex:2;
     height:80vh;
     /* margin-left: 1rem; */
     padding-left:4rem;
@@ -17,7 +17,7 @@
   }
   
   .register-right-element{
-  
+    flex:3;
     height: 70vh;
     padding-left: 0rem;
     flex: 2;
@@ -26,8 +26,8 @@
   
   
 .register-box{
-    height:65vh;
-    width: 50vh;
+    height:68vh;
+    width: 56vh;
     border: 1px solid #000; /* Border style, width, and color */
     border-radius: 5%;
     padding: 10px; /* Add some padding to the content inside the box */

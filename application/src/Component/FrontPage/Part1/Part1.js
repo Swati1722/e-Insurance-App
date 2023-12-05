@@ -9,7 +9,7 @@ import image3 from '../../../Image/Insurance.svg'
 import image4 from '../../../Image/check.svg'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
-import { getUserName } from '../../../Service/CustomerService'
+import { getCustomerByUserName } from '../../../Service/CustomerService'
 import './Part1.css'
 
 
@@ -21,7 +21,7 @@ const Part1 = () => {
 
     const getNameOfUser = async() =>{
 
-        let response =await  getUserName(params.username)
+        let response =await  getCustomerByUserName(params.username)
         setFirstName(response.data)
         console.log(response);
     }

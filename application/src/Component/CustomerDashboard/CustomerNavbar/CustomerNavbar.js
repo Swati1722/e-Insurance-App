@@ -3,25 +3,68 @@ import "./Navbar.css"
 import { Link } from 'react-router-dom';
 import QueryModel from '../Models/QueryModel';
 import EditProfileModel from '../Models/EditProfileModel';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getCustomerByUserName } from '../../../Service/CustomerService';
+import { useNavigate } from 'react-router-dom';
+
 
 const CustomerNavbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isQueryModalOpen, setIsQueryModalOpen] = useState(false);
   const [isEditProfileModalOpen,setIsEditProfileModalOpen] =useState(false);
+  const [value, setvalue] = useState(null)
+  const [username,setUsername] =useState()
+  const navigate=new useNavigate();
+
+ 
+  
+  
 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
 
   const toggleQueryModel = () => {
-    // console.log("indide")
     setIsQueryModalOpen(!isQueryModalOpen);
   };
+
+
   const toggleEditProfileModel = () => {
-    // console.log("indide")
     setIsEditProfileModalOpen(!isEditProfileModalOpen);
   };
 
+  const toggleMyProfile= async() =>{
+    try{
+        const authToken = localStorage.getItem('authentication')
+        let resp = await validate(authToken)
+        console.log("username------>", resp.data.sub)
+        let response = await getCustomerByUserName(resp.data.sub)
+      
+        setvalue(response)
+        
+        const dataToSend = {
+          
+          username :response.data.userdetails.username,
+          firstName:response.data.userdetails.firstname,
+          lastName:response.data.userdetails.lastname,
+          address:response.data.address,
+          mobileNumber:response.data.userdetails.mobileNumber,
+          dateOfBirth:response.data.userdetails.dateOfBirth,
+          email:response.data.userdetails.email,
+          city:response.data.userdetails.city,
+          state:response.data.userdetails.state,
+          pincode : response.data.pincode
+        }
+        
+          
+    
+       navigate('/customerDashboard/profile', { state: dataToSend });
+    }
+    catch(error){
+        console.log(error)
+        alert(error.message)
+      }
+   }
 
   return (
     <>
@@ -46,10 +89,10 @@ const CustomerNavbar = () => {
                     {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">About Us</a>
+                      <a href="" className="customer-nav-link">About Us</a>
                     </li>
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">Contact Us</a>
+                      <a href="" className="customer-nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="customer-navbar-right">
@@ -62,17 +105,9 @@ const CustomerNavbar = () => {
                     </li>
                     {isProfileOpen && (
                     <div className="profile-popup">
-                        <Link to="/customerDashboard/profile" className='d-text'>My Profile</Link>
-                        
-                        {/* <a href="">My Profile</a> */}
+                        <Link to="" className='d-text' onClick={toggleMyProfile}>My Profile</Link>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEditProfileModel(); }}>Edit Profile</a>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleQueryModel(); }}>Query</a>
-   
-                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
-                          <button type="button" style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', transition: "background-color 0.3s" }} onClick={toggleQueryModel}>
-                            Query
-                          </button>
-                        </div> */}
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>

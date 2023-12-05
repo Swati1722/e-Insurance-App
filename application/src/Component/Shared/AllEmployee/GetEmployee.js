@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from 'react'
-import Table from '../Table/Table'
+import Table from './EmployeeTable'
 import PageSize from '../Page/PageSize'
 import PaginationOfApp from "../Page/PaginationOfApp"
 import { getAllEmployee } from '../../../Service/EmployeeService'
+import "./GetEmployee.css"
 
 const GetEmployee = () => {
     const [pageSize,setPageSize] =useState(4)
@@ -39,29 +40,51 @@ const GetEmployee = () => {
       }, [totalNumberOfRecords,pageSize, pageNumber])
     
       
+      const deleteUser = async(customerToBeDeleted, active) => {
+        let username = customerToBeDeleted.username;
+        if(active=="active")
+        {
+          // let response = deleteCustomer(username);
+        }
+        else if(active=="inactive")
+        {
+          // let response = updateActiveStatus(username);
+        }
+    
+    
+        // let resp = await deleteBank(bankId)
+        // if(resp)
+        // {
+        //     alert(" is deleted successfully")
+        // }
+        // console.log(resp) 
+      }
 
 
   return (
     <>
+      <div className='employee-details-box'>
      
-     <div  style={{textAlign:"center", marginTop:"1.5rem"}}>
+        <div  style={{textAlign:"center", marginTop:"1.5rem"}} className='employee-details-tittle'>
           <h1>Employee Details</h1>
         </div>
-        <div className="b-container">
+        <div className="employee-container">
             
-            <div className='b-left'>
+            <div className='employee-left'>
               <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
             </div>
-            <div className='b-right'>
-              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getEmployee} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
-            </div> 
+           
             
         </div>
       
           <div style={{  margin: '1rem', borderRadius:'20%'}} className="employee-table-container">
-            {console.log(data)}
-            <Table data={data} />
+           
+            <Table data={data}  isDeleteButton={true}  deleteFunc={deleteUser}/>
           </div>
+          <div className='employee-right'>
+              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getEmployee} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
+          </div> 
+      </div>
     
     
     </>

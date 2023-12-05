@@ -90,7 +90,7 @@ const Register = () => {
                     {/* <div className="n-blur" style={{ background: "rgb(238 210 255)" }}></div> */}
                     <form className ='register-postdata' >
                         <div className='register-form-group'>
-                            <label htmlFor="FirstName" style ={{ marginRight:"12px"}} > First Name:</label>
+                            <label htmlFor="FirstName" style ={{ marginRight:"10px"}} > First Name:</label>
                             <input type="text" className="register-form-control" id="firstName"  value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         </div>
                         <div className='register-form-group'>
@@ -109,10 +109,10 @@ const Register = () => {
                                     
                         </div>
                         <div className='register-form-group'>
-                            <label htmlFor="email" style ={{ marginRight:"50px"}} > Email:</label>
+                            <label htmlFor="email" style ={{ marginRight:"52px"}} > Email:</label>
                             <input type="email" className="register-form-control" id="email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
-                        <div className='register-button-group'>
+                        <div className='register-button-group' style={{marginTop:"1rem"}}>
                             <button type="button" className="btn btn-primary register-button" onClick={ AddCustomers}>Register</button>
                         </div>
                         

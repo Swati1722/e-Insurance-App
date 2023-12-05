@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import "./AdminPage.css"
+import "./AdminPage.css"
 import { Link } from 'react-router-dom';
 import logo1 from '../../../Image/Admin.svg'
 import logo2 from '../../../Image/Admin1.svg'

@@ -6,8 +6,7 @@ import ResgisterEmployee from '../RegisterEmployee/ResgisterEmployee';
 const AddEmoplyeeModel = ( {showAdminRegistrationModal, toggleAdminRegistrationModal}) => {
 
     const [show, setShow] = useState(showAdminRegistrationModal);
-
-    if (show !== showAdminRegistrationModal) {
+   if (show !== showAdminRegistrationModal) {
         setShow(showAdminRegistrationModal);
     }
 
@@ -28,8 +27,6 @@ const AddEmoplyeeModel = ( {showAdminRegistrationModal, toggleAdminRegistrationM
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
         >
-        
-
         <Modal.Body style={{ maxHeight: '90vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
            <ResgisterEmployee/>
         </Modal.Body>

@@ -1,55 +1,22 @@
-.plan-container {
-    display: flex;
-    flex-direction: row; /* Stack children in a column layout */
-    align-items: center; /* Horizontally center-align children */
-    /* margin-bottom: 3rem; */
-    /* margin-right: 2rem; */
-    
-    justify-content: space-between;
-  }
-  
-  .plan-left{
-    /* margin-left: 8rem; */
-    padding-left: 22%;
-    flex:1;
-    justify-content: center;
-    border: 1px;
-  }
-  .plan-right{
-    padding-left: 5%;
-    margin-left: 7rem;
-    margin-top: 2.5rem;
-    flex:1
-  }
-  
-  
-  .plan-table-container {
-    margin: 1rem;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    overflow: hidden;
-  }
-  .block{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    /* margin-top: 5%; */
-  }
-  .input{
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 1rem;
-    /* margin: 1rem;
-    height:35px; */
-  }
-  .button{
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    /* border :1rem; */
-  }
+.plan-details-box{
+  max-width: 1100px;
+  margin: 20px auto;
+  margin-left: 7%;
+  margin-bottom: 2rem;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+}
+.plan-details-tittle{
+  color:white
+}
+.plan-left{
+  margin: 1rem;
+  width:10rem
+}
+.plan-right{
+  margin-left: 43%;
+  align-items: center;
+}

@@ -44,7 +44,7 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data,schemeId}) => {
             <PolicyDetails value={data} schemeId={schemeId}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose}>
             Close
           </Button>
           

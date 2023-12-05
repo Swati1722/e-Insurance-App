@@ -4,8 +4,6 @@ import Part1 from "../../FrontPage/Part1/Part1"
 import Footer from "../../FrontPage/Footer/Footer"
 import { validateUser as validate } from '../../../Service/Authentication';
 
-
-
 const Customer = () => {
   const [isUserValid, setIsUserValid] = useState(false)
 
@@ -15,9 +13,9 @@ const Customer = () => {
     {
       setIsUserValid(false)
     }
-    console.log("authtoken--->"+authToken)
+   
     let resp = await validate(authToken)
-    console.log(resp)
+    
 
     if(resp.data.role[0].authority !='ROLE_CUSTOMER')
     {
@@ -54,10 +52,10 @@ const Customer = () => {
     else{
       return (
         <>
-        <a href='/'>Please Login First</a>
-        {/* navigate('/') */}
-        
-        </>
+          <a href='/'>Please Login First</a>
+
+          
+       </>
   
       )
     }

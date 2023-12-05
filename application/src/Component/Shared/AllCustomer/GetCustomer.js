@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import Table from '../Table/Table'
+import Table from './CustomerTable'
 import PageSize from '../Page/PageSize'
 import PaginationOfApp from "../Page/PaginationOfApp"
 import { getAllCustomer, deleteCustomer,updateActiveStatus } from '../../../Service/CustomerService'
@@ -47,11 +47,11 @@ const GetCustomer = () => {
 
   const deleteUser = async(customerToBeDeleted, active) => {
     let username = customerToBeDeleted.username;
-    if(active="active")
+    if(active=="active")
     {
       let response = deleteCustomer(username);
     }
-    else if(active="inactive")
+    else if(active=="inactive")
     {
       let response = updateActiveStatus(username);
     }
@@ -68,17 +68,16 @@ const GetCustomer = () => {
 
   return (
     <>
-        <div  style={{textAlign:"center", marginTop:"1.5rem"}}>
+      <div className='customer-detail-box'>
+        <div  style={{textAlign:"center", marginTop:"1.5rem"}} className='customer-details-tittle'>
           <h1>Customer Details</h1>
         </div>
-         <div className="customer-container">
+        <div className="customer-container">
             
             <div className='customer-left'>
               <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
             </div>
-            <div className='customer-right'>
-              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
-            </div> 
+            
             
         </div>
       
@@ -86,6 +85,10 @@ const GetCustomer = () => {
             {console.log(data)}
             <Table data={data} isDeleteButton={true}  deleteFunc={deleteUser}/>
           </div>
+          <div className='customer-pagination'>
+              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
+            </div>
+      </div>
     
     
     

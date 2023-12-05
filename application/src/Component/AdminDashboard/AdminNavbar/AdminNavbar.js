@@ -2,20 +2,51 @@ import React, {useState} from 'react'
 import "./AdminNavbar.css"
 import { Link } from 'react-router-dom';
 import AdminEditProfileModel from '../Models/AdminEditProfileModel';
+import { useNavigate } from 'react-router-dom';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getAdminByUserName } from '../../../Service/AdminService';
 
 const CustomerNavbar = () => {
   const [isAdminProfileOpen, setIsAdminProfileOpen] = useState(false);
   const [isAdminEditProfileModalOpen,setIsAdminEditProfileModalOpen] =useState(false);
-
+  const navigate = new useNavigate();
+  
   const toggleAdminProfile = () => {
-    setIsAdminProfileOpen(!isAdminProfileOpen);
-  };
+      setIsAdminProfileOpen(!isAdminProfileOpen);
+    };
 
   
   const toggleAdminEditProfileModel = () => {
-    // console.log("indide")
     setIsAdminEditProfileModalOpen(!isAdminEditProfileModalOpen);
   };
+
+  const toggleMyProfile= async() =>{
+    try{
+        const authToken = localStorage.getItem('authentication')
+        let resp = await validate(authToken)
+        console.log("username------>", resp.data.sub)
+        let response = await getAdminByUserName(resp.data.sub)
+      
+        const dataToSend = {
+          username :response.data.userdetails.username,
+          firstName:response.data.userdetails.firstname,
+          lastName:response.data.userdetails.lastname,
+          address:response.data.address,
+          mobileNumber:response.data.userdetails.mobileNumber,
+          dateOfBirth:response.data.userdetails.dateOfBirth,
+          email:response.data.userdetails.emailId,
+          city:response.data.userdetails.city,
+          state:response.data.userdetails.state,
+          pincode : response.data.pincode
+        }
+       navigate('/adminDashboard/profile', { state: dataToSend });
+    }
+    catch(error){
+        console.log(error)
+        alert(error.message)
+      }
+   }
+
 
 
   return (
@@ -36,7 +67,9 @@ const CustomerNavbar = () => {
                         
                     </li>
                     <li className="nav-item ">
-                    <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a>
+                    {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
+                    <Link to="/plandetails" className='customer-nav-link '>Insurance Plan</Link>
+                      
                     </li>
                     <li className="customer-nav-item ">
                     <a href="" className="customer-nav-link">About Us</a>
@@ -55,15 +88,9 @@ const CustomerNavbar = () => {
                     </li>
                     {isAdminProfileOpen && (
                     <div className="profile-popup">
-                        
-                        <a href="">My Profile</a>
+                        <Link to="" className='d-text'  onClick={toggleMyProfile}>My Profile</Link>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleAdminEditProfileModel(); }}>Edit Profile</a>
    
-                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
-                          <button type="button" style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', transition: "background-color 0.3s" }} onClick={toggleQueryModel}>
-                            Query
-                          </button>
-                        </div> */}
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>

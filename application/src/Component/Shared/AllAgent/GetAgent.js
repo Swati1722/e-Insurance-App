@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import Table from '../Table/Table'
+import Table from './AgentTable'
 import PageSize from '../Page/PageSize'
 import PaginationOfApp from "../Page/PaginationOfApp"
 import "./GetAgent.css"
@@ -48,24 +48,25 @@ const GetAgent = () => {
   
   return (
     <>
-        <div  style={{textAlign:"center", marginTop:"1.5rem"}}>
-          <h1>Agent Details</h1>
-        </div>
-         <div className="agent-container">
-            
-            <div className='agent-left'>
-              <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
+       <div className='agent-details-box'>
+          <div  className="agent-details-tittle"style={{textAlign:"center", marginTop:"1.5rem"}}>
+            <h1>Agent Details</h1>
+          </div>
+          <div className="agent-container">
+              
+              <div className='agent-left'>
+                <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
+              </div>
+          </div>
+        
+            <div className="agent-table-container">
+              {console.log(data)}
+              <Table data={data} isDeleteButton={true}   />
             </div>
             <div className='agent-right'>
-              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getAgent} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
-            </div> 
-            
+                <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getAgent} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
+            </div>
         </div>
-      
-          <div style={{  margin: '1rem'}} className="agent-table-container">
-            {console.log(data)}
-            <Table data={data} isDeleteButton={true}   />
-          </div>
     
     
     

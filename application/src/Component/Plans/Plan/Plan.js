@@ -1,11 +1,13 @@
 import React, {useState,useEffect} from 'react'
 import PageSize from '../../Shared/Page/PageSize'
 import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
-import Table from "../../Shared/Table/Table"
+import Table from "../Table/PlanTable"
+import SchemeTable from '../Table/SchemeTable'
 import { getAllPlans } from '../../../Service/PlanService'
 import { getAllSchemes } from '../../../Service/SchemeService'
 import "./Plan.css"
 import PolicyModel from '../../Scheme/PolicyModel/PolicyModel'
+import Footer from '../../Shared/Footer/Footer'
 
 const Plan = () => {
     const [pageSize,setPageSize] =useState(4)
@@ -72,13 +74,10 @@ const Plan = () => {
           }
        }
        const closeSchemeTable = () => {
-
         setOpenSchemeTable(false);
       };
       
       const calculateFunc =(value) =>{
-       
-       
         setSchemeId(value.schemeId)
         setparticularScheme(value)
         togglePlanDetails()
@@ -90,36 +89,49 @@ const Plan = () => {
 
   return (
     <>
-        <div style={{textAlign:"center", marginTop:"1.5rem"}}>
+      <div className='plan-details-box'>
+        
+            <div className ="plan-details-tittle"style={{textAlign:"center", marginTop:"1.5rem", background:"rgb(34, 52, 100)"}}>
 
-            <h1>Plans Details</h1>
-        </div>
-        <div className="plan-container">
-            
-            <div className='plan-left'>
-              <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
+                <h1>Plans Details</h1>
             </div>
-            <div className='plan-right'>
-              <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPlan} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
-            </div> 
+            <div className="plan-container">
+                
+                <div className='plan-left'>
+                  <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
+                </div>
+              
+                
+            </div>
+          
+              <div style={{  margin: '1rem'}} className="plan-table-container">
+                {console.log(data)}
+                <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
+              </div>
+              <div className='plan-right'>
+                  <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPlan} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
+                </div> 
+              
+        
+              {openSchemeTable && (
+              <button onClick={closeSchemeTable} style={{marginBottom:"0%", marginLeft:'86.5%',  borderRadius: '15%'}}>Close Table</button>
+            )}
+            <div style={{ marginRight:'1rem', borderRadius: '20%', marginLeft:'1rem' }}>
+              {openSchemeTable && <SchemeTable  data={scheme} isCalculateButton={true} CalculateFunc ={calculateFunc}  />}
+            </div>
+
+            <div>
+              {showSchemeDetailsModal && (
+                  <PolicyModel showDetailsModal={showSchemeDetailsModal} togglePlanDetails={ togglePlanDetails} data={particularScheme} schemeId={schemeId}/>
+                  )}
+
+            </div>
+
             
         </div>
-      
-          <div style={{  margin: '1rem'}} className="plan-table-container">
-            {console.log(data)}
-            <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
+        <div>
+            <Footer/>
           </div>
-    
-          {openSchemeTable && (
-          <button onClick={closeSchemeTable} style={{marginBottom:"0%", marginLeft:'86.5%',  borderRadius: '15%'}}>Close Table</button>
-        )}
-        <div style={{ marginRight:'1rem', borderRadius: '20%', marginLeft:'1rem' }}>
-          {openSchemeTable && <Table  data={scheme} isCalculateButton={true} CalculateFunc ={calculateFunc}  />}
-        </div>
-
-        {showSchemeDetailsModal && (
-            <PolicyModel showSchemeDetailsModal={showSchemeDetailsModal} togglePlanDetails={ togglePlanDetails} data={particularScheme} schemeId={schemeId}/>
-            )}
 
     
     

@@ -17,3 +17,19 @@ export const getAllPlans = async(pageNumber, pageSize)=>{
      throw error
    }
  }
+
+ export const addPlan = async(planName, planDetails)=>{
+  try{
+      let response = await axios.post('http://localhost:8080/insuranceapp/insuranceplan',{
+            planName:planName,
+            planDetails:planDetails,
+            active:true
+        },{
+        })
+        console.log('Data saved successfully:', response.data);
+        return response;
+    }
+    catch (error){
+        throw error
+    }
+  }

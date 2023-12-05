@@ -93,7 +93,7 @@ const RegisterAgent = () => {
             
             <div className="register-agent-right-element">
                 <div className='register-agent-box'>
-                    <h1 className='register-agent-heading'>Register Employee </h1>
+                    <h1 className='register-agent-heading'>Register Agent </h1>
                     {/* <div className="n-blur" style={{ background: "rgb(238 210 255)" }}></div> */}
                     <form className ='register-agent-postdata' >
                         <div className='register-agent-form-group'>
