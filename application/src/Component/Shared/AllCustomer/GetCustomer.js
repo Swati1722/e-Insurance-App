@@ -4,13 +4,17 @@ import PageSize from '../Page/PageSize'
 import PaginationOfApp from "../Page/PaginationOfApp"
 import { getAllCustomer, deleteCustomer,updateActiveStatus } from '../../../Service/CustomerService'
 import "./GetCustomer.css"
+import SearchBar from './SearchBar'; 
 
 const GetCustomer = () => {
-    const [pageSize,setPageSize] =useState(4)
+  const [pageSize,setPageSize] =useState(4)
   const [pageNumber, setPageNumber] = useState()
   const [numberOfPages, setNumberOfPages] = useState()
   const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
   const [data,setData] =useState([])
+  const [searchTerm, setSearchTerm] = useState(''); 
+  const [filteredData, setFilteredData] = useState([]);
+  
 
   
   const getCustomer = async() =>{
@@ -20,12 +24,19 @@ const GetCustomer = () => {
             if(response.data)
             {
                 setData(response.data)
-                // console.log(response.data)
+               
             }
       
         let totalNumberOfRecords = response.headers['x-total-count']
         setTotalNumberOfRecord(totalNumberOfRecords)
         setNumberOfPages(Math.ceil(totalNumberOfRecords /pageSize))
+    //     const updatedFilteredData = Array.isArray(data)
+    //   ? data.filter((customer) =>
+    //       customer.username.toLowerCase().includes(searchTerm.toLowerCase())
+    //     )
+    //   : [];
+
+    // setFilteredData(updatedFilteredData);
        
     }
       catch(error)
@@ -56,15 +67,12 @@ const GetCustomer = () => {
       let response = updateActiveStatus(username);
     }
 
-
-    // let resp = await deleteBank(bankId)
-    // if(resp)
-    // {
-    //     alert(" is deleted successfully")
-    // }
-    // console.log(resp) 
   }
 
+ 
+
+  
+ 
 
   return (
     <>
@@ -77,23 +85,21 @@ const GetCustomer = () => {
             <div className='customer-left'>
               <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
             </div>
-            
-            
+            {/* <div className="mb-3 d-flex align-items-center"> */}
+              {/* <label className="mr-2">Search:</label> */}
+              {/* Render the SearchBar component */}
+              {/* <SearchBar searchTerm={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} /> */}
+            {/* </div>    */}
         </div>
       
           <div style={{  margin: '1rem', borderRadius:'20%'}} className="customer-table-container">
             {console.log(data)}
-            <Table data={data} isDeleteButton={true}  deleteFunc={deleteUser}/>
+            <Table data={data} isDeleteButton={true}  deleteFunc={deleteUser} searchTerm/>
           </div>
           <div className='customer-pagination'>
               <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div>
       </div>
-    
-    
-    
-    
-    
     </>
   )
 }

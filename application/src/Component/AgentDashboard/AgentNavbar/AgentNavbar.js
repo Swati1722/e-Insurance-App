@@ -36,13 +36,14 @@ const AgentNavbar = () => {
                         
                     </li>
                     <li className="nav-item ">
-                    <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a>
+                    <Link to="/agentDashboard/plandetails" className='customer-nav-link '>Insurance Plan</Link>
+                      
+                      </li>
+                    <li className="customer-nav-item ">
+                      <a href="#About-Us" className="customer-nav-link">About Us</a>
                     </li>
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">About Us</a>
-                    </li>
-                    <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">Contact Us</a>
+                      <a href="#Contact-Us" className="customer-nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="customer-navbar-right">
@@ -59,11 +60,6 @@ const AgentNavbar = () => {
                         <a href="">My Profile</a>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleAgentEditProfileModel(); }}>Edit Profile</a>
    
-                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
-                          <button type="button" style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', transition: "background-color 0.3s" }} onClick={toggleQueryModel}>
-                            Query
-                          </button>
-                        </div> */}
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>

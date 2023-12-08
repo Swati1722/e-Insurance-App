@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
 import EmployeeEditProfileModel from '../Models/EmployeeEditProfileModel';
 import "./EmployeeNavbar.css"
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getEmployeeByUserName } from '../../../Service/EmployeeService';
 
 
 const EmployeeNavbar = () => {
 
     const [isEmployeeProfileOpen, setIsEmployeeProfileOpen] = useState(false);
     const [isEmployeeEditProfileModalOpen,setIsEmployeeEditProfileModalOpen] =useState(false);
-  
+    const navigate = new useNavigate();
+    
     const toggleEmployeeProfile = () => {
       setIsEmployeeProfileOpen(!isEmployeeProfileOpen);
     };
@@ -18,6 +22,30 @@ const EmployeeNavbar = () => {
       // console.log("indide")
       setIsEmployeeEditProfileModalOpen(!isEmployeeEditProfileModalOpen);
     };
+
+    const toggleMyProfile= async() =>{
+      try{
+          const authToken = localStorage.getItem('authentication')
+          let resp = await validate(authToken)
+          console.log("username------>", resp.data.sub)
+          let response = await getEmployeeByUserName(resp.data.sub)
+        
+          const dataToSend = {
+            username :response.data.userdetails.username,
+            firstName:response.data.userdetails.firstname,
+            lastName:response.data.userdetails.lastname,
+            mobileNumber:response.data.userdetails.mobileNumber,
+            dateOfBirth:response.data.userdetails.dateOfBirth,
+            email:response.data.userdetails.emailId,
+            salary :response.data.salary
+          }
+         navigate('/employeeDashboard/profile', { state: dataToSend });
+      }
+      catch(error){
+          console.log(error)
+          alert(error.message)
+        }
+     }
   return (
     <>
           <nav className="employee-navbar navbar-expand-lg navbar-transparent navbar-light employee-fixed-top" id="nav">
@@ -36,13 +64,14 @@ const EmployeeNavbar = () => {
                         
                     </li>
                     <li className="nav-item ">
-                    <a href="#insurance-plans-link" className="employee-nav-link">Insurance Plans</a>
+                      <Link to="/employeeDashboard/plandetails" className='customer-nav-link '>Insurance Plan</Link>
+                    
                     </li>
                     <li className="employee-nav-item ">
-                    <a href="" className="employee-nav-link">About Us</a>
+                    <a href="#About-Us" className="employee-nav-link">About Us</a>
                     </li>
                     <li className="employee-nav-item ">
-                    <a href="" className="employee-nav-link">Contact Us</a>
+                    <a href="#Contact-Us" className="employee-nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="employee-navbar-right">
@@ -56,14 +85,10 @@ const EmployeeNavbar = () => {
                     {isEmployeeProfileOpen && (
                     <div className="profile-popup">
                         
-                        <a href="">My Profile</a>
+                        <Link to="" className='d-text' onClick={toggleMyProfile}>My Profile</Link>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEmployeeEditProfileModel(); }}>Edit Profile</a>
                         
-                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '.55rem'}}>
-                          <button type="button" style={{ border: 'none', background: 'none', padding: 0, cursor: 'pointer', transition: "background-color 0.3s" }} onClick={toggleQueryModel}>
-                            Query
-                          </button>
-                        </div> */}
+                        
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>

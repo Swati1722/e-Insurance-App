@@ -1,18 +1,117 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
 import {savePolicy} from "../../../Service/PolicyService"
 import './AddPolicy.css'
+import Button from 'react-bootstrap/Button';
+import { validateUser as validate } from '../../../Service/Authentication';
+
+
 
 import { Link } from 'react-router-dom';
 
 const AddPolicy = () => {
+const [mobileNumber,setMobileNumber] = useState()
+const[dateOfBirth,setDateOfBirth] = useState()
+const[username,setUsername] =useState()
+
+
   const location = useLocation();
   const receivedData = location.state || {};
+  const [selectedFiles, setSelectedFiles] = useState([])
+  const maxFiles = 3;
+  const validateUser = async() =>{
+    const authToken = localStorage.getItem('authentication')
+    let resp = await validate(authToken)
+    setUsername(resp.data.sub)
 
-  const storePolicyData = async() =>{
-    let respose = await savePolicy(receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount)
+    
+ }
+ useEffect(()=>{
+  validateUser()
+},[])
 
+  const handleFileChange = (e) =>{
+    const files = Array.from(e.target.files)
+    const validFiles = []
+
+    // Filter and validate the selected files
+    for (const file of files) {
+      const fileType = file.type.toLowerCase()
+      const fileName = file.name.toLowerCase()
+
+      // Define allowed file types (image or PDF)
+      const allowedTypes = [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ]
+      if (allowedTypes.includes(fileType) && validFiles.length < maxFiles) {
+        validFiles.push(file)
+      } else {
+        alert(
+          `Invalid file: ${fileName}. Only images (jpeg, jpg, png) and PDF (pdf,
+             doc, docx) files are allowed, and you can upload a maximum of ${maxFiles} files.`
+        )
+      }
+    }
+    // Update the selected files state
+    setSelectedFiles([...selectedFiles, ...validFiles])
   }
+
+  const renderSelectedFiles = () =>{
+    if (selectedFiles.length === 0) {
+        return <p>No files selected.</p>
+      }
+  
+      return (
+        <ul>
+          {selectedFiles.map((file, index) => (
+            <li key={index}>
+              {file.name}{' '}
+              <Button
+                variant="danger"
+                onClick={() => handleFileRemove(index)}
+                style={{ maxWidth: '100px', marginTop: '2px' }}
+                >
+                Remove
+              </Button>
+            </li>
+          ))}
+        </ul>
+      )
+  }
+
+  const handleFileRemove = (index) => {
+    const updatedFiles = [...selectedFiles]
+    updatedFiles.splice(index, 1)
+    setSelectedFiles(updatedFiles)
+  }
+
+
+  const handleSubmit =  async()  =>{
+    if (selectedFiles.length > 0) { // Check if at least one file is selected
+        const formDataWithFiles = []
+        selectedFiles.forEach((file, index) => {
+          formDataWithFiles.push('documentFiles', file)
+        })
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+
+        const maturityDate = new Date(currentDate);
+        maturityDate.setFullYear(currentDate.getFullYear() + receivedData.noOfYear);
+
+        const maturityYear = maturityDate.getFullYear();
+        const maturityMonth = String(maturityDate.getMonth() + 1).padStart(2, '0');
+        const maturityDay = String(maturityDate.getDate()).padStart(2, '0');
+        const formattedMaturityDate = `${maturityYear}-${maturityMonth}-${maturityDay}`;
+
+        let respose = await savePolicy(username,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formDataWithFiles)
+ 
+    }
+}
 
   return (
     <>
@@ -28,24 +127,17 @@ const AddPolicy = () => {
                     <div className="plan-form-row">
                         <div className="form-group">
                             <label for="inputEmail4">Mobile</label>
-                            <input type="Mobile" className="form-control" id="inputEmail" placeholder="Mobile"/>
+                            <input type="Mobile" className="form-control" id="inputEmail" placeholder="Mobile" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label for="dataOfBirth">Date Of Birth</label>
-                            <input type="dataOfBirth" className="form-control" id="dataOfBirth" placeholder="dataOfBirth"/>
+                            <input type="dataOfBirth" className="form-control" id="dataOfBirth" placeholder="dataOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
                         </div>
                 
                         <div className="form-group">
                             <label for="inputAddress">Address</label>
                             <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St"/>
                         </div>
-                        <div className="form-group">
-                            <label for="noOfYear">Number Of Year</label>
-                            <input type="text" className="form-control" id="noOfYear" placeholder="Number Of Year"/>
-                        </div>
-                    
-                
-                        
                         <div className="form-group ">
                             <label for="inputState">State</label>
                             <select id="inputState" className="form-control" size="5">
@@ -170,11 +262,24 @@ const AddPolicy = () => {
                                 required
                             />
                         </div>
+                        <div>
+                            <div className="form-group" style={{marginTop:"1rem"}}>
+                              <label htmlFor="documentfile" style={{marginRight:"1rem"}}>Upload Document</label>
+                              <input
+                                  type="file"
+                                  accept=".pdf,.doc,.docx,.png,.jpeg,.jpg"
+                                  name="documentfile"
+                                  onChange={handleFileChange}
+                                  multiple 
+                              />
+                            </div>
+                            {renderSelectedFiles()}
+                        </div>
                     </div>
                 
             
                     <div className='policy-button'>
-                        <button type="submit" className="btn btn-primary" style={{marginTop:"1rem"}}>Buy Now</button>
+                        <button type="submit" className="btn btn-primary" style={{marginTop:"1rem",backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2.5rem"}} onclick={handleSubmit()}>Buy Now</button>
                         <Link to="/customerDashboard"  className="btn btn-secondary d-text" style ={{marginLeft:"25rem", marginTop:"1.5rem"}}onClick={(e)=> {localStorage.clear()}}>Back</Link>
                     </div>
                 </form>

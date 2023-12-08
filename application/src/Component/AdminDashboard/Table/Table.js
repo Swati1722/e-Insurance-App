@@ -13,7 +13,6 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]
-    console.log(data)
     if(data && data.content && data.content.length !== 0)
     {
         keys =Object.keys(data.content[0])
@@ -74,11 +73,13 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                 )}
                 {isSchemeButton && ( 
                   <td>
-                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                      <button  
                         onClick={(e)=>{  
                           e.preventDefault(); 
-                          SchemeFunc(value, isSchemeButton)
-                       }}  >Scheme</button>
+                          SchemeFunc(value)
+                       }} 
+                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       >Scheme</button>
                   </td>
                 )}
 
@@ -86,7 +87,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                   <td>
                     <select 
                       onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      // style={{border: "1px" }}
+                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                  
                     >
                       <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
                       <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>
@@ -110,7 +112,9 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                 
             </thead>
             <tbody>
+             
                 {rowsOfUsers}
+             
             </tbody>
 
         </table>

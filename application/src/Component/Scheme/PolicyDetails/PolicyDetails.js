@@ -28,6 +28,7 @@ const PolicyDetails = ({value,schemeId}) => {
             installmentAmount,
             interestAmount,
             totalAmount,
+            profitRatio,
           };
       
         if(localStorage.getItem('authentication'))
@@ -59,10 +60,7 @@ const PolicyDetails = ({value,schemeId}) => {
 
         const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
         setInterestAmount(interest);
-        console.log("oooooo",interest)
-        console.log(parsedNoOfYear)
-        console.log(parsedTotalInvestmentAmount)
-
+        
         const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
         setTotalAmount(sum);
     };
@@ -206,7 +204,8 @@ const PolicyDetails = ({value,schemeId}) => {
                         />
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "1rem" }}>
-                        <button type="button" onClick={calculateInterest}>
+                        <button type="button" onClick={calculateInterest} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       >
                             Calculate
                         </button>
                     </div>
@@ -253,7 +252,8 @@ const PolicyDetails = ({value,schemeId}) => {
                     />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
-                    <button  type="button"  onClick={openPolicy}>
+                    <button  type="button"  onClick={openPolicy} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       >
                         BuyNow
                     </button>
                 </div>

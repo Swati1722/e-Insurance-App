@@ -5,6 +5,7 @@ import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
 import Table from "../Table/Table"
 import { getAllPlans } from '../../../Service/PlanService'
 import AddPlanModel from '../Models/AddPlanModel'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,9 +15,9 @@ const AdminPlan = () => {
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
     const [data,setData] =useState([])
-    const [scheme, setScheme] =useState()
+    const navigate = new useNavigate();
     const [showAddPlanModel, setShowAddPlanModel] = useState(false)
-    
+   const [planId,setPlanId]=useState()
     const getPlan = async() =>{
         try{
              let response =await getAllPlans(pageNumber,pageSize)
@@ -49,11 +50,14 @@ const AdminPlan = () => {
         getPlan()
       }, [totalNumberOfRecords,pageSize, pageNumber])
 
-      const SchemeFunc = async(value,isSchemeButton) =>{
-      
+      const SchemeFunc = async(value) =>{
         try{
-           
-           
+          console.log(value)
+          setPlanId(value.planId)
+          const dataToSend = {
+              planId:value.planId
+          }
+          navigate('/adminDashboard/Scheme', { state: dataToSend });
         }
           catch(error)
           {
@@ -95,7 +99,7 @@ const AdminPlan = () => {
         </div>
         <div>
         {showAddPlanModel && (
-                  <AddPlanModel showAddPlanModal={showAddPlanModel} AddPlanFunc={ AddPlanFunc} />
+                  <AddPlanModel showAddPlanModal={showAddPlanModel} AddPlanFunc={ AddPlanFunc}  />
                   )}
         </div>
         

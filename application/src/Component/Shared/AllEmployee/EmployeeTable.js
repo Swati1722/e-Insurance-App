@@ -97,7 +97,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                   <td>
                     <select 
                       onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      // style={{border: "1px" }}
+                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                  
                     >
                       <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
                       <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>

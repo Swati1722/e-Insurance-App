@@ -161,7 +161,7 @@
 
 .insurancePlanCards{
     background-color: #faf8fd;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
     padding-top: 60px;
     /* max-width:1200px; */
     /* min-width: max-content;
@@ -300,6 +300,7 @@ h3 {
 /* icon-8 */
 .insurancePlanCards .insurancePlanCards_contentcontainer .insurancePlanCardscontentcontainer_item.icon-8 {
     background-color: #eefbff;
+    background-color: #ecf5ff;
     padding-top: 30px;
 }
 .insurancePlanCards .insurancePlanCards_contentcontainer .insurancePlanCardscontentcontainer_item {

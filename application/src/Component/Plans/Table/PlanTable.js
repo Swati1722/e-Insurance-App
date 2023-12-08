@@ -21,7 +21,6 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
         
         if(isSchemeButton)
         {
-            console.log("inside update-->" +isUpdateButton)
             keys.push('Scheme')
         }
         if(isDeleteButton)
@@ -39,13 +38,15 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
             else if(k=="planName"){
                 return <th scope="col">Plan Name</th>;
             }
-            else if(k=="Active"){
+            else if(k=="planDetails"){
+              return <th scope="col">PlanDetails</th>;
+          }
+            else if(k=="Scheme"){
+              return <th scope="col">Scheme</th>;
+          }
+          else if(k=="Active"){
                 return <th scope="col">Active</th>;
             }
-            else if(k=="Scheme"){
-                return <th scope="col">Scheme</th>;
-            }
-           
             else if(k=="active"){
                 return null;
             }
@@ -74,7 +75,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                 )}
                 {isSchemeButton && ( 
                   <td>
-                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                      <button   style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       
                         onClick={(e)=>{  
                           e.preventDefault(); 
                           SchemeFunc(value, isSchemeButton)
@@ -86,7 +88,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                   <td>
                     <select 
                       onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      // style={{border: "1px" }}
+                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       
                     >
                       <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
                       <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>

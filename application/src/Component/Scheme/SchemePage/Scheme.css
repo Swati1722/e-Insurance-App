@@ -20,12 +20,12 @@
     height:500px;
     max-width: 1260px;
 }
-.scheme-left{
+.scheme-page-left{
     flex:1;
     margin-top:6rem ;
     width: 160px;
 }
-.scheme-right{
+.scheme-page-right{
     flex: 1;
     max-height: 550px;
     max-width: 750px;
@@ -165,10 +165,7 @@
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   }
   
-  .plan-details-button:hover {
-    background-color: #218838; /* Darker shade for hover */
-    border-color: #218838;
-  }
+  
   
   .plan-details-button:active {
     background-color: #1e7e34; /* Even darker shade for active state */

@@ -7,6 +7,9 @@ import image2 from '../../../Image/accident.svg'
 
 import image3 from '../../../Image/Insurance.svg'
 import image4 from '../../../Image/check.svg'
+import image5 from "../../../Image/Medicine.svg"
+import image6 from '../../../Image/injured.svg'
+import image7 from "../../../Image/covid.svg"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { getCustomerByUserName } from '../../../Service/CustomerService'
@@ -93,7 +96,7 @@ const Part1 = () => {
                     <div className='content'>
                         <div className='insurancePlanCard_content'>
                             <div className="insurance-tc">
-                                <h2 className="insurance-tc__subtitle">Types of Insurance Plans</h2>
+                                <h2 className="insurance-tc__subtitle">Some Popular Insurance Plans</h2>
                                 <h3>Life Insurance</h3>
                                 <p className="insurance-tc__subtext">Life insurance plans primarily cover the risk of untimely demise of the insured. In case of an unforeseen demise of the insured, a death benefit is paid, which helps the family face the financial loss.</p>
                             </div>
@@ -133,6 +136,59 @@ const Part1 = () => {
                                     <h4>Guaranteed Returns</h4>
                                     <div>
                                         <p>Secure your family’s future against unforeseen circumstances</p>
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className='insurancePlanCards' id="insurance-plans-link">
+                    <div className='content'>
+                        <div className='insurancePlanCard_content'>
+                            <div className="insurance-tc">
+                                <h3>Health Insurance</h3>
+                                <p className="insurance-tc__subtext">With health insurance, you gain peace of mind, knowing that your well-being is safeguarded, and you can access comprehensive medical coverage for unforeseen health challenges.</p>
+                            </div>
+                            <div className="insurancePlanCards__exploreMore">
+                                <Link to="/insurance-plan">Explore More</Link>
+                                {/* <a hExplore More</a> */}
+                            </div>
+
+                            <div className="insurancePlanCards_content_container">
+                                <a className="insurancePlanCards_content_container_item icon-7" href="" >
+                                    <img src={image5} alt="1-Year Term Life Insurance" />
+
+                                    <h4>Cancer Protection Plan</h4>
+                                    <div>
+                                        <p> Financial security, comprehensive coverage, and peace of mind during challenging times.</p>
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
+                                    </div>
+                                </a>
+                                <a className="insurancePlanCards_content_container_item icon-8 " href="" style={{ backgroundColor:"#ecf5ff"}}>
+                                    <img src={image6} alt="Personal accident"/>
+                                    <h4>MediSecure Plus</h4>
+                                    <div>
+                                        <p>Get coverage for death and permanent disability</p>
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
+                                    </div>
+                                </a>
+                                <a className="insurancePlanCards_content_container_item icon-9" herf="">
+                                    <img src={image7} alt="Term Life Insurance" style={{width:"36vh",  marginTop:"0", marginLeft:"0"}} />
+                                    <h4>Covid Protection Insurance</h4>
+                                    <div>
+                                        <p>Secure your family’s future against unforeseen circumstances</p>
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
+                                    </div>
+                                </a>
+                                <a className="insurancePlanCards_content_container_item icon-10" href="">
+                                    <img src={image4} alt="Guaranteed Returns Insurance" />
+                                    <h4>Health Gaurd Plus</h4>
+                                    <div>
+                                        <p> Robust coverage, ensuring your well-being with comprehensive health protection and benefits.</p>
                                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
                                     </div>
                                 </a>

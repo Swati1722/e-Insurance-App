@@ -67,7 +67,7 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
 
                                     {/* Third Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/adminDashboard/viewEmployee" className="card-link">
+                                        <Link to="" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"8rem",  padding:"1rem"}}
@@ -76,7 +76,7 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">View Employee</h5>
+                                                    <h5 className="card-title" style={{marginLeft:"3rem"}}>Policy</h5>
                                                    
                                                 </div>
                                             </div>

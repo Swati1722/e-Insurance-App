@@ -72,10 +72,10 @@ const CustomerNavbar = () => {
                       
                     </li>
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">About Us</a>
+                    <a href="#About-Us" className="customer-nav-link">About Us</a>
                     </li>
                     <li className="customer-nav-item ">
-                    <a href="" className="customer-nav-link">Contact Us</a>
+                    <a href="#Contact-Us" className="customer-nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="customer-navbar-right">

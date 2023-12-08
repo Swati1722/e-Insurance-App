@@ -50,7 +50,7 @@ const CustomerNavbar = () => {
           address:response.data.address,
           mobileNumber:response.data.userdetails.mobileNumber,
           dateOfBirth:response.data.userdetails.dateOfBirth,
-          email:response.data.userdetails.email,
+          email:response.data.userdetails.emailId,
           city:response.data.userdetails.city,
           state:response.data.userdetails.state,
           pincode : response.data.pincode
@@ -89,10 +89,15 @@ const CustomerNavbar = () => {
                     {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>
                     <li className="customer-nav-item ">
-                      <a href="" className="customer-nav-link">About Us</a>
+                      <Link to="" className='customer-nav-link '>Policy</Link>
+                        
+                    {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>
                     <li className="customer-nav-item ">
-                      <a href="" className="customer-nav-link">Contact Us</a>
+                      <a href="#About-Us" className="customer-nav-link">About Us</a>
+                    </li>
+                    <li className="customer-nav-item ">
+                      <a href="#Contact-Us" className="customer-nav-link">Contact Us</a>
                     </li>
                 </ul>
                 <ul className="customer-navbar-right">

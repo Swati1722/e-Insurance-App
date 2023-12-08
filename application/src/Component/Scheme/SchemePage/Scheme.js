@@ -52,13 +52,13 @@ const Scheme = () => {
             <div className="scheme scheme-header">
                 <div className="scheme-container">
                     <div className="scheme-row">
-                        <div className="scheme-left">
+                        <div className="scheme-page-left">
                             <h2 className="scheme-text-title">Life Insurance</h2>
                             {/* <h1 className="scheme-text-title">The need of the hour</h1> */}
                             <p className="scheme-text-description">Life insurance is not about the end; it's about ensuring that the ones you love have the strength to face a new beginning when you're no longer there. It's a promise of financial security, a legacy of love that transcends time.</p>
                         
                         </div>
-                        <div className="scheme-right">
+                        <div className="scheme-page-right">
                             <img  src={logo1} alt="asd" className="scheme-image d-lg-block d-none"/>
                             <div className="white-space"></div>
                         </div>
@@ -125,7 +125,8 @@ const Scheme = () => {
                                     
                                 </li>
                             </div>
-                            <button className='plan-details-button' type="button" onClick={()=>togglePlanDetails(1) }>
+                            <button className='plan-details-button' type="button" onClick={()=>togglePlanDetails(1) } style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"3rem",}}
+                       >
 
                                 Plan details...
                             </button>

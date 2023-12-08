@@ -113,8 +113,12 @@ const Plan = () => {
                 </div> 
               
         
-              {openSchemeTable && (
-              <button onClick={closeSchemeTable} style={{marginBottom:"0%", marginLeft:'86.5%',  borderRadius: '15%'}}>Close Table</button>
+            
+            {openSchemeTable && (
+              <>
+                <h2 style={{ textAlign: "center", color: "white", background: "rgb(34, 52, 100)", padding: "1rem" }}>Scheme Details</h2>
+                <button onClick={closeSchemeTable} style={{ marginBottom: "1%", marginLeft: '89%', backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem"}}>Close Table</button>
+              </>
             )}
             <div style={{ marginRight:'1rem', borderRadius: '20%', marginLeft:'1rem' }}>
               {openSchemeTable && <SchemeTable  data={scheme} isCalculateButton={true} CalculateFunc ={calculateFunc}  />}

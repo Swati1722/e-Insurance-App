@@ -54,7 +54,7 @@
     
 }
 .customer-navbar-left{
-    flex:2;
+    flex:3;
     display: flex;
     text-decoration: none;
 }

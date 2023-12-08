@@ -25,6 +25,11 @@ const ResgisterEmployee = () => {
         return password.length >= 6;
     };
 
+    const isMobileNumberValid = (mobileNumber) => {
+        const mobileNumberRegex = /^\d{10}$/;
+        return mobileNumberRegex.test(mobileNumber);
+      };
+    
     const AddEmployees = async() =>{
 
         if (!firstName|| !lastName || !userName || !password ||  !email || !salary || !mobileNumber || !dateOfBirth) {
@@ -56,7 +61,10 @@ const ResgisterEmployee = () => {
             alert('Please enter a valid Salary .');
             return;
         }else if (!mobileNumber) {
-            alert('Please enter a valid mobileNumber .');
+            alert('Please enter a valid Mobile Number (10 digits).');
+            return;
+        } else if (!isMobileNumberValid(mobileNumber)) {
+            alert('Mobile Number must be 10 digits.');
             return;
         }else if (!dateOfBirth) {
             alert('Please enter a valid Date Of Birth .');

@@ -15,6 +15,12 @@ import Plan from './Component/Plans/Plan/Plan';
 import GetAgent from './Component/Shared/AllAgent/GetAgent';
 import AdminProfile from './Component/AdminDashboard/MyProfile/AdminProfile';
 import AdminPlan from './Component/AdminDashboard/AdminPlan/AdminPlan';
+import AdminScheme from "./Component/AdminDashboard/Scheme/AdminScheme"
+import EmployeeProfile from "./Component/EmployeeDashboard/MyProfile/EmployeeProfile"
+import EmployeePlan from './Component/EmployeeDashboard/EmployeePlan/EmployeePlan';
+import EmployeeScheme from "./Component/EmployeeDashboard/EmployeeScheme/EmployeeScheme"
+import AllQuery from './Component/CustomerDashboard/AllQuery/AllQuery';
+import AgentPlan from './Component/AgentDashboard/AgentPlan/AgentPlan';
 
 function App() {
   return (
@@ -28,6 +34,8 @@ function App() {
         <Route exact path='/adminDashboard/viewEmployee' element={<GetEmployee/>} />
         <Route exact path='/adminDashboard/viewAgent' element={<GetAgent/>} />
         <Route exact path='/adminDashboard/profile' element={<AdminProfile/>} />
+        <Route exact path='/adminDashboard/scheme' element={<AdminScheme/>} />
+        
         <Route exact path='/plan' element={<Plan/>} />
         <Route exact path='/plandetails' element={<AdminPlan/>} />
 
@@ -35,15 +43,20 @@ function App() {
         <Route exact path='/customerDashboard/:username' element={<Customer/>} />
         <Route exact path='/customerDashboard/policy' element={<AddPolicy/>} />
         <Route exact path='/customerDashboard/profile' element={<MyProfile/>} />
+        <Route exact path='/customerDashboard/query' element={<AllQuery/>} />
        
-       <Route exact path='/agentDashboard/:username' element={<Agent/>} />
-       
+       <Route exact path='/agentDashboard' element={<Agent/>} />
+       <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} />
+        
 
 
         <Route exact path='/employeeDashboard' element={<Employee/>} />
         <Route exact path='/employeeDashboard/viewCustomer' element={<GetCustomer/>} />
         <Route exact path='/employeeDashboard/viewAgent' element={<GetAgent/>} />
-        
+        <Route exact path='/employeeDashboard/profile' element={<EmployeeProfile/>} />
+        <Route exact path='/employeeDashboard/plandetails' element={<EmployeePlan/>} />
+        <Route exact path='/employeeDashboard/scheme' element={<EmployeeScheme/>} />
+       
       </Routes>
     </>
   );

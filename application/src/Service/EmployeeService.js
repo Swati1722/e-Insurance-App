@@ -39,3 +39,16 @@ export const addEmployee = async(firstname,lastname,username,password,email,sala
    }
  }
 
+ export const getEmployeeByUserName =async(username)=>{
+  let response = await axios.get('http://localhost:8080/insuranceapp/employee',{
+      params:{
+        username:username
+      }
+      // headers :{
+      //     Authorization: 'Bearer '+localStorage.getItem('authentication')
+      //   }
+        
+      })
+      console.log('Geting data:', response);
+      return response;
+}

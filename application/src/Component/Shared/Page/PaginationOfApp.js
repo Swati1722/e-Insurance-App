@@ -3,7 +3,6 @@ import Pagination from 'react-bootstrap/Pagination';
 
 
 const PaginationOfApp = ({numberOfPages,getFunction,pageNumber, setPageNumber}) => {
-  console.log(numberOfPages)
 
     let items = [];
     for (let number = 0; number < numberOfPages; number++) {

@@ -13,11 +13,11 @@ const MyProfile = () => {
       username: receivedData.username,
       firstName: receivedData.firstName,
       lastName: receivedData.lastName,
-      address: receivedData.address,
+     
       email: receivedData.email,
       mobileNumber: receivedData.mobileNumber,
       dateOfBirth: receivedData.dateOfBirth,
-      city: receivedData.city,
+      
     });
   
   
@@ -58,7 +58,7 @@ const MyProfile = () => {
                   <form >
                     <div className="admin-resume_item admin-resume_info">
                       <div className="title">
-                        <h2 className="bold" style={{textAlign:'center', fontWeight:"500", fontSize:'2.5rem', paddingBottom:"1rem"}}>Customer Details</h2>
+                        <h2 className="bold" style={{textAlign:'center', fontWeight:"500", fontSize:'2.5rem', paddingBottom:"1rem"}}>Admin Details</h2>
                       </div>
                       <div className="form-fields">
                         <div className="form-field">
@@ -99,18 +99,7 @@ const MyProfile = () => {
                             />
                           </div>
                        
-                          <div className="form-field">
-                            <label htmlFor="address"style ={{ marginRight:"78px"}}>Address:</label>
-                            <input
-                              type="text"
-                              id="address"
-                              name="address"
-                              className='myprofile-form-control'
-                              value={receivedData.address}
-                              onChange={handleInputChange}
-                              
-                            />
-                          </div>
+                          
                           <div className="form-field">
                             <label htmlFor="email" style ={{ marginRight:"96px"}}>Email:</label>
                             <input
@@ -146,28 +135,7 @@ const MyProfile = () => {
                             
                           />
                         </div>
-                        <div className="form-field">
-                          <label htmlFor="city" style ={{ marginRight:"110px"}}>City:</label>
-                          <input
-                            type="text"
-                            id="city"
-                            name="city"
-                            className='myprofile-form-control'
-                            value={receivedData.city}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label htmlFor="pincode" style ={{ marginRight:"80px"}}>Pincode:</label>
-                          <input
-                            type="text"
-                            id="pincode"
-                            name="pincode"
-                            className='myprofile-form-control'
-                            value={receivedData.pincode}
-                            onChange={handleInputChange}
-                          />
-                        </div>
+                        
                       </div>
                       <button className='btn btn-primary login-button'>Update</button>
                        

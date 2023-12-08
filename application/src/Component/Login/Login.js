@@ -21,6 +21,7 @@ const Login = () => {
 
     const UserLogin = async() =>{
         try{
+            console.log("password->",password)
             let response = await authslogin(userName,password)
             console.log(response)
 
@@ -47,7 +48,7 @@ const Login = () => {
             {
 
                 localStorage.setItem('authentication',response.headers['bearer-token'])
-                navigate(`/agentDashboard/${response.data.username}`) 
+                navigate('/agentDashboard') 
             }
                 // console.log(role)
             }

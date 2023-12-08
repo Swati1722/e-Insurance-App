@@ -15,8 +15,6 @@ const Customer = () => {
     }
    
     let resp = await validate(authToken)
-    
-
     if(resp.data.role[0].authority !='ROLE_CUSTOMER')
     {
         setIsUserValid(false)

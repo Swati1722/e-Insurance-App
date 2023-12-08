@@ -88,11 +88,14 @@ const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFu
                 )}
                 {isSchemeButton && ( 
                   <td>
-                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                      <button   
                         onClick={(e)=>{  
                           e.preventDefault(); 
                           SchemeFunc(value, isSchemeButton)
-                       }}  >Scheme</button>
+                       }}  
+                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       
+                       >Scheme</button>
                   </td>
                 )}
 
@@ -110,11 +113,14 @@ const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFu
 
                   {isCalculateButton && ( 
                   <td>
-                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
+                      <button    
                         onClick={(e)=>{  
                           e.preventDefault(); 
                           CalculateFunc(value)
-                       }}  >Calculate</button>
+                       }}  
+                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                       
+                       >Calculate</button>
                   </td>
                 )}
               </tr>

@@ -8,13 +8,9 @@ const RegisterPlan = () => {
     const[planDetails, setPlanDetails] = useState()
 
     const registerNewPlan = async() =>{
-      
         try{
-            
              let response =await addPlan(planName,planDetails)
              console.log(response)
-                
-           
         }
         catch(error)
         {

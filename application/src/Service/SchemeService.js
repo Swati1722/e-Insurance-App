@@ -35,3 +35,30 @@ export const getSchemeDetails= async (schemeId) => {
      throw error
    }
  }
+
+ export const addScheme = async(planId,  schemeName, minAmount, maxAmount, minAge,maxAge,minTime,maxTime,profitRatio)=>{
+  try{
+      let response = await axios.post('http://localhost:8080/insuranceapp/insurancescheme',{
+           schemeName:schemeName,
+           minAmount:minAmount,
+           maxAmount:maxAmount,
+           minAge:minAge,
+           maxAge:maxAge,
+           minTime:minTime,
+           maxTime:maxTime,
+           profitRatio:profitRatio
+           
+        },
+        {
+          params:{
+           planId:planId
+          }
+        }
+        )
+        console.log('Data saved successfully:', response.data);
+        return response;
+    }
+    catch (error){
+        throw error
+    }
+  }
