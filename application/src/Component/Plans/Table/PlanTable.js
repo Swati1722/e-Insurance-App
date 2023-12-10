@@ -13,11 +13,11 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]
-    console.log(data)
+ 
     if(data && data.content && data.content.length !== 0)
     {
         keys =Object.keys(data.content[0])
-        console.log("Keys:",keys)
+      
         
         if(isSchemeButton)
         {

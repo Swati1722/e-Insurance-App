@@ -49,6 +49,7 @@ const[username,setUsername] =useState()
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       ]
       if (allowedTypes.includes(fileType) && validFiles.length < maxFiles) {
+       
         validFiles.push(file)
       } else {
         alert(
@@ -91,25 +92,34 @@ const[username,setUsername] =useState()
   }
 
 
-  const handleSubmit =  async()  =>{
+  const handleSubmit =  async(e)  =>{
+    e.preventDefault()
+
     if (selectedFiles.length > 0) { // Check if at least one file is selected
         const formDataWithFiles = []
         selectedFiles.forEach((file, index) => {
           formDataWithFiles.push('documentFiles', file)
         })
         const currentDate = new Date();
-        const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+        const formattedDate = currentDate.toISOString().split('T')[0];
 
         const maturityDate = new Date(currentDate);
         maturityDate.setFullYear(currentDate.getFullYear() + receivedData.noOfYear);
+    const formattedMaturityDate = maturityDate.toISOString().split('T')[0];
+    try{
 
-        const maturityYear = maturityDate.getFullYear();
-        const maturityMonth = String(maturityDate.getMonth() + 1).padStart(2, '0');
-        const maturityDay = String(maturityDate.getDate()).padStart(2, '0');
-        const formattedMaturityDate = `${maturityYear}-${maturityMonth}-${maturityDay}`;
-
-        let respose = await savePolicy(username,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formDataWithFiles)
- 
+            let respose = await savePolicy(username,receivedData.schemeId,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formattedDate,formattedMaturityDate,  formDataWithFiles)
+          if(respose)
+          {
+            alert("data is saved")
+          }
+            setSelectedFiles([])
+    }
+    catch(error)
+    {
+      console.log(error)
+        alert(error.message)
+    }
     }
 }
 
@@ -121,7 +131,7 @@ const[username,setUsername] =useState()
                 <h1>Policy Details Form</h1>
             </div>
             <div className='plan-form-container'>
-                <form className='plan-form-controlller'>
+                <form className='plan-form-controlller' onSubmit={handleSubmit}>
                 {/* <p>Number of Years: {receivedData.noOfYear}</p>
                 <p>Received data: {JSON.stringify(receivedData)} <h1></h1></p> */}
                     <div className="plan-form-row">
@@ -186,6 +196,15 @@ const[username,setUsername] =useState()
                             <label for="inputZip">Zip</label>
                             <input type="text" className="form-control" id="inputZip"/>
                         </div>
+                        <div className="form-group ">
+                            <label for="inputNominees">Nominees</label>
+                            <input type="text" className="form-control" id="inputNominees"/>
+                        </div>
+                        <div className="form-group ">
+                            <label for="inputNomineesRelation">Nominees Relation</label>
+                            <input type="text" className="form-control" id="inputNomineesRelation"/>
+                        </div>
+                        
                 
 
                 
@@ -279,7 +298,7 @@ const[username,setUsername] =useState()
                 
             
                     <div className='policy-button'>
-                        <button type="submit" className="btn btn-primary" style={{marginTop:"1rem",backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2.5rem"}} onclick={handleSubmit()}>Buy Now</button>
+                        <button type="submit" className="btn btn-primary" style={{marginTop:"1rem",backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2.5rem"}} >Buy Now</button>
                         <Link to="/customerDashboard"  className="btn btn-secondary d-text" style ={{marginLeft:"25rem", marginTop:"1.5rem"}}onClick={(e)=> {localStorage.clear()}}>Back</Link>
                     </div>
                 </form>

@@ -89,7 +89,7 @@ const CustomerNavbar = () => {
                     {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>
                     <li className="customer-nav-item ">
-                      <Link to="" className='customer-nav-link '>Policy</Link>
+                      <Link to="/customerDashboard/PolicyDetails" className='customer-nav-link '>Policy</Link>
                         
                     {/* <a href="#insurance-plans-link" className="customer-nav-link">Insurance Plans</a> */}
                     </li>

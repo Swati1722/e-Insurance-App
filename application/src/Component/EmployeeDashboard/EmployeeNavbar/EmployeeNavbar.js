@@ -88,7 +88,8 @@ const EmployeeNavbar = () => {
                         <Link to="" className='d-text' onClick={toggleMyProfile}>My Profile</Link>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEmployeeEditProfileModel(); }}>Edit Profile</a>
                         
-                        
+                        <Link to="" className='d-text' >Query</Link>
+                       
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>
                         
                     </div>

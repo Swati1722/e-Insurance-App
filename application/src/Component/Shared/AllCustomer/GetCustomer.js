@@ -85,15 +85,11 @@ const GetCustomer = () => {
             <div className='customer-left'>
               <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
             </div>
-            {/* <div className="mb-3 d-flex align-items-center"> */}
-              {/* <label className="mr-2">Search:</label> */}
-              {/* Render the SearchBar component */}
-              {/* <SearchBar searchTerm={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} /> */}
-            {/* </div>    */}
+           
         </div>
       
           <div style={{  margin: '1rem', borderRadius:'20%'}} className="customer-table-container">
-            {console.log(data)}
+          
             <Table data={data} isDeleteButton={true}  deleteFunc={deleteUser} searchTerm/>
           </div>
           <div className='customer-pagination'>

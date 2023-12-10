@@ -22,6 +22,7 @@ const PolicyDetails = ({value,schemeId}) => {
     const openPolicy =async() =>{
 
         const dataToSend = {
+            schemeId:schemeId,
             noOfYear,
             totalInvestmentAmount,
             premiumType,
@@ -33,6 +34,7 @@ const PolicyDetails = ({value,schemeId}) => {
       
         if(localStorage.getItem('authentication'))
         {
+            
             const authToken = localStorage.getItem('authentication')
             console.log("authtoken--->"+authToken)
             navigate('/customerDashboard/Policy', { state: dataToSend });

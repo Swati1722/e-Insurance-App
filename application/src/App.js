@@ -20,7 +20,13 @@ import EmployeeProfile from "./Component/EmployeeDashboard/MyProfile/EmployeePro
 import EmployeePlan from './Component/EmployeeDashboard/EmployeePlan/EmployeePlan';
 import EmployeeScheme from "./Component/EmployeeDashboard/EmployeeScheme/EmployeeScheme"
 import AllQuery from './Component/CustomerDashboard/AllQuery/AllQuery';
+
 import AgentPlan from './Component/AgentDashboard/AgentPlan/AgentPlan';
+import AgentScheme from './Component/AgentDashboard/AgentScheme/AgentScheme'
+import Query from './Component/EmployeeDashboard/Query/Query';
+import Policy from './Component/EmployeeDashboard/Policy/Policy'
+import CustomerPolicy from './Component/CustomerDashboard/Policy/CustomerPolicy';
+
 
 function App() {
   return (
@@ -40,13 +46,16 @@ function App() {
         <Route exact path='/plandetails' element={<AdminPlan/>} />
 
        
-        <Route exact path='/customerDashboard/:username' element={<Customer/>} />
+        <Route exact path='/customerDashboard' element={<Customer/>} />
         <Route exact path='/customerDashboard/policy' element={<AddPolicy/>} />
         <Route exact path='/customerDashboard/profile' element={<MyProfile/>} />
         <Route exact path='/customerDashboard/query' element={<AllQuery/>} />
+        <Route exact path='/customerDashboard/PolicyDetails' element={<CustomerPolicy/>} />
        
+
        <Route exact path='/agentDashboard' element={<Agent/>} />
        <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} />
+       <Route exact path='/agentDashboard/scheme' element={<AgentScheme/>} />
         
 
 
@@ -56,7 +65,10 @@ function App() {
         <Route exact path='/employeeDashboard/profile' element={<EmployeeProfile/>} />
         <Route exact path='/employeeDashboard/plandetails' element={<EmployeePlan/>} />
         <Route exact path='/employeeDashboard/scheme' element={<EmployeeScheme/>} />
+        <Route exact path='/employeeDashboard/query' element={<Query/>} />
+        <Route exact path='/employeeDashboard/policy' element={<Policy/>} />
        
+
       </Routes>
     </>
   );

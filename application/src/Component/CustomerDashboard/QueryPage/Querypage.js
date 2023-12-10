@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { validateUser as validate } from '../../../Service/Authentication';
 import { addQuery } from '../../../Service/QueryService';
 
-const Querypage = () => {
+const QueryPage = () => {
     const navigate=new useNavigate();
-    const [query, setQuery] =useState();
+    const [query, setquery] =useState();
     const [data,setData] = useState()
     const [username, setUsername] = useState()
 
@@ -27,7 +27,7 @@ const Querypage = () => {
       },[])
 
    
-    const toggleAllQuery = () => {
+    const toggleAllquery = () => {
        
         const dataToSend = {
             username:data.data.sub,
@@ -41,7 +41,7 @@ const Querypage = () => {
         let resp = await addQuery(query,data.data.sub)
         if(resp)
         {
-            alert("Query is sended")
+            alert("query-page is sended")
         }
         }
          catch(error)
@@ -56,33 +56,33 @@ const Querypage = () => {
 
   return (
         <>
-           <div className='query-container'>
-                <div className="query-top-element">
-                    <img style={{ height: "45vh", width: "50vh" }} src={image} alt="Query image" />
+           <div className='query-page-container'>
+                <div className="query-page-top-element">
+                    <img style={{ height: "45vh", width: "50vh" }} src={image} alt="query-page image" />
                 </div>
 
-                <div className="query-bottom-element">
-                    <div className='query-box'>
-                    <h1 className='query-heading'>Query Submission </h1>
-                    <form className='query-postdata'>
-                        <div className='query-form-group'>
-                            <label htmlFor="query"> Enter Your Query</label>
-                            <input type="text" className="form-control" id="query" value ={query}  onChange={(e) => setQuery(e.target.value)}/>
+                <div className="query-page-bottom-element">
+                    <div className='query-page-box'>
+                    <h1 className='query-page-heading'>Query Submission </h1>
+                    <form className='query-page-postdata'>
+                        <div className='query-page-form-group'>
+                            <label htmlFor="query-page"> Enter Your Query</label>
+                            <input type="text" className="form-control" id="query-" value ={query}  onChange={(e) => setquery(e.target.value)}/>
                         </div>
 
-                        <div className='query-button' style={{marginTop:"1rem"}}>
-                            <button type="button" className="btn btn-primary query-button"  onClick={submitquestion}>Submit</button>
-                            <button type="button" className="btn btn-primary query-button" style={{marginLeft:"12rem"}} onClick={toggleAllQuery}>All Query</button>
+                        <div className='query-page-button' style={{marginTop:"1rem"}}>
+                            <button type="button" className="btn btn-primary query-page-button"  onClick={submitquestion}>Submit</button>
+                            <button type="button" className="btn btn-primary query-page-button" style={{marginLeft:"12rem"}} onClick={toggleAllquery}>All query-page</button>
                         </div>
                     </form>
                     </div>
                 </div>
             </div>
-            {/* value={userQuery} onChange={(e) => setUserQuery(e.target.value)}  */}
-            {/* onClick={submitQuery} */}
+            {/* value={userquery-page} onChange={(e) => setUserquery-page(e.target.value)}  */}
+            {/* onClick={submitquery-page} */}
 
         </>
   )
 }
 
-export default Querypage
+export default QueryPage

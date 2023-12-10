@@ -17,7 +17,7 @@ const AdminPlan = () => {
     const [data,setData] =useState([])
     const navigate = new useNavigate();
     const [showAddPlanModel, setShowAddPlanModel] = useState(false)
-   const [planId,setPlanId]=useState()
+    const [planId,setPlanId]=useState()
     const getPlan = async() =>{
         try{
              let response =await getAllPlans(pageNumber,pageSize)

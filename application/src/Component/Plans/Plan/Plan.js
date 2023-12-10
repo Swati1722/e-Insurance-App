@@ -24,7 +24,7 @@ const Plan = () => {
     const getPlan = async() =>{
         try{
              let response =await getAllPlans(pageNumber,pageSize)
-             console.log(response)
+
                 if(response.data)
                 {
                     setData(response.data)
@@ -49,7 +49,6 @@ const Plan = () => {
     
       
        useEffect(()=>{
-        console.log("useEffect called")
         getPlan()
       }, [totalNumberOfRecords,pageSize, pageNumber])
 
@@ -105,7 +104,7 @@ const Plan = () => {
             </div>
           
               <div style={{  margin: '1rem'}} className="plan-table-container">
-                {console.log(data)}
+           
                 <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
               </div>
               <div className='plan-right'>

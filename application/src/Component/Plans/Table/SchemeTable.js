@@ -12,11 +12,11 @@ const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFu
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]
-    console.log(data)
+   
     if(data && data.content && data.content.length !== 0)
     {
         keys =Object.keys(data.content[0])
-        console.log("Keys:",keys)
+    
         
         if(isSchemeButton)
         {

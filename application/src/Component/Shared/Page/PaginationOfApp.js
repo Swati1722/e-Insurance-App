@@ -16,20 +16,20 @@ const PaginationOfApp = ({numberOfPages,getFunction,pageNumber, setPageNumber}) 
           {number+1}
         </Pagination.Item>
       );
-      console.log(items)
+     
     }
 
     const handleNextClick = () => {
       if (pageNumber < numberOfPages) {
         setPageNumber(pageNumber + 1);
-        getFunction();
+        // getFunction();
       }
     };
   
     const handlePreviousClick = () => {
       if (pageNumber > 1) {
         setPageNumber(pageNumber - 1);
-        getFunction();
+        // getFunction();
       }
     }
 
