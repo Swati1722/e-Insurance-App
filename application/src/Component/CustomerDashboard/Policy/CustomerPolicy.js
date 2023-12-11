@@ -4,6 +4,7 @@ import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
 import Table from '../Table/PolicyTable/PolicyTable'
 import { getAllPolicyByUsername } from '../../../Service/PolicyService'
 import { validateUser } from '../../../Service/Authentication';
+import { useNavigate } from 'react-router-dom';
 
 
 const CustomerPolicy = () => {
@@ -12,6 +13,7 @@ const CustomerPolicy = () => {
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
     const [data,setData] =useState([])
+    const navigate = new useNavigate();
 
 
     const getPolicy = async() =>{
@@ -61,6 +63,18 @@ const CustomerPolicy = () => {
             <div className='plan-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPolicy} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
+            <button
+                onClick={() => navigate(-1)}
+                style={{
+                width: '5rem',
+                padding: '2px',
+                backgroundColor: 'rgb(34, 52, 100)',
+                marginLeft: '91%',
+                color: 'white',
+                }}
+            >
+                Go Back
+            </button>
                
         </div>
         

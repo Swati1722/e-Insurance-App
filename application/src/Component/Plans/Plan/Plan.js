@@ -6,6 +6,7 @@ import SchemeTable from '../Table/SchemeTable'
 import { getAllPlans } from '../../../Service/PlanService'
 import { getAllSchemes } from '../../../Service/SchemeService'
 import "./Plan.css"
+import { useNavigate } from 'react-router-dom';
 import PolicyModel from '../../Scheme/PolicyModel/PolicyModel'
 import Footer from '../../Shared/Footer/Footer'
 
@@ -20,6 +21,7 @@ const Plan = () => {
     const [showSchemeDetailsModal, setShowSchemeDetailsModal] = useState(false);
     const [schemeId, setSchemeId] = useState()
     const [particularScheme,setparticularScheme] =useState()
+    const navigate = new useNavigate();
 
     const getPlan = async() =>{
         try{
@@ -105,11 +107,23 @@ const Plan = () => {
           
               <div style={{  margin: '1rem'}} className="plan-table-container">
            
-                <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
+                <Table data={data}  isDeleteButton={false} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
               </div>
               <div className='plan-right'>
                   <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPlan} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
                 </div> 
+                <button
+                  onClick={() => navigate(-1)}
+                  style={{
+                    width: '5rem',
+                    padding: '2px',
+                    backgroundColor: 'rgb(34, 52, 100)',
+                    marginLeft: '90%',
+                    color: 'white',
+                  }}
+                >
+                  Go Back
+                </button>
               
         
             

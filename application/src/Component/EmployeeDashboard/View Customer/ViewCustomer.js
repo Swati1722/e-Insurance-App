@@ -1,28 +1,28 @@
 import React, {useState,useEffect} from 'react'
-import Table from './CustomerTable'
-import PageSize from '../Page/PageSize'
-import PaginationOfApp from "../Page/PaginationOfApp"
-import { getAllCustomer, deleteCustomer,updateActiveStatus } from '../../../Service/CustomerService'
-import "./GetCustomer.css"
+import Table from '../Table/CustomerTable/CustomerTable'
+import PageSize from '../../Shared/Page/PageSize'
+import PaginationOfApp from "../../Shared/Page/PaginationOfApp"
+import { getAllCustomer, deleteCustomer,updateActiveStatus, getAllCustomerActive } from '../../../Service/CustomerService'
+import "./ViewCustomer.css"
 import { useNavigate } from 'react-router-dom';
-import SearchBar from './SearchBar'; 
-import { updateCustomerActive } from '../../../Service/CustomerService'
 
-const GetCustomer = () => {
+// import SearchBar from '../../Shared/'; 
+
+const ViewCustomer = () => {
   const [pageSize,setPageSize] =useState(4)
   const [pageNumber, setPageNumber] = useState()
   const [numberOfPages, setNumberOfPages] = useState()
   const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
   const [data,setData] =useState([])
+  const navigate = new useNavigate();
   const [searchTerm, setSearchTerm] = useState(''); 
   const [filteredData, setFilteredData] = useState([]);
-  const navigate = new useNavigate();
-    
+  
 
   
   const getCustomer = async() =>{
     try{
-         let response =await getAllCustomer(pageNumber,pageSize)
+         let response =await  getAllCustomerActive (pageNumber,pageSize)
          console.log(response)
             if(response.data)
             {
@@ -59,29 +59,6 @@ const GetCustomer = () => {
     getCustomer()
   }, [totalNumberOfRecords,pageSize, pageNumber])
 
-  const updateStatusActive = async(value) =>{
-    let status = "True";
-    try{
-        let  response  = updateCustomerActive(value.username,status);
-    }
-    catch(error)
-    {
-        console.log(error)
-        alert(error.message)
-    }
-  }
-  const updateStatusInActive =async(value)=>{
-    console.log(value)
-    let status = "False";
-    try{
-        let  response =updateCustomerActive(value.username,status);
-    }
-    catch(error)
-    {
-        console.log(error)
-        alert(error.message)
-    }
-  }
  
   return (
     <>
@@ -99,18 +76,18 @@ const GetCustomer = () => {
       
           <div style={{  margin: '1rem', borderRadius:'20%'}} className="customer-table-container">
           
-              <Table data={data} isDeleteButton={true}   updateStatusActive={updateStatusActive}  updateStatusInActive={updateStatusInActive}/>
-           </div>
+            <Table data={data} />
+          </div>
           <div className='customer-pagination'>
               <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
-            </div>
-            <button
+          </div>
+          <button
             onClick={() => navigate(-1)}
             style={{
-
+              width: '5rem',
               padding: '2px',
               backgroundColor: 'rgb(34, 52, 100)',
-              marginLeft: '90%',
+              marginLeft: '91%',
               color: 'white',
             }}
           >
@@ -121,4 +98,4 @@ const GetCustomer = () => {
   )
 }
 
-export default GetCustomer
+export default ViewCustomer

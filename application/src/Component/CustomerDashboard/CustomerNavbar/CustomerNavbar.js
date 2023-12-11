@@ -12,7 +12,7 @@ const CustomerNavbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isQueryModalOpen, setIsQueryModalOpen] = useState(false);
   const [isEditProfileModalOpen,setIsEditProfileModalOpen] =useState(false);
-  const [value, setvalue] = useState(null)
+
   const [username,setUsername] =useState()
   const navigate=new useNavigate();
 
@@ -40,7 +40,7 @@ const CustomerNavbar = () => {
         console.log("username------>", resp.data.sub)
         let response = await getCustomerByUserName(resp.data.sub)
       
-        setvalue(response)
+   
         
         const dataToSend = {
           

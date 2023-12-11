@@ -71,6 +71,10 @@ const CustomerNavbar = () => {
                     <Link to="/plandetails" className='customer-nav-link '>Insurance Plan</Link>
                       
                     </li>
+                    <li className="nav-item ">
+                   <Link to="/adminDashboard/policy" className='customer-nav-link '>Poilcy</Link>
+                      
+                    </li>
                     <li className="customer-nav-item ">
                     <a href="#About-Us" className="customer-nav-link">About Us</a>
                     </li>

@@ -1,12 +1,12 @@
 import axios from "axios"
 import { downloadFiles } from "./DownloadFileService"
 
-export const savePolicy = async(username, schemeId,noOfYear,totalInvestmentAmount, premiumType,installmentAmount,interestAmount,totalAmount,profitRatio,dateCreated, maturityDate,formDataWithFiles)=>{
+export const savePolicy = async(username,nomineesName, nomineesRelation, schemeId,noOfYear,totalInvestmentAmount, premiumType,installmentAmount,interestAmount,totalAmount,profitRatio,dateCreated, maturityDate,formDataWithFiles)=>{
 
 const formDataFields = new FormData()
 //   formDataFields.append('issueDate', dateCreated)
 //   formDataFields.append('maturityDate', maturityDate)
-
+console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
   formDataFields.append('numberOfYear', noOfYear)
   formDataFields.append('totalPremiumAmount', totalInvestmentAmount)
   formDataFields.append('premiumType', premiumType)
@@ -20,7 +20,7 @@ const formDataFields = new FormData()
   const authToken = localStorage.getItem('authentication');
  
    try{
-      let response = await axios.post(`http://localhost:8080/insuranceapp/policy/${username}/${schemeId}`, 
+      let response = await axios.post(`http://localhost:8080/insuranceapp/policy/${username}/${schemeId}/${nomineesName}/${nomineesRelation}`, 
       formDataFields,{
          headers: {
             'Content-Type': 'multipart/form-data',
@@ -55,10 +55,7 @@ export const getAllPolicy = async(pageNumber, pageSize)=>{
 
 export const getAllPolicyByUsername = async(pageNumber, pageSize,username)=>{
   try{
-    console.log(username)
-    console.log("pageno---->",pageNumber)
-    console.log("pagesize---->",pageSize)
-       let response = await axios.get('http://localhost:8080/insuranceapp/policydetails',{
+     let response = await axios.get('http://localhost:8080/insuranceapp/policydetails',{
          params:{
            pagesize: pageSize,
            pagenumber: pageNumber,
@@ -90,3 +87,15 @@ export const getDocument = async(policyNumber)=>{
 }
 
 
+export const updatePolicyStatus= async(policyNumber,status) => {
+  console.log(status)
+     try{ 
+      let response = await axios.put(`http://localhost:8080/insuranceapp/updatestatus/${policyNumber}/${status}`,)
+      console.log(response)
+      console.log('Data saved successfully:', response.data)
+      return response
+     }
+      catch (error) {
+      throw error
+    }
+}

@@ -1,13 +1,13 @@
 import React, {useState,useEffect}  from 'react'
 import PageSize from '../../Shared/Page/PageSize'
 import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
-import Table from '../Table/PolicyTable/Table'
+import Table from '../Table/PolicyTable/PolicyTable'
 import {getAllPolicy, getDocument} from '../../../Service/PolicyService'
-import "./Policy.css"
+import "./AdminPolicy.css"
 import { useNavigate } from 'react-router-dom';
 import { updatePolicyStatus } from '../../../Service/PolicyService'
 
-const Policy = () => {
+const AdminPolicy = () => {
     const [pageSize,setPageSize] =useState(4)
     const [pageNumber, setPageNumber] = useState()
     const [numberOfPages, setNumberOfPages] = useState()
@@ -15,7 +15,7 @@ const Policy = () => {
     const [data,setData] =useState([])
     const navigate = new useNavigate();
 
-
+    
     const getPolicy = async() =>{
         try{
            let response =await getAllPolicy(pageNumber,pageSize)
@@ -45,6 +45,7 @@ const Policy = () => {
         getPolicy()
       }, [totalNumberOfRecords,pageSize, pageNumber])
 
+      
       const viewDocFunc = async(value) =>{
         try{
             let response = getDocument(value.policyNumber)
@@ -56,67 +57,45 @@ const Policy = () => {
             }
       }
 
-      const updateStatusVerified = async(value) =>{
-        let status = "True";
-        try{
-            let  response = updatePolicyStatus(value.policyNumber,status)
-        }
-        catch(error)
-        {
-            console.log(error)
-            alert(error.message)
-        }
-      }
-      const updateStatusDeclined =async(value)=>{
-        let status = "False";
-        try{
-            let  response =  updatePolicyStatus(value.policyNumber,status)
-        }
-        catch(error)
-        {
-            console.log(error)
-            alert(error.message)
-        }
-      }
-
-
-
   return (
     <>
-        <div className='policy-details-box'>
-            <div className ="policy-details-tittle"style={{textAlign:"center", marginTop:"1.5rem", background:"rgb(34, 52, 100)"}}>
+        <div className='admin-policy-details-box'>
+            <div className ="admin-policy-details-tittle"style={{textAlign:"center", marginTop:"1.5rem", background:"rgb(34, 52, 100)"}}>
                 <h1>Policy Details</h1>
             </div>
-            <div className="policy-container">
-                <div className='policy-left'>
+            <div className="admin-policy-container">
+                <div className='admin-policy-left'>
                     <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
                 </div>
             </div>
         
-            <div style={{  margin: '1rem'}} className="plan-table-container">
+            <div style={{  margin: '1rem'}} className="admin-plan-table-container">
                 {console.log(data)}
-                <Table data={data} isVerifyButton={true} isViewDocumentButton={true} viewDocFunc={viewDocFunc} updateStatusVerified={updateStatusVerified}  updateStatusDeclined={updateStatusDeclined }/>
+                <Table data={data} isVerifyButton={false} isViewDocumentButton={true} viewDocFunc={viewDocFunc}  />
             </div>
-            <div className='plan-right'>
+            <div className='admin-policy-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPolicy} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
-                <button
-                onClick={() => navigate(-1)}
-                style={{
-                width: '5rem',
-                padding: '2px',
-                backgroundColor: 'rgb(34, 52, 100)',
-                marginLeft: '91%',
-                color: 'white',
-                }}
-            >
-                Go Back
-            </button>
+            <button
+            onClick={() => navigate(-1)}
+            style={{
+
+              padding: '2px',
+              backgroundColor: 'rgb(34, 52, 100)',
+              marginLeft: '90%',
+              color: 'white',
+            }}
+          >
+            Go Back
+          </button>
                
         </div>
-        
+    
+    
+    
+    
     </>
   )
 }
 
-export default Policy
+export default AdminPolicy

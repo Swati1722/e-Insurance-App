@@ -1,15 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import { FindAllQuery } from '../../../Service/QueryService'
 import { SaveQueryAnswer } from '../../../Service/QueryService'
+import { useNavigate } from 'react-router-dom';
+
 
 const Query = () => {
   const [data,setData] =useState([])
   const [answers, setAnswers] = useState({});
+  const navigate = new useNavigate();
+
 
   const getAllQuery = async() =>{
     try{
      
-      let response =await  FindAllQuery()
+      let response = await  FindAllQuery()
       console.log(response)
       if(response)
       {
@@ -63,14 +67,26 @@ const Query = () => {
                           onChange={(e) => setAnswers(e.target.value)}
                         />
                       </label>
-                      <button onClick={handleAnswerChange(item.id)} >
+                      <button onClick={(e)=>handleAnswerChange(item.id,e)} >
                         Submit Answers
                       </button>
                       <hr style={{margin:".2rem"}}/>
                     </div>
                   ))}
             </div>
-           
+            <button
+              onClick={() => navigate(-1)}
+              style={{
+                width: '7rem',
+                marginTop: '3rem',
+                padding: '2px',
+                backgroundColor: 'rgb(34, 52, 100)',
+                marginLeft: '89%',
+                color: 'white',
+              }}
+            >
+              Go Back
+            </button>
             
         </div>
 

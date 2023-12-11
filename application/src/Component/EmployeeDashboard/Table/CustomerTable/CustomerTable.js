@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusActive,updateStatusInActive}) => {
@@ -77,27 +75,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
                   )}
                   
 
-                  {isDeleteButton && (
-                    <td>
-                       <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0"}}>
-                          Active
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu > 
-                            <Dropdown.Item href="#/action-1" onClick={()=>{updateStatusActive(value )}}>Active</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2"onClick={()=>{updateStatusInActive(value)}}>InActive</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      {/* <select 
-                        style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                    
-                      >
-                        <option onClick={()=>{updateStatusActive(value )}}>Active</option>
-                        <option  onClick={()=>{updateStatusInActive(value)}}>Inactive</option>
-                      </select> */}
-                    </td>
-                  )}
+                  
 
                 </tr>
               

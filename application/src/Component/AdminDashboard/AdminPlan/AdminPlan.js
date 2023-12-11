@@ -92,9 +92,22 @@ const AdminPlan = () => {
                 {console.log(data)}
                 <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
             </div>
+
             <div className='plan-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPlan} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
+            <button
+            onClick={() => navigate(-1)}
+            style={{
+              width: '5rem',
+              padding: '2px',
+              backgroundColor: 'rgb(34, 52, 100)',
+              marginLeft: '91%',
+              color: 'white',
+            }}
+          >
+            Go Back
+          </button>
                
         </div>
         <div>

@@ -17,10 +17,10 @@ const Footer = () => {
 
                         <h2>Useful Link</h2>
                         <div className='support-link'>
-                            <a className='footer-a' href="#">Link</a>
-                            <a className='footer-a' href="#">Link</a>
-                            <a className='footer-a' href="#">Link</a>
-                            <a className='footer-a' href="#">Link</a>
+                            <a className='footer-a' href="#">Policy</a>
+                            <a className='footer-a' href="#">Plan</a>
+                            <a className='footer-a' href="#">Query</a>
+                            <a className='footer-a' href="#">Info</a>
                       
                        
                         </div>

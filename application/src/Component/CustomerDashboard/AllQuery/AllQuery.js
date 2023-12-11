@@ -50,7 +50,7 @@ const AllQuery = () => {
                     <div key={item.id}  style={{ display: 'flex', flexDirection:"column"}}>
                       
                       <p><b>Question:</b>&nbsp;{item.question}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                      <p><b>Answer:</b>&nbsp;{item.answer || 'No answer available'}</p>
+                      <p><b>Answer:</b>&nbsp;{item.answer || 'Not answered yet'}</p>
                       <hr style={{margin:".2rem"}}/>
                     </div>
                   ))}

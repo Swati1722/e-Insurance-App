@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./Table.css"
+import "./PolicyTable.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
@@ -85,63 +85,22 @@ const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateSt
             }
           });
        
-        // rowsOfUsers = data.content.map((value) => {
-        //     const { active, ...otherFields } = value;
+        rowsOfUsers = data.content.map((value) => {
+            const { active, ...otherFields } = value;
           
-        //     return (
-        //       <tr>
-        //         {Object.values(otherFields).map((i) => (
-        //           <td>{i !== null ? i.toString() : 'N/A'}</td>
-        //         ))}
+            return (
+              <tr>
+                {Object.values(otherFields).map((i) => (
+                  <td>{i !== null ? i.toString() : 'N/A'}</td>
+                ))}
           
                 
-        //         {isViewDocumentButton && ( 
-        //           <td>
-        //               <button  
-        //                 onClick={(e)=>{  
-        //                   e.preventDefault(); 
-        //                   viewDocFunc(value)
-        //                }} 
-        //                style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",}}
-        //                >ViewDocument</button>
-        //           </td>
-        //         )}
-        //         {isVerifyButton && ( 
-        //           <td>
-        //              <Dropdown>
-        //                 <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0"}}
-        //               >
-        //                    Verify
-        //                 </Dropdown.Toggle>
-
-        //                 <Dropdown.Menu > 
-        //                     <Dropdown.Item href="#/action-1" onClick={(e)=>{updateStatusVerified(value)}} >Verified</Dropdown.Item>
-        //                     <Dropdown.Item href="#/action-2"onClick={(e)=>{updateStatusDeclined(value)}}>Declined</Dropdown.Item>
-        //                 </Dropdown.Menu>
-        //             </Dropdown>
-                      
-        //           </td>
-        //         )}
-        //       </tr>
-        //     );
-        //   });
-    
-        rowsOfUsers = data.content.map((data, index) => (
-            <tr key={index}>
-              <td>{data.policyNumber}</td>
-              <td>{data.numberOfYear}</td>
-              <td>{data.totalPremiumAmount}</td>
-              <td>{data.installmentAmount}</td>
-              <td>{data.premiumType}</td>
-              <td>{data.planName}</td>
-              <td>{data.schemeName}</td>
-              {/* <td>{data.status}</td> */}
-              {isViewDocumentButton && ( 
+                {isViewDocumentButton && ( 
                   <td>
                       <button  
                         onClick={(e)=>{  
                           e.preventDefault(); 
-                          viewDocFunc(data)
+                          viewDocFunc(value)
                        }} 
                        style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",}}
                        >ViewDocument</button>
@@ -156,15 +115,16 @@ const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateSt
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu > 
-                            <Dropdown.Item href="#/action-1" onClick={(e)=>{updateStatusVerified(data)}} >Verified</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2"onClick={(e)=>{updateStatusDeclined(data)}}>Declined</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1" onClick={(e)=>{updateStatusVerified(value)}} >Verified</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2"onClick={(e)=>{updateStatusDeclined(value)}}>Declined</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                       
                   </td>
                 )}
-            </tr>
-          ));
+              </tr>
+            );
+          });
     }
 
     return (

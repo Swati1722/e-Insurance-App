@@ -46,8 +46,9 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
   }
 
   export const updateCustomerdetails = async(username,mobileNumber,dateOfBirth,address,state,city,pincode) => {
-    let response = await axios.put('http://localhost:8080/insuranceapp/customer',{
+    let response = await axios.put('http://localhost:8080/insuranceapp/registercustomer',{
         
+          username:username,
           mobileNumber:mobileNumber,
           dateOfBirth:dateOfBirth,
           address:address,
@@ -71,7 +72,8 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
   export const getAllCustomer = async(pageNumber, pageSize)=>{
    try{
         let response = await axios.get('http://localhost:8080/insuranceapp/customers',{
-          params:{
+          
+        params:{
             pagesize: pageSize,
             pagenumber: pageNumber
         }
@@ -86,6 +88,25 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
   }
 }
 
+export const getAllCustomerActive = async(pageNumber, pageSize)=>{
+  try{
+       let response = await axios.get('http://localhost:8080/insuranceapp/customersactive',{
+         
+       params:{
+           pagesize: pageSize,
+           pagenumber: pageNumber
+       }
+         
+       })
+       console.log('Geting data:', response);
+       return response;
+     
+ }
+ catch (error){
+   throw error
+ }
+}
+
 export const deleteCustomer= async(username) => {
   let response = await axios.put('http://localhost:8080/insuranceapp/customer',{
       
@@ -98,17 +119,18 @@ export const deleteCustomer= async(username) => {
       console.log('Data saved successfully:', response.data)
    return response
 }
-export const updateActiveStatus = async(username) => {
-  let response = await axios.put('http://localhost:8080/insuranceapp/customer',{
-      
-        params:{
-          username:username
-        },
-        
-      })
+export const updateCustomerActive = async(username,status) => {
+ 
+  try{ 
+      let response = await axios.put(`http://localhost:8080/insuranceapp/customer/${username}/${status}`)
       console.log(response)
       console.log('Data saved successfully:', response.data)
-   return response
+      return response
+  }
+  catch (error) {
+    throw error
+  }
+
 }
 
 

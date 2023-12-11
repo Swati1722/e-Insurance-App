@@ -26,6 +26,8 @@ import AgentScheme from './Component/AgentDashboard/AgentScheme/AgentScheme'
 import Query from './Component/EmployeeDashboard/Query/Query';
 import Policy from './Component/EmployeeDashboard/Policy/Policy'
 import CustomerPolicy from './Component/CustomerDashboard/Policy/CustomerPolicy';
+import ViewCustomer from './Component/EmployeeDashboard/View Customer/ViewCustomer';
+import AdminPolicy from './Component/AdminDashboard/AdminPolicy/AdminPolicy';
 
 
 function App() {
@@ -41,7 +43,9 @@ function App() {
         <Route exact path='/adminDashboard/viewAgent' element={<GetAgent/>} />
         <Route exact path='/adminDashboard/profile' element={<AdminProfile/>} />
         <Route exact path='/adminDashboard/scheme' element={<AdminScheme/>} />
+        <Route exact path='/adminDashboard/policy' element={<AdminPolicy/>} />
         
+
         <Route exact path='/plan' element={<Plan/>} />
         <Route exact path='/plandetails' element={<AdminPlan/>} />
 
@@ -60,7 +64,7 @@ function App() {
 
 
         <Route exact path='/employeeDashboard' element={<Employee/>} />
-        <Route exact path='/employeeDashboard/viewCustomer' element={<GetCustomer/>} />
+        <Route exact path='/employeeDashboard/viewCustomer' element={<ViewCustomer/>} />
         <Route exact path='/employeeDashboard/viewAgent' element={<GetAgent/>} />
         <Route exact path='/employeeDashboard/profile' element={<EmployeeProfile/>} />
         <Route exact path='/employeeDashboard/plandetails' element={<EmployeePlan/>} />

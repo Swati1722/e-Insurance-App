@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getCustomerByUserName } from '../../../Service/CustomerService';
 
 const PolicyDetails = ({value,schemeId}) => {
 
@@ -21,6 +23,12 @@ const PolicyDetails = ({value,schemeId}) => {
     const navigate=new useNavigate();
     const openPolicy =async() =>{
 
+        const authToken = localStorage.getItem('authentication')
+        let resp = await validate(authToken)
+        console.log("username------>", resp.data.sub)
+        let response = await getCustomerByUserName(resp.data.sub)
+      
+   
         const dataToSend = {
             schemeId:schemeId,
             noOfYear,
@@ -30,6 +38,16 @@ const PolicyDetails = ({value,schemeId}) => {
             interestAmount,
             totalAmount,
             profitRatio,
+            username :response.data.userdetails.username,
+            firstName:response.data.userdetails.firstname,
+            lastName:response.data.userdetails.lastname,
+            address:response.data.address,
+            mobileNumber:response.data.userdetails.mobileNumber,
+            dateOfBirth:response.data.userdetails.dateOfBirth,
+            email:response.data.userdetails.emailId,
+            city:response.data.userdetails.city,
+            state:response.data.userdetails.state,
+            pincode : response.data.pincode
           };
       
         if(localStorage.getItem('authentication'))
@@ -68,6 +86,7 @@ const PolicyDetails = ({value,schemeId}) => {
     };
 
 
+   
 
 
   return (

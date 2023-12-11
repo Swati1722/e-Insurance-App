@@ -56,60 +56,78 @@ const Table = ({data,isPaymentButton, updateFunc}) => {
             else if(k=="intrestAmount"){
                 return <th scope="col">Intrest Amount</th>;
             }
-            else if(k=="Payment"){
-                return <th scope="col">Payment</th>;
-            }
+           
             else if(k=="maturityBenefit"){
                 return <th scope="col">Maturity Benefit</th>;
             }
             else if(k=="View Document"){
                 return <th scope="col">View Document</th>;
             }
-            else if(k=="fileDB"){
-                return <th scope="col">FileDb</th>;
-            }
-            else if(k=="nominees"){
-                return <th scope="col">Nominees</th>;
-            }
-            else if(k=="active"){
+            else if(k=="status"){
                 return null;
             }
-            else if(k=="View Document"){
-                return <th scope="col">View Document</th>;
+            else if(k=="Payment"){
+                return <th scope="col">Payment</th>;
             }
           
               
       
           });
        
-        rowsOfUsers = data.content.map((value) => {
-            const { active, ...otherFields } = value;
+        // rowsOfUsers = data.content.map((value) => {
+        //     const { active, ...otherFields } = value;
         
-            return (
-              <tr>
-                {Object.values(otherFields).map((i) => (
-                  <td>{i !== null ? i.toString() : 'N/A'}</td>
-                ))}
+            // return (
+            //   <tr>
+            //     {Object.values(otherFields).map((i) => (
+                   
+            //       <td>{i !== null ? i.toString() : 'N/A' }</td>
+            //     ))}
           
-                {isPaymentButton && (
-                  <td>
-                    <button disabled
-                      onClick={() => {
-                        // updateFunc(value);
-                      }}
-                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                    >
-                     Payment
-                    </button>
-                  </td>
-                )}
+          
+            //     {isPaymentButton && (
+            //       <td>
+            //         <button disabled
+            //           onClick={() => {
+            //             // updateFunc(value);
+            //           }}
+            //           style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
+            //         >
+            //          Payment
+            //         </button>
+            //       </td>
+            //     )}
+            //   </tr>
 
-                
+           
+            // );
+        //   });
 
-                 
-              </tr>
-            );
-          });
+        rowsOfUsers = data.content.map((data, index) => (
+            <tr key={index}>
+              <td>{data.policyNumber}</td>
+              <td>{data.numberOfYear}</td>
+              <td>{data.totalPremiumAmount}</td>
+              <td>{data.installmentAmount}</td>
+              <td>{data.premiumType}</td>
+              <td>{data.planName}</td>
+              <td>{data.schemeName}</td>
+              {/* <td>{data.status}</td> */}
+              {isPaymentButton && (
+                <td>
+                  <button
+                     disabled={!data.status}
+                    onClick={() => {
+                      // updateFunc(value);
+                    }}
+                    style={{  backgroundColor: data.status ? 'rgb(29 61 149)' : 'rgb(34, 52, 100)',border:"none", color: 'white', height: '1.9rem' }}
+                  >
+                    Payment
+                  </button>
+                </td>
+              )}
+            </tr>
+          ));
     }
 
     return (
@@ -123,6 +141,7 @@ const Table = ({data,isPaymentButton, updateFunc}) => {
             </thead>
             <tbody>
                 {rowsOfUsers}
+                
             </tbody>
 
         </table>

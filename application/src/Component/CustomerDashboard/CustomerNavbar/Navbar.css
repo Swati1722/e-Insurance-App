@@ -80,7 +80,7 @@
     font-weight: 400;
     padding-right: 0;
     padding-left: 0;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 .customer-navbar-right .nav-link i {
     /* for the first icon */
@@ -95,7 +95,7 @@
 
 
   .profile-popup {
-    margin-right: 4rem;
+    margin-right: 2rem;
     position: absolute;
     top: 75%;
     right: 0;

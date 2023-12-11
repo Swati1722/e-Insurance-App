@@ -4,6 +4,7 @@ import PageSize from '../Page/PageSize'
 import PaginationOfApp from "../Page/PaginationOfApp"
 import "./GetAgent.css"
 import { getAllAgent } from '../../../Service/AgentService'
+import { useNavigate } from 'react-router-dom';
 
 
 const GetAgent = () => {
@@ -12,6 +13,7 @@ const GetAgent = () => {
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
     const [data,setData] =useState([])
+    const navigate = new useNavigate();
   
     
     const getAgent = async() =>{
@@ -66,6 +68,18 @@ const GetAgent = () => {
             <div className='agent-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getAgent} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div>
+            <button
+            onClick={() => navigate(-1)}
+            style={{
+              width:'5rem',
+              padding: '2px',
+              backgroundColor: 'rgb(34, 52, 100)',
+              marginLeft: '92%',
+              color: 'white',
+            }}
+          >
+            Go Back
+          </button>
         </div>
     
     

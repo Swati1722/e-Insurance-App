@@ -84,7 +84,7 @@ const AgentPlan = () => {
         
             <div style={{  margin: '1rem'}} className="plan-table-container">
                 {console.log(data)}
-                <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
+                <Table data={data}  isDeleteButton={false} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
             
             </div>
             <div className='plan-right'>

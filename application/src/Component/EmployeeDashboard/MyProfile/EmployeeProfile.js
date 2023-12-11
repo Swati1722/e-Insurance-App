@@ -2,12 +2,15 @@ import React, {useState} from 'react'
 import "./EmployeeProfile.css"
 import { useLocation } from 'react-router-dom';
 import image from "../../../Image/ProfilePic.svg"
+import { useNavigate } from 'react-router-dom';
+
+
 
 const MyProfile = () => {
 
     const location = useLocation();
     const receivedData = location.state || {};
-  
+    const navigate = new useNavigate();
   
     const [updatedData, setUpdatedData] = useState({
       username: receivedData.username,
@@ -150,9 +153,23 @@ const MyProfile = () => {
                        
                        
                       </div>
-                      <button className='btn btn-primary login-button'>Update</button>
-                       
-                    </div>
+                      <div className='button-container'>
+                          <button className='btn btn-primary login-button button-left'>Update</button>
+                          <button className=' btn btn-primary button-left'
+                            onClick={() => navigate(-1)}
+                            style={{
+                              width: '5rem',
+                              padding: '2px',
+                             
+                              marginLeft: '55%',
+                              color: 'white',
+                            }}
+                          >
+                            Go Back
+                          </button>
+                        </div>
+                      </div>
+                 
                    </form>
                   
                 </div>

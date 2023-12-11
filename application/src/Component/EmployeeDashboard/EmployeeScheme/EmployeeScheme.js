@@ -5,6 +5,9 @@ import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
 import { getAllSchemes } from '../../../Service/SchemeService'
 import Table from '../Table/SchemeTable/SchemeTable'
 import "./EmployeeScheme.css"
+import { useNavigate } from 'react-router-dom';
+
+
 
 const EmployeeScheme = () => {
     const location = useLocation();
@@ -16,6 +19,7 @@ const EmployeeScheme = () => {
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
     const [data,setData] =useState([])
+    const navigate = new useNavigate();
     const [showAddSchemeModel, setShowAddSchemeModel] = useState(false)
     const [planId, setPlanId] = useState(receivedData.planId)
     
@@ -71,9 +75,21 @@ const EmployeeScheme = () => {
             <div className='scheme-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getScheme} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
+            <button
+            onClick={() => navigate(-1)}
+            style={{
+              width: '5rem',
+              padding: '2px',
+              backgroundColor: 'rgb(34, 52, 100)',
+              marginLeft: '91%',
+              color: 'white',
+            }}
+          >
+            Go Back
+          </button>
                
         </div>
-        <div></div>
+        
 
     </>
   )

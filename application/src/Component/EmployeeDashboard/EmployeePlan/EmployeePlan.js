@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { getAllPlans } from '../../../Service/PlanService';
 import Table from '../Table/PlanTable/PlanTable'
 
+
+
 const EmployeePlan = () => {
     const [pageSize,setPageSize] =useState(4)
     const [pageNumber, setPageNumber] = useState()
@@ -83,6 +85,18 @@ const EmployeePlan = () => {
             <div className='plan-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPlan} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
+            <button
+                onClick={() => navigate(-1)}
+                style={{
+                width: '5rem',
+                padding: '2px',
+                backgroundColor: 'rgb(34, 52, 100)',
+                marginLeft: '91%',
+                color: 'white',
+                }}
+            >
+                Go Back
+            </button>
                
         </div>
         

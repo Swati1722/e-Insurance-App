@@ -4,7 +4,7 @@ import {savePolicy} from "../../../Service/PolicyService"
 import './AddPolicy.css'
 import Button from 'react-bootstrap/Button';
 import { validateUser as validate } from '../../../Service/Authentication';
-
+import { updateCustomerdetails } from '../../../Service/CustomerService';
 
 
 import { Link } from 'react-router-dom';
@@ -13,6 +13,13 @@ const AddPolicy = () => {
 const [mobileNumber,setMobileNumber] = useState()
 const[dateOfBirth,setDateOfBirth] = useState()
 const[username,setUsername] =useState()
+const [address,setAddress] = useState()
+const [state,setState] = useState()
+const [city , setCity] = useState()
+const [zip, setZip] = useState()
+const [nominees,setNominees] = useState()
+const [nomineesRelation,setNomineeRelation] = useState()
+const [selectedState, setSelectedState] = useState()
 
 
   const location = useLocation();
@@ -24,7 +31,6 @@ const[username,setUsername] =useState()
     let resp = await validate(authToken)
     setUsername(resp.data.sub)
 
-    
  }
  useEffect(()=>{
   validateUser()
@@ -108,8 +114,10 @@ const[username,setUsername] =useState()
     const formattedMaturityDate = maturityDate.toISOString().split('T')[0];
     try{
 
-            let respose = await savePolicy(username,receivedData.schemeId,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formattedDate,formattedMaturityDate,  formDataWithFiles)
-          if(respose)
+
+          let resp = await updateCustomerdetails(username,mobileNumber,dateOfBirth,address,state,city,zip)
+          let respose = await savePolicy(username,nominees, nomineesRelation,receivedData.schemeId,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formattedDate,formattedMaturityDate,  formDataWithFiles)
+          if(respose && resp)
           {
             alert("data is saved")
           }
@@ -132,33 +140,34 @@ const[username,setUsername] =useState()
             </div>
             <div className='plan-form-container'>
                 <form className='plan-form-controlller' onSubmit={handleSubmit}>
-                {/* <p>Number of Years: {receivedData.noOfYear}</p>
-                <p>Received data: {JSON.stringify(receivedData)} <h1></h1></p> */}
-                    <div className="plan-form-row">
+                {/* {console.log(receivedData.dateOfBirth)} */}
+                {receivedData.dateOfBirth==null
+                 &&
+                  <div className="plan-form-row">
                         <div className="form-group">
                             <label for="inputEmail4">Mobile</label>
                             <input type="Mobile" className="form-control" id="inputEmail" placeholder="Mobile" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)}/>
                         </div>
                         <div className="form-group">
                             <label for="dataOfBirth">Date Of Birth</label>
-                            <input type="dataOfBirth" className="form-control" id="dataOfBirth" placeholder="dataOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
+                            <input type="Date" className="form-control" id="dataOfBirth" placeholder="dataOfBirth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
                         </div>
                 
                         <div className="form-group">
                             <label for="inputAddress">Address</label>
-                            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St"/>
+                            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" value={address} onChange={(e) => setAddress(e.target.value)}/>
                         </div>
                         <div className="form-group ">
                             <label for="inputState">State</label>
-                            <select id="inputState" className="form-control" size="5">
+                            <select id="inputState" className="form-control" size="5"  value={selectedState}  onChange={(e) => setSelectedState(e.target.value)}>
                                 <option selected>Choose...</option>
-                                <option>Andhra Pradesh</option>
-                                <option>Arunachal Pradesh</option>
-                                <option>Assam</option>
-                                <option>Bihar</option>
-                                <option>Chhattisgarh</option>
-                                <option>Goa</option>
-                                <option>Gujarat</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
                                 <option>Haryana</option>
                                 <option>Himachal Pradesh</option>
                                 <option>Jharkhand</option>
@@ -190,24 +199,27 @@ const[username,setUsername] =useState()
                         </div>
                         <div className="form-group">
                             <label for="inputCity">City</label>
-                            <input type="text" className="form-control" id="inputCity"/>
+                            <input type="text" className="form-control" id="inputCity"  value={city} onChange={(e) => setCity(e.target.value)}/>
                         </div>
                         <div className="form-group ">
                             <label for="inputZip">Zip</label>
-                            <input type="text" className="form-control" id="inputZip"/>
+                            <input type="text" className="form-control" id="inputZip"  value={zip} onChange={(e) => setZip(e.target.value)}/>
                         </div>
+                    </div>  
+                  }
                         <div className="form-group ">
                             <label for="inputNominees">Nominees</label>
-                            <input type="text" className="form-control" id="inputNominees"/>
+                            <input type="text" className="form-control" id="inputNominees"  value={nominees} onChange={(e) => setNominees(e.target.value)}/>
                         </div>
                         <div className="form-group ">
                             <label for="inputNomineesRelation">Nominees Relation</label>
-                            <input type="text" className="form-control" id="inputNomineesRelation"/>
+                            <input type="text" className="form-control" id="inputNomineesRelation" value={nomineesRelation} onChange={(e) => setNomineeRelation(e.target.value)}/>
                         </div>
-                        
+                 
+                
                 
 
-                
+                  <div>
                         <div className='form-group'>
                             <label htmlFor="noOfYear">Number of year*</label>
                             <input
