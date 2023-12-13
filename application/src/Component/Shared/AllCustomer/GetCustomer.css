@@ -57,7 +57,12 @@
   .button{
     padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 1px;
     margin-bottom: 1rem;
+    cursor: pointer;
     /* border :1rem; */
   }
+  .button:hover {
+    background-color: white;
+    color: black;
+     }

@@ -29,6 +29,27 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
     return response;
   }
 
+  export const addCustomerByAgent = async(firstName,lastName,userName,password,email,mobileNumber,dateOfBirth,address,state,city,pincode)=>{
+    let response = await axios.post('http://localhost:8080/insuranceapp/customer',{
+          address:address,
+          city:city,
+          state:state,
+          pincode:pincode,
+          userdetails: {
+            firstname: firstName,
+            lastname: lastName, // You can set this to an empty string or provide a last name if available
+            username: userName,
+            password: password,
+            emailId: email,
+            mobileNumber:mobileNumber,
+            dateOfBirth:dateOfBirth,
+           
+          }
+      },{
+      })
+      console.log('Data saved successfully:', response.data);
+      return response;
+    }
 
   export const getCustomerByUserName = async(username)=>{
    console.log(username)

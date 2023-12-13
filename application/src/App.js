@@ -28,6 +28,7 @@ import Policy from './Component/EmployeeDashboard/Policy/Policy'
 import CustomerPolicy from './Component/CustomerDashboard/Policy/CustomerPolicy';
 import ViewCustomer from './Component/EmployeeDashboard/View Customer/ViewCustomer';
 import AdminPolicy from './Component/AdminDashboard/AdminPolicy/AdminPolicy';
+import Payment from './Component/CustomerDashboard/Payment/Payment';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
         <Route exact path='/customerDashboard/profile' element={<MyProfile/>} />
         <Route exact path='/customerDashboard/query' element={<AllQuery/>} />
         <Route exact path='/customerDashboard/PolicyDetails' element={<CustomerPolicy/>} />
+        <Route exact path='/customerDashboard/payment' element={<Payment/>} />
        
 
        <Route exact path='/agentDashboard' element={<Agent/>} />

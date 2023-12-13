@@ -89,6 +89,7 @@ const ViewCustomer = () => {
               backgroundColor: 'rgb(34, 52, 100)',
               marginLeft: '91%',
               color: 'white',
+              cursor:"pointer"
             }}
           >
             Go Back

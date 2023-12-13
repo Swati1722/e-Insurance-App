@@ -162,7 +162,7 @@
 .insurancePlanCards{
     background-color: #faf8fd;
     /* padding-bottom: 60px; */
-    padding-top: 60px;
+    padding-top: 40px;
     /* max-width:1200px; */
     /* min-width: max-content;
     width: 100%; */
@@ -413,7 +413,7 @@ h3 {
 
 .insurancePlanCards .insurancePlanCards_content_container .insurancePlanCards_content_container_item.icon-10 {
     background-color: #ece2ed;
-    padding-top: 70px;
+    padding-top: 40px;
 }
 .insurancePlanCards .insurancePlanCards_content_container .insurancePlanCards_content_container_item {
     background-color: #fff4f7;
@@ -434,8 +434,8 @@ h3 {
 }
 .insurancePlanCards .insurancePlanCards_content_container .insurancePlanCards_content_container_item>img {
     display: block;
-    margin: 2rem;
-    margin-left: 6rem;
+    /* margin: 2rem; */
+    /* margin-left: 6rem; */
     width: 239px;
 }
 .insurancePlanCards .insurancePlanCards_content_container .insurancePlanCards_content_container_item h4 {

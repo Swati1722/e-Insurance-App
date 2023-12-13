@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-
+import RegisterCustomer from '../RegisterCustomer/RegisterCustomer';
 const AddCustomerModel = ({showCustomerRegistrationModal, toggleCustomerRegistrationModal}) => {
     const [show, setShow] = useState(showCustomerRegistrationModal);
 
@@ -26,8 +26,8 @@ const AddCustomerModel = ({showCustomerRegistrationModal, toggleCustomerRegistra
         >
         
 
-        <Modal.Body style={{ maxHeight: '90vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
-           {/* <ResgisterEmployee/> */}
+        <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
+           <RegisterCustomer/>
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn btn-primary"onClick={handleClose}>

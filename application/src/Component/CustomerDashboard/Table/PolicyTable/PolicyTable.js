@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 
-const Table = ({data,isPaymentButton, updateFunc}) => {
+const Table = ({data,isPaymentButton, paymentFunc}) => {
    const[isActive,setIsActive]= useState(true)
 
    
@@ -118,7 +118,7 @@ const Table = ({data,isPaymentButton, updateFunc}) => {
                   <button
                      disabled={!data.status}
                     onClick={() => {
-                      // updateFunc(value);
+                      paymentFunc(data)
                     }}
                     style={{  backgroundColor: data.status ? 'rgb(29 61 149)' : 'rgb(34, 52, 100)',border:"none", color: 'white', height: '1.9rem' }}
                   >

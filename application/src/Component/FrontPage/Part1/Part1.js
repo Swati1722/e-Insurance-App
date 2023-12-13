@@ -10,6 +10,7 @@ import image4 from '../../../Image/check.svg'
 import image5 from "../../../Image/Medicine.svg"
 import image6 from '../../../Image/injured.svg'
 import image7 from "../../../Image/covid.svg"
+import image8 from "../../../Image/Health.svg"
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { getCustomerByUserName } from '../../../Service/CustomerService'
@@ -101,7 +102,7 @@ const Part1 = () => {
                                 <p className="insurance-tc__subtext">Life insurance plans primarily cover the risk of untimely demise of the insured. In case of an unforeseen demise of the insured, a death benefit is paid, which helps the family face the financial loss.</p>
                             </div>
                             <div className="insurancePlanCards__exploreMore">
-                                <Link to="/insurance-plan">Explore More</Link>
+                                <Link to="/insurance-plan" style={{textDecoration:"none"}}>Explore More</Link>
                                 {/* <a hExplore More</a> */}
                             </div>
 
@@ -132,8 +133,8 @@ const Part1 = () => {
                                     </div>
                                 </a>
                                 <a className="insurancePlanCards_content_container_item icon-10" href="">
-                                    <img src={image4} alt="Guaranteed Returns Insurance" />
-                                    <h4>Guaranteed Returns</h4>
+                                    <img src={image4} alt="Guaranteed Returns Insurance" tyle ={{height:"40vh"}}/>
+                                    <h4 style={{marginTop:"3.5rem"}}>Guaranteed Returns</h4>
                                     <div>
                                         <p>Secure your family’s future against unforeseen circumstances</p>
                                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
@@ -146,7 +147,7 @@ const Part1 = () => {
                 </div>
 
 
-                <div className='insurancePlanCards' id="insurance-plans-link">
+                <div className='insurancePlanCards' id="insurance-plans-link" style={{marginBottom:'3rem'}}>
                     <div className='content'>
                         <div className='insurancePlanCard_content'>
                             <div className="insurance-tc">
@@ -154,7 +155,7 @@ const Part1 = () => {
                                 <p className="insurance-tc__subtext">With health insurance, you gain peace of mind, knowing that your well-being is safeguarded, and you can access comprehensive medical coverage for unforeseen health challenges.</p>
                             </div>
                             <div className="insurancePlanCards__exploreMore">
-                                <Link to="/insurance-plan">Explore More</Link>
+                                <Link to="/insurance-plan" style={{textDecoration:"none"}}>Explore More</Link>
                                 {/* <a hExplore More</a> */}
                             </div>
 
@@ -170,7 +171,7 @@ const Part1 = () => {
                                 </a>
                                 <a className="insurancePlanCards_content_container_item icon-8 " href="" style={{ backgroundColor:"#ecf5ff"}}>
                                     <img src={image6} alt="Personal accident"/>
-                                    <h4>MediSecure Plus</h4>
+                                    <h4 style={{marginTop:"3rem"}}>MediSecure Plus</h4>
                                     <div>
                                         <p>Get coverage for death and permanent disability</p>
                                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjNzg1NEY3IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjggMmwxMCA5LjVMMjggMjEiLz48cGF0aCBkPSJNMi4wMzEgMTFoMzQuOTM3Ii8+PC9nPjwvc3ZnPg==" />
@@ -185,7 +186,7 @@ const Part1 = () => {
                                     </div>
                                 </a>
                                 <a className="insurancePlanCards_content_container_item icon-10" href="">
-                                    <img src={image4} alt="Guaranteed Returns Insurance" />
+                                    <img src={image8} alt="Guaranteed Returns Insurance" style ={{height:"35vh" , width:"30vh"}}/>
                                     <h4>Health Gaurd Plus</h4>
                                     <div>
                                         <p> Robust coverage, ensuring your well-being with comprehensive health protection and benefits.</p>

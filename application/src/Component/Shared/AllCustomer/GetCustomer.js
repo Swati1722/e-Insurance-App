@@ -104,18 +104,21 @@ const GetCustomer = () => {
           <div className='customer-pagination'>
               <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div>
-            <button
+            <input className='button'
             onClick={() => navigate(-1)}
             style={{
 
-              padding: '2px',
+             
               backgroundColor: 'rgb(34, 52, 100)',
               marginLeft: '90%',
+              cursor: "pointer",
               color: 'white',
             }}
-          >
-            Go Back
-          </button>
+            value="Go Back"
+            type="submit" 
+         />
+            
+          {/* </button> */}
       </div>
     </>
   )

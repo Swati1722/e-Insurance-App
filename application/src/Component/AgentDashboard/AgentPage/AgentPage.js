@@ -2,19 +2,25 @@ import React, {useState} from 'react'
 
 import logo1 from '../../../Image/Admin.svg'
 import logo2 from '../../../Image/Admin1.svg'
-import logo3 from '../../../Image/Admin2.svg'
-import logo4 from '../../../Image/Admin3.svg'
+import logo3 from '../../../Image/Investment.svg'
+import logo4 from '../../../Image/Marketing.svg'
 import logo5 from '../../../Image/Admin4.svg'
+import MarketingModel from '../Models/MarketingModel'
 import AddCustomerModel from '../Models/AddCustomerModel'
 import { Link } from 'react-router-dom';
 
 const AgentPage = () => {
 
 const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useState(false);
+const [showMarketingModal, setShowMarketingModal] = useState(false);
 
  
   const toggleCustomerRegistrationModal = () => {
     setShowCustomerRegistrationModal(!showCustomerRegistrationModal);
+  };
+
+  const toggleMarketingModal = () => {
+    setShowMarketingModal(!showMarketingModal);
   };
 
 
@@ -49,7 +55,7 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
 
                                     {/* Second Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/adminDashboard/viewCustomer" className="card-link">
+                                        <Link to="/employeeDashboard/viewCustomer" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"8rem",  padding:"1rem"}}
@@ -70,7 +76,7 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
                                         <Link to="" className="card-link">
                                             <div className="card square-card">
                                                 <img
-                                                    style={{height:"8rem",  padding:"1rem"}}
+                                                    style={{height:"9rem", width:"11rem", padding:'1rem'}}
                                                     src={logo3}
                                                     className="card-img-top"
                                                     alt="Sample image"
@@ -85,15 +91,15 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
 
                                     {/* Fourth Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/adminDashboard/viewAgent" className="card-link">
+                                        <Link to="" className="card-link"  onClick={toggleMarketingModal}>
                                             <div className="card square-card">
-                                                <img style={{height:"8rem",width:"10rem",  padding:"1rem"}}
+                                                <img style={{height:"9rem",width:"13rem",  padding:"1rem"}}
                                                     src={logo4}
                                                     className="card-img-top"
                                                     alt="Sample image"
                                                 />
                                                 <div className="card-body">
-                                                    <h5 className="card-title">View Agent</h5>
+                                                    <h5 className="card-title">Marketing</h5>
                                                     
                                                 </div>
                                             </div>
@@ -121,6 +127,12 @@ const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useSta
         { showCustomerRegistrationModal && <AddCustomerModel
           showCustomerRegistrationModal={showCustomerRegistrationModal}
           toggleCustomerRegistrationModal={toggleCustomerRegistrationModal}/>}
+        </div>
+
+        <div>
+        { showMarketingModal && <MarketingModel
+          showMarketingModal={showMarketingModal}
+          toggleMarketingModal={toggleMarketingModal}/>}
         </div>
 
 

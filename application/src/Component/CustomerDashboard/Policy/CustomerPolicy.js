@@ -41,6 +41,20 @@ const CustomerPolicy = () => {
        useEffect(()=>{
         getPolicy()
       },[])
+      
+
+      const paymentFunc = async(data) =>{
+        console.log(data)
+
+        const dataToSend = {
+            numberOfYear:data.numberOfYear,
+            policyNumber:data.policyNumber,
+            premiumType:data.premiumType,
+            installmentAmount:data.installmentAmount,
+
+        }
+            navigate('/customerDashboard/payment',{ state: dataToSend })
+      }
     
 
   return (
@@ -58,7 +72,7 @@ const CustomerPolicy = () => {
         
             <div style={{  margin: '1rem'}} className="plan-table-container">
             
-                <Table data={data} isPaymentButton={true} isDeleteButton={true}  />
+                <Table data={data} isPaymentButton={true} isDeleteButton={true} paymentFunc={paymentFunc} />
             </div>
             <div className='plan-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPolicy} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>

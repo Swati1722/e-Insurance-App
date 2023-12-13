@@ -79,28 +79,32 @@ const Login = () => {
 
         <div className="right-element">
           <div className="box">
-            <h1 className="heading">Login </h1>
-            <form className="postdata">
-              <div className="form-group">
-                <label htmlFor="userName"> User Name</label>
-                <input type="text" className="form-control" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password"> Password</label>
-                <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              </div>
-              <div className="c-button">
-                <button type="button" className="btn btn-primary n-button" onClick={UserLogin}>
-                  Submit
-                </button>
-              </div>
-              <div className="n-container">
-                <h1 className="wrap">New user ?</h1>
-                <button className="btn btn-primary login-button" onClick={toggleRegistrationModal}>
-                  Sign up
-                </button>
-              </div>
-            </form>
+            <div className='login-tittle'>
+              <h1 className="heading">Login </h1>
+            </div>
+            <div className='login-form'>
+              <form className="postdata">
+                <div className="form-group">
+                  <label htmlFor="userName"> User Name</label>
+                  <input type="text" className="form-control" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password"> Password</label>
+                  <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <div className="c-button">
+                  <button type="button" className="btn btn-primary n-button" onClick={UserLogin}>
+                    Submit
+                  </button>
+                </div>
+                <div className="n-container">
+                  <h1 className="wrap">New user ?</h1>
+                  <button className="btn btn-primary login-button" onClick={toggleRegistrationModal}>
+                    Sign up
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

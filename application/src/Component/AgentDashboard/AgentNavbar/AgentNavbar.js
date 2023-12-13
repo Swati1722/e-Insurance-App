@@ -36,7 +36,7 @@ const AgentNavbar = () => {
                         
                     </li>
                     <li className="nav-item ">
-                    <Link to="/agentDashboard/plandetails" className='customer-nav-link '>Insurance Plan</Link>
+                    <Link to="/plan" className='customer-nav-link '>Insurance Plan</Link>
                       
                       </li>
                     <li className="customer-nav-item ">

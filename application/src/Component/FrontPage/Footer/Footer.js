@@ -30,8 +30,9 @@ const Footer = () => {
 
                 <div className="footer-column-2">
                     <h2>About Us</h2>
-                    <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mauris a urna tincidunt, vel condimentum leo auctor.
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet mauris a urna tincidunt, vel condimentum leo auctor.</p>
+                    <p>  Insurance plans compensate for the financial risks that you suffer in unforeseen contingencies and provide financial security.Sometimes you might suffer an unforeseen loss.
+                         Insurance plans act as an umbrella during such times and protect you financially.
+                         If you insure your losses, the insurance policy shoulders the financial burden of such losses, whenever they may occur. This safeguards your savings, allowing you to use them for their intended purposes, i.e., meeting your financial goals.</p>
                 </div>
             </footer>
 
