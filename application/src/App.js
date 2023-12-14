@@ -29,7 +29,7 @@ import CustomerPolicy from './Component/CustomerDashboard/Policy/CustomerPolicy'
 import ViewCustomer from './Component/EmployeeDashboard/View Customer/ViewCustomer';
 import AdminPolicy from './Component/AdminDashboard/AdminPolicy/AdminPolicy';
 import Payment from './Component/CustomerDashboard/Payment/Payment';
-
+import AgentPolicy from './Component/AgentDashboard/AgentPolicy/AgentPolicy'
 
 function App() {
   return (
@@ -62,7 +62,8 @@ function App() {
        <Route exact path='/agentDashboard' element={<Agent/>} />
        <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} />
        <Route exact path='/agentDashboard/scheme' element={<AgentScheme/>} />
-        
+       <Route exact path='/agentDashboard/Policy' element={<AgentPolicy/>} />
+       
 
 
         <Route exact path='/employeeDashboard' element={<Employee/>} />

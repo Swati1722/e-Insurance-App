@@ -21,41 +21,59 @@ const PolicyDetails = ({value,schemeId}) => {
     const [totalAmount, setTotalAmount] = useState();
 
     const navigate=new useNavigate();
-    const openPolicy =async() =>{
 
-        const authToken = localStorage.getItem('authentication')
-        let resp = await validate(authToken)
-        console.log("username------>", resp.data.sub)
-        let response = await getCustomerByUserName(resp.data.sub)
-      
-   
-        const dataToSend = {
-            schemeId:schemeId,
-            noOfYear,
-            totalInvestmentAmount,
-            premiumType,
-            installmentAmount,
-            interestAmount,
-            totalAmount,
-            profitRatio,
-            username :response.data.userdetails.username,
-            firstName:response.data.userdetails.firstname,
-            lastName:response.data.userdetails.lastname,
-            address:response.data.address,
-            mobileNumber:response.data.userdetails.mobileNumber,
-            dateOfBirth:response.data.userdetails.dateOfBirth,
-            email:response.data.userdetails.emailId,
-            city:response.data.userdetails.city,
-            state:response.data.userdetails.state,
-            pincode : response.data.pincode
-          };
-      
+    const openPolicy =async() =>{
+ 
         if(localStorage.getItem('authentication'))
         {
-            
             const authToken = localStorage.getItem('authentication')
-            console.log("authtoken--->"+authToken)
-            navigate('/customerDashboard/Policy', { state: dataToSend });
+            let resp = await validate(authToken)
+            console.log("username------>", resp)
+           
+            const dataToSend = {
+                schemeId:schemeId,
+                noOfYear,
+                totalInvestmentAmount,
+                premiumType,
+                installmentAmount,
+                interestAmount,
+                totalAmount,
+                profitRatio,
+               
+              };
+          
+            // const authToken = localStorage.getItem('authentication')
+            if(resp.data.role[0].authority === 'ROLE_AGENT')
+            {
+                navigate('/agentDashboard/Policy',  { state: dataToSend })
+            }
+
+            let response = await getCustomerByUserName(resp.data.sub)
+          
+          const datatoBeSend = {
+                schemeId:schemeId,
+                noOfYear,
+                totalInvestmentAmount,
+                premiumType,
+                installmentAmount,
+                interestAmount,
+                totalAmount,
+                profitRatio,
+                username :response.data.userdetails.username,
+                firstName:response.data.userdetails.firstname,
+                lastName:response.data.userdetails.lastname,
+                address:response.data.address,
+                mobileNumber:response.data.userdetails.mobileNumber,
+                dateOfBirth:response.data.userdetails.dateOfBirth,
+                email:response.data.userdetails.emailId,
+                city:response.data.userdetails.city,
+                state:response.data.userdetails.state,
+                pincode : response.data.pincode
+              };
+            // console.log("authtoken--->"+authToken)
+           
+       
+            navigate('/customerDashboard/Policy', { state: datatoBeSend });
         }
         else{
             alert("First login")
@@ -225,7 +243,7 @@ const PolicyDetails = ({value,schemeId}) => {
                         />
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "1rem" }}>
-                        <button type="button" onClick={calculateInterest} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                        <button type="button" onClick={calculateInterest} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
                        >
                             Calculate
                         </button>
@@ -273,7 +291,7 @@ const PolicyDetails = ({value,schemeId}) => {
                     />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
-                    <button  type="button"  onClick={openPolicy} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                    <button  type="button"  onClick={openPolicy} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
                        >
                         BuyNow
                     </button>

@@ -153,12 +153,12 @@ const QueryPage = () => {
                     <form className='query-page-postdata'>
                         <div className='query-page-form-group'>
                             <label htmlFor="query-page"> Enter Your Query</label>
-                            <textarea type="text" className="form-control" id="query-" value ={query}  onChange={(e) => setquery(e.target.value)}/>
+                            <textarea  type="text" className="form-control" id="query-" value ={query}  onChange={(e) => setquery(e.target.value)}/>
                         </div>
 
                         <div className='query-page-button-container' style={{marginTop:"1rem"}}>
-                            <button type="button" className="btn btn-primary query-page-button"  onClick={submitquestion}>Submit</button>
-                            <button type="button" className="btn btn-primary query-page-button" style={{marginLeft:"13rem"}} onClick={toggleAllquery}>All Query</button>
+                            <button type="button" className="btn btn-primary query-page-button"  onClick={submitquestion}  style={{ width:'5rem', height:'2rem'}}>Submit</button>
+                            <button type="button" className="btn btn-primary query-page-button" style={{marginLeft:"12rem" , width:'5rem', height:'2rem'}} onClick={toggleAllquery}>All Query</button>
                         </div>
                     </form>
                     </div>

@@ -9,6 +9,7 @@ import MarketingModel from '../Models/MarketingModel'
 import AddCustomerModel from '../Models/AddCustomerModel'
 import { Link } from 'react-router-dom';
 
+
 const AgentPage = () => {
 
 const [showCustomerRegistrationModal, setShowCustomerRegistrationModal] = useState(false);

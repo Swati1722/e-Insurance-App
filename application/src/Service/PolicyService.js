@@ -35,6 +35,43 @@ console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelatio
    }
 }
 
+
+export const savePolicyByAgent = async(username,agentUsername,nomineesName, nomineesRelation, schemeId,noOfYear,totalInvestmentAmount, premiumType,installmentAmount,interestAmount,totalAmount,profitRatio,dateCreated, maturityDate,formDataWithFiles)=>{
+
+  const formDataFields = new FormData()
+  //   formDataFields.append('issueDate', dateCreated)
+  //   formDataFields.append('maturityDate', maturityDate)
+  console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
+    formDataFields.append('numberOfYear', noOfYear)
+    formDataFields.append('totalPremiumAmount', totalInvestmentAmount)
+    formDataFields.append('premiumType', premiumType)
+    formDataFields.append('installmentAmount', installmentAmount)
+    formDataFields.append('intrestAmount', interestAmount)
+    formDataFields.append('maturityBenefit',totalAmount)
+    formDataFields.append('profitRatio', profitRatio)
+    for (let i = 0; i < formDataWithFiles.length; i++) {
+      formDataFields.append('documentFiles', formDataWithFiles[i])
+    }
+    const authToken = localStorage.getItem('authentication');
+   
+     try{
+        let response = await axios.post(`http://localhost:8080/insuranceapp/agentpolicy/${username}/${agentUsername}/${schemeId}/${nomineesName}/${nomineesRelation}`, 
+        formDataFields,{
+           headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${authToken}`
+            }
+        })
+        console.log('Data saved successfully:', response.data);
+        return response;
+     }
+     catch (error){
+        throw error
+     }
+  }
+
+
+
 export const getAllPolicy = async(pageNumber, pageSize)=>{
    try{
         let response = await axios.get('http://localhost:8080/insuranceapp/policy',{
@@ -75,7 +112,6 @@ export const getAllPolicyByUsername = async(pageNumber, pageSize,username)=>{
 export const getDocument = async(policyNumber)=>{
    try{
         let response = await axios.get(`http://localhost:8080/insuranceapp/getdocuments/${policyNumber}`);
-         // Handle downloading files here
       
          downloadFiles(response.data);
     } 

@@ -18,7 +18,6 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount}) => {
         date.setMonth(startDate.getMonth() + index * premiumType);
         return date.toISOString().split('T')[0]; // Extracting YYYY-MM-DD
         });
-
         setDates(installmentDates);
     }
    
@@ -49,22 +48,22 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount}) => {
                 
             </thead>
             <tbody>
-            {Array.from({ length: numberOfInstallment }, (_, index) => (
-            <tr key={index + 1}>
-              <td>{index + 1}</td>
-              <td>{installmentAmount}</td>
-              <td>{date[index]}</td>
-              <td>
-                <button
-                  style={{width :"4rem", backgroundColor: 'rgb(34, 52, 100)', border: "none", color: 'white', height: '1.9rem' }}
-                  disabled={disabledButtons[index]}
-                  onClick={() => handlePayButtonClick(index)}
-                >
-                  {disabledButtons[index] ? 'Paid' : 'Pay'}
-                </button>
-              </td>
-            </tr>
-          ))}
+                {Array.from({ length: numberOfInstallment }, (_, index) => (
+                <tr key={index + 1}>
+                  <td>{index + 1}</td>
+                  <td>{installmentAmount}</td>
+                  <td>{date[index]}</td>
+                  <td>
+                    <button
+                      style={{width :"4rem", backgroundColor: 'rgb(34, 52, 100)', border: "none", color: 'white', height: '1.9rem' }}
+                      disabled={disabledButtons[index]}
+                      onClick={() => handlePayButtonClick(index)}
+                    >
+                      {disabledButtons[index] ? 'Paid' : 'Pay'}
+                    </button>
+                  </td>
+                </tr>
+              ))}
 
                   
                

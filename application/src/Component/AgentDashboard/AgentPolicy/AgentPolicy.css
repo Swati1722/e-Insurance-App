@@ -1,4 +1,4 @@
-.plan-box{
+.policy-box{
     max-width: 900px;
     margin: 20px auto;
     margin-left: 12%;
@@ -9,12 +9,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.plan-tittle{
+.policy-tittle{
     margin-left: 30%;
     margin-top:2rem;
     margin-bottom: 2rem;
 }
-.plan-form-container{
+.policy-form-container{
 
     max-width: 600px;
     margin: 20px auto;

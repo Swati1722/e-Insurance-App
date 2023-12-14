@@ -44,7 +44,7 @@ const PolicyModel = ({showDetailsModal,togglePlanDetails,data,schemeId}) => {
             <PolicyDetails value={data} schemeId={schemeId}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2.5rem",width:'5rem'}} >
             Close
           </Button>
           
