@@ -1,13 +1,17 @@
 import React, {useState,useEffect}  from 'react'
+import './Viewpolicy.css'
 import PageSize from '../../Shared/Page/PageSize'
 import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
-import Table from '../Table/PolicyTable/PolicyTable'
-import { getAllPolicyByUsername } from '../../../Service/PolicyService'
-import { validateUser } from '../../../Service/Authentication';
 import { useNavigate } from 'react-router-dom';
+import {getAllPolicy, getDocument} from '../../../Service/PolicyService'
+import Table from '../Table/PolicyTable/PolicyTable';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getAllPolicyByAgent } from '../../../Service/PolicyService';
 
 
-const CustomerPolicy = () => {
+
+const Viewpolicy = () => {
+
     const [pageSize,setPageSize] =useState(4)
     const [pageNumber, setPageNumber] = useState()
     const [numberOfPages, setNumberOfPages] = useState()
@@ -15,18 +19,18 @@ const CustomerPolicy = () => {
     const [data,setData] =useState([])
     const navigate = new useNavigate();
 
-
     const getPolicy = async() =>{
         try{
-            const authToken = localStorage.getItem('authentication')
-            let resp = await validateUser(authToken)
-         
-             let response =await getAllPolicyByUsername(pageNumber,pageSize,resp.data.sub)
+        //    let response =await getAllPolicyForAgent(pageNumber,pageSize)
+        const authToken = localStorage.getItem('authentication')
+        let resp = await validate(authToken)
+        let response =await getAllPolicyByAgent(pageNumber,pageSize,resp.data.sub)
+           
              console.log(response)
-            if(response.data){
+                if(response.data)
+                {
                     setData(response.data)
                 }
-          console.log('recode',response.headers['x-total-count'])
             let totalNumberOfRecords = response.headers['x-total-count']
             setTotalNumberOfRecord(totalNumberOfRecords)
             setNumberOfPages(Math.ceil(totalNumberOfRecords /pageSize)) 
@@ -34,28 +38,32 @@ const CustomerPolicy = () => {
           catch(error)
           {
             console.log(error)
-              alert(error.message)
+            alert(error.message)
           }
        }
        
        useEffect(()=>{
         getPolicy()
       },[])
+    
       
+       useEffect(()=>{
+        getPolicy()
+      }, [totalNumberOfRecords,pageSize, pageNumber])
 
-      const paymentFunc = async(data) =>{
+      const installmentFunc = async(data) =>{
         console.log(data)
 
         const dataToSend = {
             numberOfYear:data.noOfYear,
             policyNumber:data.policyNumber,
+            commission:data.commission,
             premiumType:data.premiumType,
             installmentAmount:data.installmentAmount,
 
         }
-            navigate('/customerDashboard/payment',{ state: dataToSend })
+            navigate('/agentDashboard/installment',{ state: dataToSend })
       }
-    
 
   return (
     <>
@@ -67,17 +75,17 @@ const CustomerPolicy = () => {
                 <div className='policy-left'>
                     <PageSize  pageSize={pageSize} setPageSize={setPageSize}  setNumberOfPages={setNumberOfPages}  totalNumberOfRecords={totalNumberOfRecords} />
                 </div>
-                
             </div>
         
             <div style={{  margin: '1rem'}} className="plan-table-container">
-            
-                <Table data={data} isPaymentButton={true} isDeleteButton={true} paymentFunc={paymentFunc} />
+                
+                <Table data={data}  isinstallmentButton={true} installmentFunc ={installmentFunc }  />
+           
             </div>
             <div className='plan-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getPolicy} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div> 
-            <button
+                <button
                 onClick={() => navigate(-1)}
                 style={{
                 width: '5rem',
@@ -91,11 +99,11 @@ const CustomerPolicy = () => {
             </button>
                
         </div>
-        
+    
     
     
     </>
   )
 }
 
-export default CustomerPolicy
+export default Viewpolicy

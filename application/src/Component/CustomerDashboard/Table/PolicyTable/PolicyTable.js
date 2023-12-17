@@ -32,7 +32,7 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
             else if(k=="premiumType"){
                 return <th scope="col">Premium Type</th>;
             }
-            else if(k=="numberOfYear"){
+            else if(k=="noOfYear"){
                 return <th scope="col">Number Of Year</th>;
             }
             else if(k=="profitRatio"){
@@ -106,7 +106,7 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
         rowsOfUsers = data.content.map((data, index) => (
             <tr key={index}>
               <td>{data.policyNumber}</td>
-              <td>{data.numberOfYear}</td>
+              <td>{data.noOfYear}</td>
               <td>{data.totalPremiumAmount}</td>
               <td>{data.installmentAmount}</td>
               <td>{data.premiumType}</td>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import "./SchemeTable.css"
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
-const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) => {
+
+const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,  updateStatusActive,updateStatusInActive}) => {
    const[isActive,setIsActive]= useState(true)
 
    const updateActiveStatus = (value, newStatus) => {
@@ -55,6 +57,12 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
               else if(k=="profitRatio"){
                   return <th scope="col">Profit Ratio</th>;
               }
+              else if(k=="commission"){
+                return <th scope="col">Commission</th>;
+            }
+            else if(k=="active"){
+              return <th scope="col">IsActive</th>;
+          }
               else if(k=="Active"){
                 return <th scope="col">Active</th>;
               }
@@ -62,10 +70,9 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
                 return <th scope="col">Update</th>;
             }
 
+
             
-            else if(k=="active"){
-                return null;
-            }
+           
           });
        
         rowsOfUsers = data.content.map((value) => {
@@ -76,6 +83,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
                 {Object.values(otherFields).map((i) => (
                   <td>{i !== null ? i.toString() : 'N/A'}</td>
                 ))}
+                 <td>{value.active ? 'Active' : 'Inactive'}</td>
           
                 {isUpdateButton && (
                   <td>
@@ -83,7 +91,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
                       onClick={() => {
                         updateFunc(value);
                       }}
-                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
+                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",}}
                     >
                       Update
                     </button>
@@ -91,16 +99,19 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
                 )}
 
                 {isDeleteButton && (
-                  <td>
-                    <select 
-                      onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                  
-                   >
-                      <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
-                      <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>
-                    </select>
-                  </td>
+                 <td>
+                 <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0", alignItems:'center'}}>
+                    Active
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu > 
+                      <Dropdown.Item  onClick={()=>{updateStatusActive(value )}}>Active</Dropdown.Item>
+                      <Dropdown.Item onClick={()=>{updateStatusInActive(value)}}>InActive</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+               
+              </td>
                 )}
 
                  

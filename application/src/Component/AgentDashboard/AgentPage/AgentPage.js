@@ -56,7 +56,7 @@ const [showMarketingModal, setShowMarketingModal] = useState(false);
 
                                     {/* Second Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="/employeeDashboard/viewCustomer" className="card-link">
+                                        <Link to="/agentDashboard/viewCustomer" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"8rem",  padding:"1rem"}}
@@ -74,7 +74,7 @@ const [showMarketingModal, setShowMarketingModal] = useState(false);
 
                                     {/* Third Card */}
                                     <div className="col-md-6 mb-4">
-                                        <Link to="" className="card-link">
+                                        <Link to="/agentDashboard/viewPolicy" className="card-link">
                                             <div className="card square-card">
                                                 <img
                                                     style={{height:"9rem", width:"11rem", padding:'1rem'}}

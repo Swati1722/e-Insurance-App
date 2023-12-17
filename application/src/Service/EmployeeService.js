@@ -52,3 +52,17 @@ export const addEmployee = async(firstname,lastname,username,password,email,sala
       console.log('Geting data:', response);
       return response;
 }
+
+export const updateEmployeeActive = async(username,status) => {
+ 
+  try{ 
+      let response = await axios.put(`http://localhost:8080/insuranceapp/employee/${username}/${status}`)
+     
+      console.log('Data saved successfully:', response.data)
+      return response
+  }
+  catch (error) {
+    throw error
+  }
+
+}

@@ -2,15 +2,21 @@ import React, {useState} from 'react'
 import image from "../../../Image/AddIdea.svg"
 import "./RegisterPlan.css"
 import { addPlan } from '../../../Service/PlanService'
+import { useNavigate } from 'react-router-dom'; 
 
 const RegisterPlan = () => {
     const[planName, setPlanName] = useState()
     const[planDetails, setPlanDetails] = useState()
-
+    const navigate = useNavigate();
     const registerNewPlan = async() =>{
         try{
              let response =await addPlan(planName,planDetails)
-             console.log(response)
+            
+             if(response)
+             {
+                alert("Plan is Added")
+                navigate(-1); 
+             }
         }
         catch(error)
         {

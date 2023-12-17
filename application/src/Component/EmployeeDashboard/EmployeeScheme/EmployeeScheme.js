@@ -6,6 +6,8 @@ import { getAllSchemes } from '../../../Service/SchemeService'
 import Table from '../Table/SchemeTable/SchemeTable'
 import "./EmployeeScheme.css"
 import { useNavigate } from 'react-router-dom';
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -22,13 +24,19 @@ const EmployeeScheme = () => {
     const navigate = new useNavigate();
     const [showAddSchemeModel, setShowAddSchemeModel] = useState(false)
     const [planId, setPlanId] = useState(receivedData.planId)
-    
+    const [toastShown, setToastShown] = useState(false);
+
 
     
     const getScheme = async() =>{
         try{
              let response =await getAllSchemes(pageNumber,pageSize, receivedData.planId)
              console.log(response)
+             if (!response.data) {
+                toast.info('No schemes found for this plan.');
+                setToastShown(true); 
+                return;
+              }
                 if(response.data)
                 {
                     setData(response.data)
@@ -43,7 +51,9 @@ const EmployeeScheme = () => {
         catch(error)
         {
             console.log(error)
-              alert(error.message)
+            //   alert(error.message)
+            toast.error('Schemes are not added for this plan');
+            setToastShown(true); 
         }
     }
        

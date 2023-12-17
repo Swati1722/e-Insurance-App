@@ -1,7 +1,48 @@
+// import React, { useContext, useRef, useState } from "react";
+// import emailjs from "emailjs-com";
+// import './Email.css'
+// import image from '../../../Image/email.svg'
+
+// const Email = () => {
+
+//   const form = useRef();
+//   const [done, setDone] = useState(false)
+
+
+//   const sendEmail = (e) => {
+//         e.preventDefault();
+//        emailjs
+//       .sendForm("service_9plciv9","template_0bkeohb", form.current, "6VKNcJckGq6T5JsDH")
+//       .then(
+//         (result) => {
+//           console.log(result.text);
+//           setDone(true);
+//           form.reset();
+//         },
+//         (error) => {
+//           console.log(error.text);
+//         }
+//       );
+//   };
+
+
+// const sendEmail = (e) => {
+//     e.preventDefault();
+//     emailjs
+//       .sendForm("service_9plciv9", "template_0bkeohb", form.current, "6VKNcJckGq6T5JsDH")
+//       .then(
+//         (result) => {
+//           console.log(result.text);
+//           setDone(true);
+          // Clear the form fields using individual refs
+//    
+
 import React, { useContext, useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import './Email.css'
 import image from '../../../Image/email.svg'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Email = () => {
 
@@ -28,11 +69,35 @@ const Email = () => {
 
 const sendEmail = (e) => {
     e.preventDefault();
+
+    const name = form.current.user_name.value.trim();
+    const email = form.current.user_email.value.trim();
+    const message = form.current.message.value.trim();
+
+    if (!name || !email || !message) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    // Validate Name (not digits or special characters)
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+      toast.error("Name can only contain letters and spaces");
+      return;
+    }
+
+    // Validate Email
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+
     emailjs
       .sendForm("service_9plciv9", "template_0bkeohb", form.current, "6VKNcJckGq6T5JsDH")
       .then(
         (result) => {
           console.log(result.text);
+          toast.success("Thanks for Contacting me");
           setDone(true);
           // Clear the form fields using individual refs
           form.current.user_name.value = "";
@@ -44,6 +109,7 @@ const sendEmail = (e) => {
         },
         (error) => {
           console.log(error.text);
+          toast.error("An error occurred while sending the email");
         }
       );
   };
@@ -92,7 +158,7 @@ const sendEmail = (e) => {
     
 
     
-    
+        <ToastContainer position='top-center' autoClose={3000}/>
     </>
   )
 }

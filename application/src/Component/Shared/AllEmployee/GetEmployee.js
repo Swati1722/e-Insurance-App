@@ -5,6 +5,7 @@ import PaginationOfApp from "../Page/PaginationOfApp"
 import { getAllEmployee } from '../../../Service/EmployeeService'
 import "./GetEmployee.css"
 import { useNavigate } from 'react-router-dom';
+import { updateEmployeeActive } from '../../../Service/EmployeeService'
 
 
 const GetEmployee = () => {
@@ -43,24 +44,38 @@ const GetEmployee = () => {
       }, [totalNumberOfRecords,pageSize, pageNumber])
     
       
-      const deleteUser = async(customerToBeDeleted, active) => {
-        let username = customerToBeDeleted.username;
-        if(active=="active")
-        {
-          // let response = deleteCustomer(username);
+      const updateStatusActive = async(value) =>{
+        let status = "True";
+        try{
+            let  response  = updateEmployeeActive(value.planId,status);
+            if(response)
+            {
+                alert('Employee is updated Active')
+                getEmployee();
+            }
         }
-        else if(active=="inactive")
+        catch(error)
         {
-          // let response = updateActiveStatus(username);
+            console.log(error)
+            alert(error.message)
         }
-    
-    
-        // let resp = await deleteBank(bankId)
-        // if(resp)
-        // {
-        //     alert(" is deleted successfully")
-        // }
-        // console.log(resp) 
+      }
+      const updateStatusInActive =async(value)=>{
+        console.log(value)
+        let status = "False";
+        try{
+            let  response =updateEmployeeActive(value.planId,status);
+            if(response)
+            {
+                alert('Employee is updated InActive')
+                getEmployee()
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
       }
 
 
@@ -82,7 +97,7 @@ const GetEmployee = () => {
       
           <div style={{  margin: '1rem', borderRadius:'20%'}} className="employee-table-container">
            
-            <Table data={data}  isDeleteButton={true}  deleteFunc={deleteUser}/>
+            <Table data={data}  isDeleteButton={true} updateStatusActive={updateStatusActive} updateStatusInActive={updateStatusInActive}/>
           </div>
           <div className='employee-right'>
               <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getEmployee} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>

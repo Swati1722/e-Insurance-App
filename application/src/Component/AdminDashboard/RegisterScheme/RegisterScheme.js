@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import "./RegisterScheme.css"
 import image from "../../../Image/AddIdea.svg"
 import { addScheme } from '../../../Service/SchemeService'
+import { useNavigate } from 'react-router-dom';
 
 const RegisterScheme = ({planId}) => {
     const[schemeName, setSchemeName] = useState()
@@ -12,13 +13,19 @@ const RegisterScheme = ({planId}) => {
     const[minTime, setMinTime] = useState()
     const[maxTime, setMaxTime] = useState()
     const[profitRatio, setProfitRatio] = useState()
+    const [totalCommission, setTotalCommission] = useState('');
+    const navigate = useNavigate();
 
 
     const registerNewScheme = async() =>{
         console.log(planId)
         try{
-             let response =await addScheme(planId, schemeName, minAmount, maxAmount, minAge,maxAge,minTime,maxTime,profitRatio)
-             console.log(response)
+             let response =await addScheme(planId, schemeName, minAmount, maxAmount, minAge,maxAge,minTime,maxTime,profitRatio,totalCommission)
+             if(response)
+             {
+                alert("Scheme is Added")
+                navigate(-1); 
+             }
         }
         catch(error)
         {
@@ -69,6 +76,10 @@ const RegisterScheme = ({planId}) => {
                         <div className='register-scheme-form-group'>
                             <label htmlFor="profitRatio" style ={{ marginRight:"33px"}} >Profit Ratio :</label>
                             <input type="text" className="register-scheme-form-control" id="profitRatio"  value={profitRatio} onChange={(e) => setProfitRatio(e.target.value)}/>
+                        </div>
+                        <div className='register-scheme-form-group'>
+                            <label htmlFor="totalCommission" style={{ marginRight: "10px" }}> TotalCommission:</label>
+                            <input type="text" className="register-agent-form-control" id="totalCommission" value={totalCommission} onChange={(e) => setTotalCommission(e.target.value)} />
                         </div>
                        
                         <div className='register-scheme-button-group' style={{marginTop:"1rem"}}>

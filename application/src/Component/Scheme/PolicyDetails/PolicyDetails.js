@@ -43,37 +43,41 @@ const PolicyDetails = ({value,schemeId}) => {
               };
           
             // const authToken = localStorage.getItem('authentication')
+            console.log(resp.data.role[0].authority)
             if(resp.data.role[0].authority === 'ROLE_AGENT')
             {
                 navigate('/agentDashboard/Policy',  { state: dataToSend })
             }
+            else if(resp.data.role[0].authority === 'ROLE_CUSTOMER')
+            {
 
-            let response = await getCustomerByUserName(resp.data.sub)
+                let response = await getCustomerByUserName(resp.data.sub)
           
-          const datatoBeSend = {
-                schemeId:schemeId,
-                noOfYear,
-                totalInvestmentAmount,
-                premiumType,
-                installmentAmount,
-                interestAmount,
-                totalAmount,
-                profitRatio,
-                username :response.data.userdetails.username,
-                firstName:response.data.userdetails.firstname,
-                lastName:response.data.userdetails.lastname,
-                address:response.data.address,
-                mobileNumber:response.data.userdetails.mobileNumber,
-                dateOfBirth:response.data.userdetails.dateOfBirth,
-                email:response.data.userdetails.emailId,
-                city:response.data.userdetails.city,
-                state:response.data.userdetails.state,
-                pincode : response.data.pincode
-              };
+            const datatoBeSend = {
+                    schemeId:schemeId,
+                    noOfYear,
+                    totalInvestmentAmount,
+                    premiumType,
+                    installmentAmount,
+                    interestAmount,
+                    totalAmount,
+                    profitRatio,
+                    username :response.data.userdetails.username,
+                    firstName:response.data.userdetails.firstname,
+                    lastName:response.data.userdetails.lastname,
+                    address:response.data.address,
+                    mobileNumber:response.data.userdetails.mobileNumber,
+                    dateOfBirth:response.data.userdetails.dateOfBirth,
+                    email:response.data.userdetails.emailId,
+                    city:response.data.userdetails.city,
+                    state:response.data.userdetails.state,
+                    pincode : response.data.pincode
+                };
             // console.log("authtoken--->"+authToken)
            
        
-            navigate('/customerDashboard/Policy', { state: datatoBeSend });
+                navigate('/customerDashboard/Policy', { state: datatoBeSend });
+            }
         }
         else{
             alert("First login")
@@ -103,7 +107,39 @@ const PolicyDetails = ({value,schemeId}) => {
         setTotalAmount(sum);
     };
 
-
+    // const calculateInterest = () => {
+    //     const parsedNoOfYear = parseFloat(noOfYear);
+    //     const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
+    //     const parsedPremiumType = parseFloat(premiumType);
+    //     const parsedMinTime = parseFloat(minTime);
+    //     const parsedMaxTime = parseFloat(maxTime);
+      
+    //     if (
+    //       isNaN(parsedNoOfYear) ||
+    //       isNaN(parsedTotalInvestmentAmount) ||
+    //       isNaN(parsedPremiumType) ||
+    //       isNaN(parsedMinTime) ||
+    //       isNaN(parsedMaxTime)
+    //     ) {
+    //       console.error("Invalid input. Please enter valid numbers.");
+    //       return;
+    //     }
+      
+    //     if (parsedNoOfYear < parsedMinTime || parsedNoOfYear > parsedMaxTime) {
+    //       console.error("Number of years must be between minimum and maximum policy terms.");
+    //       return;
+    //     }
+      
+    //     const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
+    //     setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
+      
+    //     const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
+    //     setInterestAmount(interest);
+      
+    //     const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
+    //     setTotalAmount(sum);
+    //   };
+      
    
 
 

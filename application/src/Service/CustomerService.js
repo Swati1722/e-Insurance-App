@@ -6,7 +6,7 @@ export const authslogin = async(username, password) => {
             username:username,
             password:password
       })
-      console.log(response)
+      
       return response
     }
     catch (error){
@@ -85,7 +85,7 @@ export const addCustomer = async(firstName,lastName,userName,password,email)=>{
           //   Authorization: 'Bearer '+localStorage.getItem('authentication')
           // }
         })
-        console.log(response)
+      
         console.log('Data saved successfully:', response.data)
      return response
   }
@@ -144,7 +144,7 @@ export const updateCustomerActive = async(username,status) => {
  
   try{ 
       let response = await axios.put(`http://localhost:8080/insuranceapp/customer/${username}/${status}`)
-      console.log(response)
+      
       console.log('Data saved successfully:', response.data)
       return response
   }
@@ -173,7 +173,29 @@ export const updateCustomer = async(username,firstName,lastName,email,mobileNumb
         },
         
       })
-   console.log(response)
+  
    console.log('Data saved successfully:', response.data)
    return response
+}
+
+
+export const getAllCustomerByActiveAndAgent = async(pageNumber, pageSize,username)=>{
+  console.log("username----------",username)
+  try{
+       let response = await axios.get('http://localhost:8080/insuranceapp/customersagent',{
+         
+       params:{
+           pagesize: pageSize,
+           pagenumber: pageNumber,
+           username:username
+       }
+         
+       })
+       console.log('Geting data:', response);
+       return response;
+     
+ }
+ catch (error){
+   throw error
+ }
 }

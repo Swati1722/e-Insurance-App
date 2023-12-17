@@ -6,6 +6,7 @@ import Table from "../Table/Table"
 import { getAllPlans } from '../../../Service/PlanService'
 import AddPlanModel from '../Models/AddPlanModel'
 import { useNavigate } from 'react-router-dom';
+import { updatePlanActive } from '../../../Service/PlanService'
 
 
 
@@ -46,7 +47,7 @@ const AdminPlan = () => {
     
       
        useEffect(()=>{
-        console.log("useEffect called")
+       
         getPlan()
       }, [totalNumberOfRecords,pageSize, pageNumber])
 
@@ -70,6 +71,39 @@ const AdminPlan = () => {
             setShowAddPlanModel(!showAddPlanModel)
        }
        
+       const updateStatusActive = async(value) =>{
+        let status = "True";
+        try{
+            let  response  = updatePlanActive(value.planId,status);
+            if(response)
+            {
+                alert('Plan is updated Active')
+                getPlan();
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
+      }
+      const updateStatusInActive =async(value)=>{
+        console.log(value)
+        let status = "False";
+        try{
+            let  response =updatePlanActive(value.planId,status);
+            if(response)
+            {
+                alert('Plan is updated InActive')
+                getPlan();
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
+      }
       
 
 
@@ -89,8 +123,8 @@ const AdminPlan = () => {
             </div>
         
             <div style={{  margin: '1rem'}} className="plan-table-container">
-                {console.log(data)}
-                <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} />
+                
+                <Table data={data}  isDeleteButton={true} isSchemeButton ={true} SchemeFunc={SchemeFunc} updateStatusActive={updateStatusActive} updateStatusInActive={updateStatusInActive}  />
             </div>
 
             <div className='plan-right'>

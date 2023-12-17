@@ -118,7 +118,7 @@ const Policy = () => {
               );
             if(response )
               {
-                alert("data is saved")
+                alert("Policy is added")
               }
             setSelectedFiles([])
         }

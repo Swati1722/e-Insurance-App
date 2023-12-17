@@ -33,3 +33,17 @@ export const getAllPlans = async(pageNumber, pageSize)=>{
         throw error
     }
   }
+
+  export const updatePlanActive = async(planId,status) => {
+ 
+    try{ 
+        let response = await axios.put(`http://localhost:8080/insuranceapp/plan/${planId}/${status}`)
+       
+        console.log('Data saved successfully:', response.data)
+        return response
+    }
+    catch (error) {
+      throw error
+    }
+  
+  }

@@ -30,6 +30,9 @@ import ViewCustomer from './Component/EmployeeDashboard/View Customer/ViewCustom
 import AdminPolicy from './Component/AdminDashboard/AdminPolicy/AdminPolicy';
 import Payment from './Component/CustomerDashboard/Payment/Payment';
 import AgentPolicy from './Component/AgentDashboard/AgentPolicy/AgentPolicy'
+import AgentViewCustomer from './Component/AgentDashboard/AgentViewCustomer/AgentViewCustomer';
+import Viewpolicy from './Component/AgentDashboard/ViewPolicy/Viewpolicy';
+import Installment from './Component/AgentDashboard/Installment/Installment';
 
 function App() {
   return (
@@ -47,8 +50,8 @@ function App() {
         <Route exact path='/adminDashboard/policy' element={<AdminPolicy/>} />
         
 
-        <Route exact path='/plan' element={<Plan/>} />
-        <Route exact path='/plandetails' element={<AdminPlan/>} />
+        <Route exact path='/plan' element={<Plan/>} /> //plan for the customer and agent
+        <Route exact path='/plandetails' element={<AdminPlan/>} />  //plan for the admim plan
 
        
         <Route exact path='/customerDashboard' element={<Customer/>} />
@@ -63,6 +66,9 @@ function App() {
        <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} />
        <Route exact path='/agentDashboard/scheme' element={<AgentScheme/>} />
        <Route exact path='/agentDashboard/Policy' element={<AgentPolicy/>} />
+       <Route exact path='/agentDashboard/viewCustomer' element={<AgentViewCustomer/>} />
+       <Route exact path='/agentDashboard/viewPolicy' element={<Viewpolicy/>} />
+       <Route exact path='/agentDashboard/installment' element={<Installment/>} />
        
 
 
@@ -74,7 +80,7 @@ function App() {
         <Route exact path='/employeeDashboard/scheme' element={<EmployeeScheme/>} />
         <Route exact path='/employeeDashboard/query' element={<Query/>} />
         <Route exact path='/employeeDashboard/policy' element={<Policy/>} />
-       
+        
 
       </Routes>
     </>

@@ -7,6 +7,7 @@ import "./AdminScheme.css"
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import AddSchemeModel from '../Models/AddSchemeModel'
+import { updateSchemeActive } from '../../../Service/SchemeService'
 
 const Scheme = () => {
     const location = useLocation();
@@ -67,6 +68,40 @@ const Scheme = () => {
         setShowAddSchemeModel(!showAddSchemeModel)
     }
 
+//  ***************** UPDATE STATUS FUNCTION ***********************
+    const updateStatusActive = async(value) =>{
+        let status = "True";
+        try{
+            let  response  = updateSchemeActive(value.schemeId,status);
+            if(response)
+            {
+                alert('Scheme is updated Active')
+                getScheme();
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
+      }
+      const updateStatusInActive =async(value)=>{
+        console.log(value)
+        let status = "False";
+        try{
+            let  response =updateSchemeActive(value.schemeId,status);
+            if(response)
+            {
+                alert('Scheme is updated InActive')
+                getScheme();
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+            alert(error.message)
+        }
+      }
 
   return (
     <>
@@ -85,7 +120,7 @@ const Scheme = () => {
         
             <div style={{  margin: '1rem'}} className="plan-table-container">
              
-                <Table data={data}  isDeleteButton={true} isUpdateButton ={true} SchemeFunc={UpdateFunc} />
+                <Table data={data}  isDeleteButton={true} isUpdateButton ={true} UpdateFunc={UpdateFunc} updateStatusActive={updateStatusActive} updateStatusInActive={updateStatusInActive}  />
             </div>
             <div className='scheme-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getScheme} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>

@@ -1,28 +1,28 @@
-import React, {useState,useEffect}  from 'react'
+import React from 'react'
+import "./Installment.css"
 import { useNavigate } from 'react-router-dom';
-import Table from '../Table/PaymentTable/PaymentTable';
 import { useLocation } from 'react-router-dom';
-import './Payment.css'
+import Table from '../Table/Installment/InstallmentTable'
 
-const Payment = () => {
+
+const Installment = () => {
     const navigate = new useNavigate();
     const location = useLocation();
     const receivedData = location.state || {};
 
-
   return (
-   <>
-         <div className='payment-box'>
-            <div className ="payment-tittle"style={{textAlign:"center", marginTop:"1.5rem", background:"rgb(34, 52, 100)"}}>
+    <>
+         <div className='installment-box'>
+            <div className ="installment-tittle"style={{textAlign:"center", marginTop:"1.5rem", background:"rgb(34, 52, 100)"}}>
                 <h1>Installments</h1>
             </div>
-            <div style={{  margin: '1rem'}} className="payment-table-container">
-                <Table numberOfYear={receivedData.numberOfYear} policyNumber={receivedData.policyNumber} installmentAmount = {receivedData.installmentAmount} premiumType={receivedData.premiumType}/>
+            <div style={{  margin: '1rem'}} className="installment-table-container">
+                <Table numberOfYear={receivedData.numberOfYear} policyNumber={receivedData.policyNumber} installmentAmount = {receivedData.installmentAmount} premiumType={receivedData.premiumType} commission={receivedData.commission}/>
             </div>
             <button
                
                 style={{
-                width: '5rem',
+                width: '10rem',
                 padding: '2px',
                 backgroundColor: 'rgb(34, 52, 100)',
                 marginLeft: '45%',
@@ -30,7 +30,7 @@ const Payment = () => {
                 }}
                 disabled
             >
-                Claim
+                Claim All Interest
             </button>
            
             <button
@@ -46,14 +46,8 @@ const Payment = () => {
                 Go Back
             </button>
         </div>
-               
-        
-        
-   
-   
-   
-   </>
+    </>
   )
 }
 
-export default Payment
+export default Installment

@@ -6,7 +6,7 @@ export const savePolicy = async(username,nomineesName, nomineesRelation, schemeI
 const formDataFields = new FormData()
 //   formDataFields.append('issueDate', dateCreated)
 //   formDataFields.append('maturityDate', maturityDate)
-console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
+// console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
   formDataFields.append('numberOfYear', noOfYear)
   formDataFields.append('totalPremiumAmount', totalInvestmentAmount)
   formDataFields.append('premiumType', premiumType)
@@ -36,12 +36,12 @@ console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelatio
 }
 
 
-export const savePolicyByAgent = async(username,agentUsername,nomineesName, nomineesRelation, schemeId,noOfYear,totalInvestmentAmount, premiumType,installmentAmount,interestAmount,totalAmount,profitRatio,dateCreated, maturityDate,formDataWithFiles)=>{
+export const savePolicyByAgent = async(username,agentUsername,nomineesName, nomineesRelation, schemeId,noOfYear,totalInvestmentAmount, premiumType,installmentAmount,interestAmount,totalAmount,profitRatio,formDataWithFiles)=>{
 
   const formDataFields = new FormData()
   //   formDataFields.append('issueDate', dateCreated)
   //   formDataFields.append('maturityDate', maturityDate)
-  console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
+  // console.log("nomineename---->",nomineesName,"nominee->real----.",nomineesRelation)
     formDataFields.append('numberOfYear', noOfYear)
     formDataFields.append('totalPremiumAmount', totalInvestmentAmount)
     formDataFields.append('premiumType', premiumType)
@@ -49,11 +49,13 @@ export const savePolicyByAgent = async(username,agentUsername,nomineesName, nomi
     formDataFields.append('intrestAmount', interestAmount)
     formDataFields.append('maturityBenefit',totalAmount)
     formDataFields.append('profitRatio', profitRatio)
+    // console.log("agentusername-------",agentUsername,"formDataWithFiles.length----",formDataWithFiles.length)
     for (let i = 0; i < formDataWithFiles.length; i++) {
       formDataFields.append('documentFiles', formDataWithFiles[i])
     }
     const authToken = localStorage.getItem('authentication');
    
+    
      try{
         let response = await axios.post(`http://localhost:8080/insuranceapp/agentpolicy/${username}/${agentUsername}/${schemeId}/${nomineesName}/${nomineesRelation}`, 
         formDataFields,{
@@ -134,4 +136,24 @@ export const updatePolicyStatus= async(policyNumber,status) => {
       catch (error) {
       throw error
     }
+}
+
+export const getAllPolicyByAgent = async(pageNumber, pageSize,username)=>{
+  try{
+       let response = await axios.get('http://localhost:8080/insuranceapp/policyagent',{
+         params:{
+           pagesize: pageSize,
+           pagenumber: pageNumber,
+           username:username
+
+       }
+         
+       })
+       console.log('Geting data:', response);
+       return response;
+     
+ }
+ catch (error){
+   throw error
+ }
 }

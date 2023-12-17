@@ -52,7 +52,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
         
        
         rowsOfUsers = data.content.map((value) => {
-            const { active, ...otherFields } = value;
+          const { active, dateOfBirth, ...otherFields } = value;
           
             return (
             
@@ -60,7 +60,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
                   {Object.values(otherFields).map((i) => (
                     <td>{i !== null ? i.toString() : 'N/A'}</td>
                   ))}
-            
+                  <td>{dateOfBirth ? dateOfBirth.split('T')[0] : 'N/A'}</td>
+          
                   {isUpdateButton && (
                     <td>
                       <button

@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusActive,updateStatusInActive}) => {
@@ -48,15 +46,14 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
                 return <th scope="col">Active</th>;
             }
             else if(k=="active"){
-              return <th scope="col">IsActive</th>;
-          
+                  return null;
               }
           });
         
        
         rowsOfUsers = data.content.map((value) => {
-          const { active, dateOfBirth, ...otherFields } = value;
-          
+            // const { active, ...otherFields } = value;
+            const { active, dateOfBirth, ...otherFields } = value;
           
             return (
             
@@ -65,8 +62,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
                     <td>{i !== null ? i.toString() : 'N/A'}</td>
                   ))}
                   <td>{dateOfBirth ? dateOfBirth.split('T')[0] : 'N/A'}</td>
-                  <td>{value.active ? 'Active' : 'Inactive'}</td>
-          
+            
                   {isUpdateButton && (
                     <td>
                       <button
@@ -81,27 +77,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
                   )}
                   
 
-                  {isDeleteButton && (
-                    <td>
-                       <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0"}}>
-                          Active
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu > 
-                            <Dropdown.Item href="#/action-1" onClick={()=>{updateStatusActive(value )}}>Active</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2"onClick={()=>{updateStatusInActive(value)}}>InActive</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                      {/* <select 
-                        style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                    
-                      >
-                        <option onClick={()=>{updateStatusActive(value )}}>Active</option>
-                        <option  onClick={()=>{updateStatusInActive(value)}}>Inactive</option>
-                      </select> */}
-                    </td>
-                  )}
+                  
 
                 </tr>
               
