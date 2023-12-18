@@ -9,7 +9,7 @@ import { updateEmployeeActive } from '../../../Service/EmployeeService'
 
 
 const GetEmployee = () => {
-    const [pageSize,setPageSize] =useState(4)
+    const [pageSize,setPageSize] =useState(3)
     const [pageNumber, setPageNumber] = useState()
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()
@@ -19,11 +19,11 @@ const GetEmployee = () => {
     const getEmployee = async() =>{
         try{
              let response =await getAllEmployee(pageNumber,pageSize)
-             console.log(response)
+            
                 if(response.data)
                 {
                     setData(response.data)
-                    console.log(response.data)
+                    
                 }
           
             let totalNumberOfRecords = response.headers['x-total-count']
@@ -39,7 +39,7 @@ const GetEmployee = () => {
        }
        
        useEffect(()=>{
-        console.log("useEffect called")
+        
         getEmployee()
       }, [totalNumberOfRecords,pageSize, pageNumber])
     
@@ -47,7 +47,7 @@ const GetEmployee = () => {
       const updateStatusActive = async(value) =>{
         let status = "True";
         try{
-            let  response  = updateEmployeeActive(value.planId,status);
+            let  response  = updateEmployeeActive(value.username,status);
             if(response)
             {
                 alert('Employee is updated Active')
@@ -64,7 +64,7 @@ const GetEmployee = () => {
         console.log(value)
         let status = "False";
         try{
-            let  response =updateEmployeeActive(value.planId,status);
+            let  response =updateEmployeeActive(value.username,status);
             if(response)
             {
                 alert('Employee is updated InActive')

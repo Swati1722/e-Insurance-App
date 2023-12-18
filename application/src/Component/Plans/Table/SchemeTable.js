@@ -59,6 +59,10 @@ const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFu
             else if(k=="profitRatio"){
                 return <th scope="col">Profit Ratio</th>;
             }
+            else if(k=='commission')
+            {
+              return <th scope="col">Agent Commission</th>;
+            }
            
             else if(k=="Calculate"){
                 return <th scope="col">Calculate</th>;

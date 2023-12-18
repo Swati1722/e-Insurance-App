@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const GetAgent = () => {
-    const [pageSize,setPageSize] =useState(4)
+    const [pageSize,setPageSize] =useState(3)
     const [pageNumber, setPageNumber] = useState()
     const [numberOfPages, setNumberOfPages] = useState()
     const [totalNumberOfRecords, setTotalNumberOfRecord] = useState()

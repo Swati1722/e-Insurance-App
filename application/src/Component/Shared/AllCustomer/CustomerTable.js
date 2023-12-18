@@ -5,11 +5,24 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusActive,updateStatusInActive}) => {
    const[isActive,setIsActive]= useState(true);
-
-   const updateActiveStatus = (value, newStatus) => {
-    setIsActive(newStatus === 'true'); // Convert string to boolean
-  }
+   const[searchTerm, setSearchTerm] = useState('');
+   const[filteredData, setFilteredData] = useState([]);
   
+   const handleSearch = () => {
+    const filtered = data.content.filter((item) => {
+      const values = Object.values(item).map((i) =>
+        i !== null ? i.toString().toLowerCase() : ''
+      );
+      return values.some((val) => val.includes(searchTerm.toLowerCase()));
+    });
+
+    setFilteredData(filtered);
+  };
+
+  const handleClear = () => {
+    setFilteredData([]);
+    setSearchTerm('');
+  };
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]
@@ -54,9 +67,10 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
           });
         
        
-        rowsOfUsers = data.content.map((value) => {
+        // rowsOfUsers = data.content.map((value) => {
+        //   const { active, dateOfBirth, ...otherFields } = value;
+        rowsOfUsers = (filteredData.length > 0 ? filteredData : data.content).map((value) => {
           const { active, dateOfBirth, ...otherFields } = value;
-          
           
             return (
             
@@ -112,6 +126,51 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
    
     return (
     <>
+    <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} style={{
+            padding: '8px',
+            height: '2.1rem',
+            marginRight: '8px',
+            borderRadius: '4px',
+            border: '1px solid rgb(34, 52, 100)',
+            marginBottom: '15px',
+          }}
+        />
+        <button
+          style={{
+            backgroundColor: 'rgb(34, 52, 100)',
+            color: '#ffffff',
+            height: '2.1rem',
+            // padding: '8px',
+            marginRight: '8px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+          onClick={handleSearch}
+        >
+          Search
+        </button>
+
+        <button
+          style={{
+            backgroundColor: '#7f8c8d', 
+            color: '#ffffff', // White text color
+           
+            borderRadius: '4px',
+            height: '2.1rem',
+            marginBottom:"1rem",
+            cursor: 'pointer',
+          }}
+          onClick={handleClear}
+        >
+          Clear
+        </button>
+      </div>
         <table className="table table-striped " style={{"paddingLeft" :"1rem", "marginRight":"1rem"}}>
             <thead>
                 <tr>
@@ -125,6 +184,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, updateStatusAct
             </tbody>
 
         </table>
+
         
     </>
   )

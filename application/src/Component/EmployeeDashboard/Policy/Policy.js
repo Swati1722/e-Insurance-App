@@ -6,6 +6,9 @@ import {getAllPolicy, getDocument} from '../../../Service/PolicyService'
 import "./Policy.css"
 import { useNavigate } from 'react-router-dom';
 import { updatePolicyStatus } from '../../../Service/PolicyService'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Policy = () => {
     const [pageSize,setPageSize] =useState(4)
@@ -60,6 +63,10 @@ const Policy = () => {
         let status = "True";
         try{
             let  response = updatePolicyStatus(value.policyNumber,status)
+            if(response)
+            {
+                toast.success("Verification successful");
+            }
         }
         catch(error)
         {
@@ -71,6 +78,10 @@ const Policy = () => {
         let status = "False";
         try{
             let  response =  updatePolicyStatus(value.policyNumber,status)
+            if(response)
+            {
+                toast.success("Decline successful");
+            }
         }
         catch(error)
         {
@@ -114,6 +125,7 @@ const Policy = () => {
             </button>
                
         </div>
+        <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         
     </>
   )

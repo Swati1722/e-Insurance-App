@@ -149,8 +149,24 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, isCalculateButton,CalculateFunc}) => {
    const[isActive,setIsActive]= useState(true)
-
+   const[searchTerm, setSearchTerm] = useState('');
+   const[filteredData, setFilteredData] = useState([]);
   
+   const handleSearch = () => {
+    const filtered = data.content.filter((item) => {
+      const values = Object.values(item).map((i) =>
+        i !== null ? i.toString().toLowerCase() : ''
+      );
+      return values.some((val) => val.includes(searchTerm.toLowerCase()));
+    });
+
+    setFilteredData(filtered);
+  };
+
+  const handleClear = () => {
+    setFilteredData([]);
+    setSearchTerm('');
+  };
   const updateActiveStatus = (value, newStatus) => {
         console.log(`Updating active status of item ${value} to ${newStatus}`);
         toast.success('Updated status successfully ');
@@ -212,9 +228,10 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
           });
         
        
-        rowsOfUsers = data.content.map((value) => {
-          const { active, dateOfBirth, ...otherFields } = value;
-          
+        // rowsOfUsers = data.content.map((value) => {
+        //   const { active, dateOfBirth, ...otherFields } = value;
+        rowsOfUsers = (filteredData.length > 0 ? filteredData : data.content).map((value) => {
+        const { active, dateOfBirth, ...otherFields } = value;
             return (
               <tr>
                 {Object.values(otherFields).map((i) => (
@@ -278,6 +295,52 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
 
     return (
     <>
+    <div>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} style={{
+              padding: '8px',
+              height: '2.1rem',
+              marginLeft: '1rem',
+              marginRight:'6px',
+              borderRadius: '4px',
+              border: '1px solid rgb(34, 52, 100)',
+              marginBottom: '15px',
+            }}
+          />
+          <button
+            style={{
+              backgroundColor: 'rgb(34, 52, 100)',
+            color: '#ffffff',
+            height: '2.1rem',
+            // padding: '8px',
+            marginRight: '8px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            }}
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+
+          <button
+            style={{
+              backgroundColor: '#7f8c8d', 
+            color: '#ffffff', // White text color
+           
+            borderRadius: '4px',
+            height: '2.1rem',
+            marginBottom:"1rem",
+            cursor: 'pointer',
+            }}
+            onClick={handleClear}
+          >
+            Clear
+          </button>
+        </div>
         <table className="table table-striped " style={{"paddingLeft" :"1rem", "marginRight":"1rem"}}>
             <thead>
                 <tr>

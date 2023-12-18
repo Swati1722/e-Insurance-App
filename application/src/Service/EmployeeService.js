@@ -54,7 +54,6 @@ export const addEmployee = async(firstname,lastname,username,password,email,sala
 }
 
 export const updateEmployeeActive = async(username,status) => {
- 
   try{ 
       let response = await axios.put(`http://localhost:8080/insuranceapp/employee/${username}/${status}`)
      

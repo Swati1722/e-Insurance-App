@@ -266,7 +266,7 @@ const PolicyDetails = ({value,schemeId}) => {
                             required
                         />
                     </div>
-                    <div className='investment-form-group'>
+                    {/* <div className='investment-form-group'>
                         <label htmlFor="premiumType">Premium Type *</label>
                         <input
 
@@ -277,6 +277,28 @@ const PolicyDetails = ({value,schemeId}) => {
                             onChange={(e) => setPremiumType(e.target.value)}
                             required
                         />
+                    </div> */}
+                    <div className="investment-form-group">
+                        <label htmlFor="premiumType">
+                            Premium Type{' '}
+                            {/* <i className="fas fa-caret-down" style={{ marginLeft: '5px' }}></i> */}
+                        </label>
+                        
+                        <select
+                            className="form-control"
+                            id="premiumType"
+                            value={premiumType}
+                            onChange={(e) => setPremiumType(e.target.value)}
+                            required
+                        >
+                            <option value="" disabled>
+                            Select Premium Type
+                            </option>
+                            <option value="1">Monthly</option>
+                            <option value="3">Quarterly</option>
+                            <option value="6">Half-Yearly</option>
+                            <option value="12">Yearly</option>
+                        </select>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "1rem" }}>
                         <button type="button" onClick={calculateInterest} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}

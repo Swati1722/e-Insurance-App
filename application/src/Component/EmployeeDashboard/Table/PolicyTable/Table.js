@@ -1,11 +1,23 @@
 import React, { useState } from 'react'
 import "./Table.css"
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateStatusVerified,updateStatusDeclined}) => {
    
+    const handleVerify = (e, data) => {
+        e.preventDefault();
+        updateStatusVerified(data);
+        toast.success("Verification successful");
+    };
+
+    const handleDecline = (e, data) => {
+        e.preventDefault();
+        updateStatusDeclined(data);
+        toast.success("Decline successful");
+    };
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]
@@ -28,6 +40,9 @@ const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateSt
         tableHeaderRow = keys.map(k => {
             if(k=="policyNumber"){
                 return <th scope="col">Policy Number</th>;
+            }
+            else if(k=="customerName"){
+                return <th scope="col">Customer Name</th>;
             } 
             else if(k=="issueDate"){
                 return <th scope="col">Issue Data</th>;
@@ -85,51 +100,13 @@ const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateSt
             }
           });
        
-        // rowsOfUsers = data.content.map((value) => {
-        //     const { active, ...otherFields } = value;
-          
-        //     return (
-        //       <tr>
-        //         {Object.values(otherFields).map((i) => (
-        //           <td>{i !== null ? i.toString() : 'N/A'}</td>
-        //         ))}
-          
-                
-        //         {isViewDocumentButton && ( 
-        //           <td>
-        //               <button  
-        //                 onClick={(e)=>{  
-        //                   e.preventDefault(); 
-        //                   viewDocFunc(value)
-        //                }} 
-        //                style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",}}
-        //                >ViewDocument</button>
-        //           </td>
-        //         )}
-        //         {isVerifyButton && ( 
-        //           <td>
-        //              <Dropdown>
-        //                 <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0"}}
-        //               >
-        //                    Verify
-        //                 </Dropdown.Toggle>
-
-        //                 <Dropdown.Menu > 
-        //                     <Dropdown.Item href="#/action-1" onClick={(e)=>{updateStatusVerified(value)}} >Verified</Dropdown.Item>
-        //                     <Dropdown.Item href="#/action-2"onClick={(e)=>{updateStatusDeclined(value)}}>Declined</Dropdown.Item>
-        //                 </Dropdown.Menu>
-        //             </Dropdown>
-                      
-        //           </td>
-        //         )}
-        //       </tr>
-        //     );
-        //   });
+       
     
         rowsOfUsers = data.content.map((data, index) => (
             <tr key={index}>
               <td>{data.policyNumber}</td>
-              <td>{data.numberOfYear}</td>
+              <td>{data.customerName}</td>
+              {/* <td>{data.numberOfYear}</td> */}
               <td>{data.totalPremiumAmount}</td>
               <td>{data.installmentAmount}</td>
               <td>{data.premiumType}</td>
@@ -159,6 +136,10 @@ const Table = ({data ,isViewDocumentButton,isVerifyButton, viewDocFunc, updateSt
                             <Dropdown.Item href="#/action-1" onClick={(e)=>{updateStatusVerified(data)}} >Verified</Dropdown.Item>
                             <Dropdown.Item href="#/action-2"onClick={(e)=>{updateStatusDeclined(data)}}>Declined</Dropdown.Item>
                         </Dropdown.Menu>
+                        {/* <Dropdown.Menu>
+                                <Dropdown.Item onClick={(e) => { handleVerify(e, data) }}>Verified</Dropdown.Item>
+                                <Dropdown.Item  onClick={(e) => { handleDecline(e, data) }}>Declined</Dropdown.Item>
+                            </Dropdown.Menu> */}
                     </Dropdown>
                       
                   </td>

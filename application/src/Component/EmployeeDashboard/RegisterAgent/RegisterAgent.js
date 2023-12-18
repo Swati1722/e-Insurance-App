@@ -163,6 +163,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../Image/Register.svg";
 import "./RegisterAgent.css";
+import { useNavigate } from 'react-router-dom';
+
 
 const RegisterAgent = () => {
   const [firstName, setFirstName] = useState('');
@@ -172,6 +174,7 @@ const RegisterAgent = () => {
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
+  const navigate = useNavigate();
 
   const showToast = (message, type) => {
     toast[type](message, {
