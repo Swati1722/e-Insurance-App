@@ -106,7 +106,7 @@ const AddCustomer = async() =>{
     <>
         <div className='register-customer-container'>
             <div class="register-customer-left-element">
-                <img style ={{ height:"100vh", width:"80vh", paddingLeft:"1rem" }} src={image} alt="Phone image"/>
+                <img style ={{ height:"110vh", width:"115vh", paddingLeft:"1rem" }} src={image} alt="Phone image"/>
             </div>
 
             
@@ -133,17 +133,17 @@ const AddCustomer = async() =>{
 
                             
                             <div className='register-customer-form-group'>
-                                <label htmlFor="password" style ={{ marginRight:"56px"}} > Password:</label>
+                                <label htmlFor="password" style ={{ marginRight:"54px"}} > Password:</label>
                                 <input type="password" className="register-customer-form-control" id="password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
                                         
                             </div>
                             <div className='register-customer-form-group'>
-                                <label htmlFor="email" style ={{ marginRight:"87px"}} > Email:</label>
+                                <label htmlFor="email" style ={{ marginRight:"82px"}} > Email:</label>
                                 <input type="email" className="register-customer-form-control" id="email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                         
                             <div className='register-customer-form-group'>
-                                <label htmlFor="mobileNumber" style ={{ marginRight:"15px"}} > MobileNumber:</label>
+                                <label htmlFor="mobileNumber" style ={{ marginRight:"22px"}} > MobileNumber:</label>
                                 <input type="mobileNumber" className="register-customer-form-control" id=""  value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)}/>
                             </div>
                             <div className='register-customer-form-group'>
@@ -151,19 +151,19 @@ const AddCustomer = async() =>{
                                 <input type="date" className="register-customer-form-control" id="dateOfBirth"  value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)}/>
                             </div>
                             <div className='register-customer-form-group'>
-                                <label htmlFor="address" style ={{ marginRight:"75px"}} > Address</label>
+                                <label htmlFor="address" style ={{ marginRight:"68px"}} > Address</label>
                                 <input type="text" className="register-customer-form-control" id="address"  value={address} onChange={(e) => setAddress(e.target.value)}/>
                             </div>
                             <div className='register-customer-form-group'>
-                                <label htmlFor="state" style ={{ marginRight:"92px"}} > State:</label>
+                                <label htmlFor="state" style ={{ marginRight:"86px"}} > State:</label>
                                 <input type="text" className="register-customer-form-control" id="state"  value={state} onChange={(e) => setState(e.target.value)}/>
                             </div>
                             <div className='register-customer-form-group'>
-                                <label htmlFor="city" style ={{ marginRight:"100px"}} > City:</label>
+                                <label htmlFor="city" style ={{ marginRight:"94px"}} > City:</label>
                                 <input type="text" className="register-customer-form-control" id="dateOfBirth"  value={city} onChange={(e) => setCity(e.target.value)}/>
                             </div>
                             <div className='register-customer-form-group'>
-                                <label htmlFor="zip" style ={{ marginRight:"68px"}} > PinCode:</label>
+                                <label htmlFor="zip" style ={{ marginRight:"64px"}} > PinCode:</label>
                                 <input type="text" className="register-customer-form-control" id="zip"  value={zip} onChange={(e) => setZip(e.target.value)}/>
                             </div>
                             <div className='register-customer-button-group'>

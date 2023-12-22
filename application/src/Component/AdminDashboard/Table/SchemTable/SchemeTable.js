@@ -58,7 +58,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,  updateStatusAc
                   return <th scope="col">Profit Ratio</th>;
               }
               else if(k=="commission"){
-                return <th scope="col">Commission</th>;
+                return <th scope="col">Agent Commission</th>;
             }
             else if(k=="active"){
               return <th scope="col">IsActive</th>;
@@ -91,7 +91,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,  updateStatusAc
                       onClick={() => {
                         updateFunc(value);
                       }}
-                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",}}
+                      style={{ border:"none",backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",borderRadius:"4px"}}
                     >
                       Update
                     </button>
@@ -101,7 +101,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,  updateStatusAc
                 {isDeleteButton && (
                  <td>
                  <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0", alignItems:'center'}}>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",borderRadius:"3px", alignItems:'center'}}>
                     Active
                   </Dropdown.Toggle>
 

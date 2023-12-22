@@ -30,7 +30,7 @@ const AddPlanModel = ({showAddSchemeModal,AddSchemeFunc,planId}) => {
         >
        
 
-        <Modal.Body style={{ maxHeight: '80vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
+        <Modal.Body style={{ maxHeight: '100vh', overflowY: 'auto',backgroundColor:  "#f7f6f8" }}>
             <RegisterScheme planId={planId}/>
         </Modal.Body >
         <Modal.Footer>

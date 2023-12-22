@@ -17,8 +17,9 @@
   }
   
   .register-scheme-right-element{
+    margin-top: 10rem;
     flex:3;
-    height: 80vh;
+    height:110vh;
     padding-left: 0rem;
     flex: 1;
     padding-right: 1rem;
@@ -26,9 +27,9 @@
   
   
 .register-scheme-box{
-    height:92vh;
+    height:fit-content;
     width: 71vh;
-    border: 1px solid #000; /* Border style, width, and color */
+    border: 1.5px solid #000; /* Border style, width, and color */
     border-radius: 5%;
     padding: 10px; /* Add some padding to the content inside the box */
     margin-top: 5%; 

@@ -83,7 +83,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,isSchemeButton,S
                           e.preventDefault(); 
                           SchemeFunc(value)
                        }} 
-                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",border:'none'}}
+                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",border:'none',borderRadius:'4px'}}
                        >Scheme</button>
                   </td>
                 )}
@@ -91,7 +91,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton,isSchemeButton,S
                 {isDeleteButton && (
                   <td>
                   <Dropdown>
-                   <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem", borderRadius:"0", alignItems:'center',paddingBottom:'20px'}}>
+                   <Dropdown.Toggle variant="success" id="dropdown-basic"  style={{ width:"5rem", backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"2rem",borderRadius:'4px', alignItems:'center',paddingBottom:'20px'}}>
                      Active
                    </Dropdown.Toggle>
  

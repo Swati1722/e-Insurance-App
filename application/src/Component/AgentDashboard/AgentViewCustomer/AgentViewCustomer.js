@@ -4,7 +4,7 @@ import PageSize from '../../Shared/Page/PageSize'
 import PaginationOfApp from "../../Shared/Page/PaginationOfApp"
 import { getAllCustomerByActiveAndAgent } from '../../../Service/CustomerService'
 import { validateUser as validate } from '../../../Service/Authentication';
-
+import './AgentViewCustomer.css'
 
 import { useNavigate } from 'react-router-dom';
 
@@ -85,11 +85,12 @@ const AgentViewCustomer = () => {
               <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getCustomer} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
           </div>
           <button
+            className='go-back-button'
             onClick={() => navigate(-1)}
             style={{
               width: '5rem',
               padding: '2px',
-              backgroundColor: 'rgb(34, 52, 100)',
+              // backgroundColor: 'rgb(34, 52, 100)',
               marginLeft: '91%',
               color: 'white',
               cursor:"pointer"

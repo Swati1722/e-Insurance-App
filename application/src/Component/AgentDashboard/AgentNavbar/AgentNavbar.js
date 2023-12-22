@@ -57,7 +57,8 @@ const AgentNavbar = () => {
                     {isAgentProfileOpen && (
                     <div className="profile-popup">
                         
-                        <a href="">My Profile</a>
+                        <Link to="/agentDashboard/profile" className='d-text' >MyProfile</Link>
+                        
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleAgentEditProfileModel(); }}>Edit Profile</a>
    
                         <Link to="/" className='d-text' onClick={(e)=> {localStorage.clear()}}>Logout</Link>

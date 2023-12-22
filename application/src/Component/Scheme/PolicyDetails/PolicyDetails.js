@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { validateUser as validate } from '../../../Service/Authentication';
 import { getCustomerByUserName } from '../../../Service/CustomerService';
-
+import './PolicyDetails.css'
 const PolicyDetails = ({value,schemeId}) => {
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
@@ -107,39 +107,7 @@ const PolicyDetails = ({value,schemeId}) => {
         setTotalAmount(sum);
     };
 
-    // const calculateInterest = () => {
-    //     const parsedNoOfYear = parseFloat(noOfYear);
-    //     const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
-    //     const parsedPremiumType = parseFloat(premiumType);
-    //     const parsedMinTime = parseFloat(minTime);
-    //     const parsedMaxTime = parseFloat(maxTime);
-      
-    //     if (
-    //       isNaN(parsedNoOfYear) ||
-    //       isNaN(parsedTotalInvestmentAmount) ||
-    //       isNaN(parsedPremiumType) ||
-    //       isNaN(parsedMinTime) ||
-    //       isNaN(parsedMaxTime)
-    //     ) {
-    //       console.error("Invalid input. Please enter valid numbers.");
-    //       return;
-    //     }
-      
-    //     if (parsedNoOfYear < parsedMinTime || parsedNoOfYear > parsedMaxTime) {
-    //       console.error("Number of years must be between minimum and maximum policy terms.");
-    //       return;
-    //     }
-      
-    //     const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
-    //     setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
-      
-    //     const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
-    //     setInterestAmount(interest);
-      
-    //     const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
-    //     setTotalAmount(sum);
-    //   };
-      
+   
    
 
 
@@ -266,22 +234,10 @@ const PolicyDetails = ({value,schemeId}) => {
                             required
                         />
                     </div>
-                    {/* <div className='investment-form-group'>
-                        <label htmlFor="premiumType">Premium Type *</label>
-                        <input
-
-                            type="text"
-                            className="form-control"
-                            id="premiumType"
-                            value={premiumType}
-                            onChange={(e) => setPremiumType(e.target.value)}
-                            required
-                        />
-                    </div> */}
+                   
                     <div className="investment-form-group">
                         <label htmlFor="premiumType">
                             Premium Type{' '}
-                            {/* <i className="fas fa-caret-down" style={{ marginLeft: '5px' }}></i> */}
                         </label>
                         
                         <select
@@ -301,7 +257,7 @@ const PolicyDetails = ({value,schemeId}) => {
                         </select>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "1rem" }}>
-                        <button type="button" onClick={calculateInterest} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
+                        <button type="button" className="calculate-premium-button"onClick={calculateInterest} style={{  color: 'white', height:"1.9rem",}}
                        >
                             Calculate
                         </button>
@@ -349,7 +305,7 @@ const PolicyDetails = ({value,schemeId}) => {
                     />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop:"1rem"}}>
-                    <button  type="button"  onClick={openPolicy} style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
+                    <button  className='buynow-button' type="button"  onClick={openPolicy} style={{  color: 'white', height:"2rem",}}
                        >
                         BuyNow
                     </button>

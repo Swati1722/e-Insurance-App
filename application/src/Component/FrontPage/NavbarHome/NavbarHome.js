@@ -20,7 +20,7 @@ const NavbarHome = () => {
   return (
   
     <>
-        <nav className="navbar navbar-expand-lg navbar-transparent navbar-light fixed-top" id="nav">
+        <nav className="navbar-home navbar-expand-lg  navbar-light fixed-top-element" id="nav">
           <div className="nav-container">
               <a className="navbar-brand" href="">
                  Insurance App
@@ -28,8 +28,8 @@ const NavbarHome = () => {
               {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
               </button> */}
-              <div className="collapsed " id="navbarSupportedContent">
-                <ul className="navbar-left mr-auto">
+              <div className="navbar-collapsed " id="navbarSupportedContent">
+                <ul className="navbar-left-ele mr-auto">
                     <li className="nav-item ">
                     <a href="" className="nav-link">Home</a>
                     </li>
@@ -43,11 +43,11 @@ const NavbarHome = () => {
                     <a href="#Contact-Us" className="nav-link">Contact Us</a>
                     </li>
                 </ul>
-                <ul className="navbar-right">
+                <ul className="navbar-right-ele">
                     
-                    <li className="nav-item">
-                      <button  className="nav-link" onClick={toggleRegistrationModal}>
-                        <i className="ri-user-add-fill" style={{height:"2rem"}}></i>
+                    <li className="nav-item"  >
+                      <button  className="nav-link"  onClick={toggleRegistrationModal}>
+                        <i className="ri-user-add-fill" ></i>
                       </button>
                     
                     </li>

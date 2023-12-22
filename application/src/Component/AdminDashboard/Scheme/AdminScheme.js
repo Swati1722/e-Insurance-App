@@ -133,6 +133,8 @@ const Scheme = () => {
               backgroundColor: 'rgb(34, 52, 100)',
               marginLeft: '91%',
               color: 'white',
+              border:'none',
+              borderRadius:'4px'
             }}
           >
             Go Back

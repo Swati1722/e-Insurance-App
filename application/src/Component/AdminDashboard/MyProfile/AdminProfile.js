@@ -2,11 +2,15 @@ import React, {useState} from 'react'
 import "./MyProfile.css"
 import { useLocation } from 'react-router-dom';
 import image from "../../../Image/ProfilePic.svg"
+import { useNavigate } from 'react-router-dom';
+
 
 const MyProfile = () => {
 
     const location = useLocation();
     const receivedData = location.state || {};
+    const navigate = new useNavigate();
+    
   
   
     const [updatedData, setUpdatedData] = useState({
@@ -50,7 +54,7 @@ const MyProfile = () => {
             <div className='admin-resume-box'>
               <div className="admin-resume_left">
                 <div className="admin-resume_profile">
-                  <img src={image} alt="profile_pic"  style={{width:"14rem", marginTop:"4rem"}}/>
+                  <img src={image} alt="profile_pic"  style={{width:"18rem", marginTop:"4rem" ,marginLeft:"2rem"}}/>
                 </div>
               </div>
               <div className="admin-resume_right">
@@ -58,7 +62,7 @@ const MyProfile = () => {
                   <form >
                     <div className="admin-resume_item admin-resume_info">
                       <div className="title">
-                        <h2 className="bold" style={{textAlign:'center', fontWeight:"500", fontSize:'2.5rem', paddingBottom:"1rem"}}>Admin Details</h2>
+                        <h2 className="bold" style={{textAlign:'center', fontWeight:"600", fontSize:'2.5rem', paddingBottom:"1rem"}}>My Profile</h2>
                       </div>
                       <div className="form-fields">
                         <div className="form-field">
@@ -67,6 +71,7 @@ const MyProfile = () => {
                               type="text"
                               id="username"
                               name="username"
+                              disabled
                               className='myprofile-form-control'
                               value={receivedData.username}
                               onChange={handleInputChange}
@@ -137,8 +142,23 @@ const MyProfile = () => {
                         </div>
                         
                       </div>
-                      <button className='btn btn-primary login-button'>Update</button>
-                       
+                      <div className='button-container'>
+                          <button className='btn btn-primary  left-button'>Update</button>
+                          <button
+                          className='btn btn-primary  right-button'
+                            onClick={() => navigate(-1)}
+                            style={{
+                              width: '5rem',
+                              padding: '2px',
+                              backgroundColor: 'rgb(34, 52, 100)',
+                              marginLeft: '50%',
+                              color: 'white',
+                              borderRadius:'5px'
+                            }}
+                          >
+                            Go Back
+                          </button>
+                      </div>
                     </div>
                    </form>
                   

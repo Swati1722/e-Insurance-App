@@ -1,32 +1,29 @@
-.admin-resume-container {
+.agent-resume-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    
     height: 100vh;
     background-color: #f2f2f2; /* Set a background color if needed */
   }
   
-  .admin-resume-box {
+  .agent-resume-box {
 
     display: flex;
-    margin-top: 4rem;
-    width: 1200px; /* Adjust the maximum width as needed */
+    max-width: 800px; /* Adjust the maximum width as needed */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for the right content */
-  margin-bottom: 4rem;
   }
   
-  .admin-resume_left {
+  .agent-resume_left {
     flex: 1;
     padding: 20px;
   }
   
-  .admin-resume_profile img {
+  .agent-resume_profile img {
     width: 100%;
     border-radius: 50%;
   }
   
-  .admin-resume_right {
+  .agent-resume_right {
     flex: 2;
     padding: 20px;
   }
@@ -61,4 +58,16 @@
   background-color: rgb(34, 52, 100);
                               
 }
+.right-button{
+    background-color:  rgb(34, 52, 100);
+                             
+}
   
+.left-button:hover{
+    background-color:  rgb(23, 57, 152);
+    color: white;
+}
+.right-button:hover{
+    background-color:rgb(23, 58, 154);
+    color: white;
+}

@@ -57,20 +57,20 @@
    
   }
   
-  .button {
+  .submit-button {
     width: 5rem;
+    height:2.5rem;
     color: #f0f0f0;
-    background-color: rgb(34, 52, 100); /* Change the color as needed */
+    background-color:  rgb(34, 52, 100);/* Change the color as needed */
  
     padding: 10px;
     cursor: pointer;
-    /* border: 1px solid #000;  */
     border-radius: 5%;
   }
   
-  .button:hover {
-    background-color: white;
-    color: black;
+  .submit-button:hover {
+    background-color: rgb(23, 58, 154);
+    color: white;
      }
   
   

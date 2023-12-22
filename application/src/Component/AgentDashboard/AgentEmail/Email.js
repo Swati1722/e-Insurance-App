@@ -148,7 +148,7 @@ const sendEmail = (e) => {
                         </div>
                         
                         <textarea name="message" className="user" placeholder="Message"/>
-                        <input type="submit" value="Send" className="button" style={{borderRadius:"6px"}}/>
+                        <input type="submit" value="Send" className="submit-button" style={{borderRadius:"6px" ,background:" rgb(34, 52, 100)"}}/>
                         <span>{done && "Thanks for Contacting me"}</span>
                     
                     </form>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./Table.css"
+import "./PlanTable.css"
 
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, isCalculateButton,CalculateFunc}) => {
@@ -61,22 +61,11 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                   <td>{i !== null ? i.toString() : 'N/A'}</td>
                 ))}
           
-                {isUpdateButton && (
-                  <td>
-                    <button
-                      onClick={() => {
-                        updateFunc(value);
-                      }}
-                      style={{border: "none" }}
-                    >
-                      Update
-                    </button>
-                  </td>
-                )}
+               
                 {isSchemeButton && ( 
                   <td>
-                      <button   style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                       
+                      <button   style={{ }}
+                       className='scheme-button'
                         onClick={(e)=>{  
                           e.preventDefault(); 
                           SchemeFunc(value, isSchemeButton)
@@ -84,28 +73,8 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
                   </td>
                 )}
 
-                {isDeleteButton && (
-                  <td>
-                    <select 
-                      onChange={(e) => updateActiveStatus(value, e.target.value)}
-                      style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                       
-                    >
-                      <option onClick={()=>{deleteFunc(value ,"active")}}>Active</option>
-                      <option  onClick={()=>{deleteFunc(value, "inactive")}}>Inactive</option>
-                    </select>
-                  </td>
-                )}
+                
 
-                  {isCalculateButton && ( 
-                  <td>
-                      <button   style={{border: "6px",  background:"white" ,transition: "background-color 0.3s"}} 
-                        onClick={(e)=>{  
-                          e.preventDefault(); 
-                          CalculateFunc(value)
-                       }}  >Calculate</button>
-                  </td>
-                )}
               </tr>
             );
           });

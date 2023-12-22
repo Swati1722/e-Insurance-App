@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './Table.css'
 
 const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, isCalculateButton,CalculateFunc}) => {
    const[isActive,setIsActive]= useState(true)
@@ -118,12 +118,12 @@ const SchemeTable = ({data, isUpdateButton, updateFunc, isDeleteButton, deleteFu
                   {isCalculateButton && ( 
                   <td>
                       <button    
+                      className='calculate-button'
                         onClick={(e)=>{  
                           e.preventDefault(); 
                           CalculateFunc(value)
                        }}  
-                       style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.7rem",}}
-                       
+                      
                        >Calculate</button>
                   </td>
                 )}

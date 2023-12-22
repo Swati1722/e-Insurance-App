@@ -19,7 +19,7 @@ const GetAgent = () => {
     const getAgent = async() =>{
       try{
            let response =await getAllAgent(pageNumber,pageSize)
-           console.log(response)
+         
               if(response.data)
               {
                   setData(response.data)
@@ -44,7 +44,7 @@ const GetAgent = () => {
   
     
      useEffect(()=>{
-      console.log("useEffect called")
+      
       getAgent()
     }, [totalNumberOfRecords,pageSize, pageNumber])
   
@@ -61,10 +61,10 @@ const GetAgent = () => {
               </div>
           </div>
         
-            <div className="agent-table-container">
-              {console.log(data)}
+          <div className="agent-table-container">
+             
               <Table data={data} isDeleteButton={true}   />
-            </div>
+          </div>
             <div className='agent-right'>
                 <PaginationOfApp numberOfPages={numberOfPages} getFunction ={getAgent} pageNumber={pageNumber} setPageNumber ={setPageNumber}/>
             </div>

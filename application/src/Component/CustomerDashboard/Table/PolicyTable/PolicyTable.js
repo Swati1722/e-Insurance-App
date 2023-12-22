@@ -74,44 +74,24 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
       
           });
        
-        // rowsOfUsers = data.content.map((value) => {
-        //     const { active, ...otherFields } = value;
-        
-            // return (
-            //   <tr>
-            //     {Object.values(otherFields).map((i) => (
-                   
-            //       <td>{i !== null ? i.toString() : 'N/A' }</td>
-            //     ))}
-          
-          
-            //     {isPaymentButton && (
-            //       <td>
-            //         <button disabled
-            //           onClick={() => {
-            //             // updateFunc(value);
-            //           }}
-            //           style={{ backgroundColor: 'rgb(34, 52, 100)', color: 'white', height:"1.9rem",}}
-            //         >
-            //          Payment
-            //         </button>
-            //       </td>
-            //     )}
-            //   </tr>
-
-           
-            // );
-        //   });
+      
 
         rowsOfUsers = data.content.map((data, index) => (
             <tr key={index}>
               <td>{data.policyNumber}</td>
+              <td>{data.planName}</td>
+              <td>{data.schemeName}</td>
               <td>{data.noOfYear}</td>
               <td>{data.totalPremiumAmount}</td>
               <td>{data.installmentAmount}</td>
-              <td>{data.premiumType}</td>
-              <td>{data.planName}</td>
-              <td>{data.schemeName}</td>
+              <td>
+                {data.premiumType === 3 && "Quarterly"}
+                {data.premiumType === 6 && "Half-Yearly"}
+                {data.premiumType === 1 && "Monthly"}
+                {data.premiumType === 12 && "Yearly"}
+                {/* {data.premiumType !== 3 && data.premiumType !== 6 && data.premiumType !== 1 && "Yearly (12 months)"} */}
+            </td>
+              
               {/* <td>{data.status}</td> */}
               {isPaymentButton && (
                 <td>

@@ -1,9 +1,11 @@
 .section {
     max-height: 2500px;
     font-family: 'Roboto', sans-serif;
+
     margin-bottom: 3rem;
     background: url('../../../Image/example-19.svg') center/cover no-repeat;
     background-size: 1100px 1400px;
+    background-color: none;
     /* background-position: 0 .001px;  */
    
     
@@ -31,15 +33,12 @@
 
     height :520px;
     max-width:1260px ;
-    /* width: 100%; */
-    /* padding-right: 15px; */
+    
     padding-left: 15px;
 
     margin-left: 1rem;
     margin-top: 4rem;
-    /* display: flex; */
-    
-
+  
 }
 
 .part1-container>.row{
@@ -79,8 +78,7 @@
 
     height :520px;
     max-width:700pxpx ;
-    /* width: 100%; */
-    /* padding-right: 15px; */
+    
     padding-left: 15px;
     margin-right: 1rem;
     margin-left: 1rem;

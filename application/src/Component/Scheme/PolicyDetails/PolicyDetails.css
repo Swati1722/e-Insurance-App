@@ -1,4 +1,3 @@
-/* PolicyDetails.css */
 
 body {
     font-family: 'Arial', sans-serif;
@@ -19,7 +18,9 @@ body {
   
   .investment-postdata {
     max-width: 600px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: 5rem;
+    margin-top: 1rem;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -27,7 +28,7 @@ body {
   }
   
   .investment-form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   
   label {
@@ -39,35 +40,41 @@ body {
   
   .form-control {
     width: 100%;
-    padding: 10px;
-    margin-top: 8px;
+    height: 2.1rem;
+    /* padding: 10px; */
+    /* margin-top: 8px; */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
   }
   
-  button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
   
-  button:hover {
-    background-color: #45a049;
-  }
- /* PolicyDetails.css */
-
-/* ... existing styles */
 .investment-heading {
-    background-color: #28a745; /* Green background color */
+  background: rgb(34, 52, 100);
     color: #fff; /* White text color */
     padding: 10px;
     text-align: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+  }
+  .calculate-premium-button{
+    background: rgb(34, 52, 100);
+    border: none;
+    height: 2rem;
+    border-radius: 4px;
+
+  }
+  .calculate-premium-button:hover{
+    background-color:rgb(23, 58, 154);
+    color: white;
+  }
+  .buynow-button{
+   background-color: rgb(34, 52, 100);
+   border:none;
+   border-radius: 4px;
+  }
+  .buynow-button:hover{
+    background-color:rgb(23, 58, 154);
+    color: white;
   }

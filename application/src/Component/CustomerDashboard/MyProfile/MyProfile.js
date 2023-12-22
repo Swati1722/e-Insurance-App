@@ -68,6 +68,7 @@ const MyProfile = () => {
                               type="text"
                               id="username"
                               name="username"
+                              disabled
                               className='myprofile-form-control'
                               value={receivedData.username}
                               onChange={handleInputChange}

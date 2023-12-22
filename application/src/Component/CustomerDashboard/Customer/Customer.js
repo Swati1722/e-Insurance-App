@@ -32,32 +32,32 @@ const Customer = () => {
 
 
 
- if(isUserValid)
-  {
+//  if(isUserValid)
+//   {
     return (
       <>
-      
+        <div style={{backgroundColor:"white"}}>
           <CustomerNavbar/>
           <Part1/>
           <Footer/>
-          <div>
+          
               
           </div>
       
       </>
     )
   }
-    else{
-      return (
-        <>
-          <a href='/'>Please Login First</a>
+    // else{
+    //   return (
+    //     <>
+    //       <a href='/'>Please Login First</a>
 
           
-       </>
+    //    </>
   
-      )
-    }
+    //   )
+    // }
   
-}
+// }
 
 export default Customer

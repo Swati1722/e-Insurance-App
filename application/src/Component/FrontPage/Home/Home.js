@@ -6,9 +6,11 @@ import Footer from '../Footer/Footer'
 const Home = () => {
   return (
     <>
+      <div style={{backgroundColor:'white'}}>
         <NavbarHome/>
         <Part1></Part1>
         <Footer/>
+      </div>
 
 
     

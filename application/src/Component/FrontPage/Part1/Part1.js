@@ -51,7 +51,7 @@ const Part1 = () => {
    <>
    <div className='main'>
     {/* ------------------------------------------------------------------------------- */}
-            <div className="section section-header">
+            <div className="section section-header" >
                 <div className="part1-container">
                     <div className="row">
                         <div className="part-left">

@@ -161,8 +161,8 @@
 import React, { useState, useEffect } from 'react'
 import PageSize from '../../Shared/Page/PageSize'
 import PaginationOfApp from '../../Shared/Page/PaginationOfApp'
-import Table from "../Table/PlanTable"
-import SchemeTable from '../Table/SchemeTable'
+import Table from "../Table/PlanTable/PlanTable"
+import SchemeTable from '../Table/SchemeTable/SchemeTable'
 import { getAllPlans } from '../../../Service/PlanService'
 import { getAllSchemes } from '../../../Service/SchemeService'
 import "./Plan.css"
@@ -277,11 +277,13 @@ const Plan = () => {
         </div>
         <button
           onClick={() => navigate(-1)}
+          className='go-back-button'
           style={{
             width: '5rem',
             padding: '2px',
-            backgroundColor: 'rgb(34, 52, 100)',
-            marginLeft: '90%',
+            height:"2.1rem",
+            // backgroundColor: 'rgb(34, 52, 100)',
+            marginLeft: '92.5%',
             color: 'white',
           }}
         >
@@ -292,8 +294,8 @@ const Plan = () => {
 
         {openSchemeTable && (
           <>
-            <h2 style={{ textAlign: "center", color: "white", background: "rgb(34, 52, 100)", padding: "1rem" }}>Scheme Details</h2>
-            <button onClick={closeSchemeTable} style={{ marginBottom: "1%", marginLeft: '89%', backgroundColor: 'rgb(34, 52, 100)', color: 'white', height: "1.7rem" }}>Close Table</button>
+            <h2 style={{ textAlign: "center", color: "white", background:"rgb(34, 52, 100)",padding: "1rem" }}>Scheme Details</h2>
+            <button className="close-scheme-table-button"onClick={closeSchemeTable} >Close Table</button>
           </>
         )}
         <div style={{ marginRight: '1rem', borderRadius: '20%', marginLeft: '1rem' }}>

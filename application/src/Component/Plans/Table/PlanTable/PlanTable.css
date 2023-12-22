@@ -7,11 +7,16 @@
   .custom-table th {
     border: none; /* Remove border for th elements */
   }
+
   .scheme-button{
     background-color: rgb(34, 52, 100);
-    height: 2rem;
+     color: white;
+     border: none;
+     height: 2rem;
+     border-radius: 4px;
   }
   .scheme-button:hover{
-    background-color: rgb(23, 58, 154);
+    background-color:rgb(23, 58, 154);
     color: white;
+
   }

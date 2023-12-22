@@ -75,9 +75,7 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isS
           });
         
        
-        // rowsOfUsers = data.content.map((value) => {
-        //   const { active, dateOfBirth, ...otherFields } = value;
-        rowsOfUsers = (filteredData.length > 0 ? filteredData : data.content).map((value) => {
+         rowsOfUsers = (filteredData.length > 0 ? filteredData : data.content).map((value) => {
           const { active, dateOfBirth, ...otherFields } = value;
            
             return (

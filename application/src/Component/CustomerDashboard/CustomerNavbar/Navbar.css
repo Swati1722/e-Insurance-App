@@ -1,16 +1,18 @@
 .customer-navbar{
     display: flex;
     height:4rem;
+    width: 100%;
+    background-color: white;
     transition: all .3s ease 0s;
     padding: 18px 28px;
     font-family: 'Roboto', sans-serif;
     align-items: center;
     
     
-}
+} 
 .customer-navbar.bg-white {
     box-shadow: 0 15px 30px 0 rgba(60, 72, 88, 0.05);
-}
+} 
 
 .customer-fixed-top {
     position: fixed;
@@ -38,9 +40,8 @@
    
     padding-left: 0;
     padding-right: 0;
-    /* margin-right: 20px; */
-    text-decoration: none;
-}
+   
+ } 
 
 .customer-collapsed{
     flex:6;
@@ -95,6 +96,7 @@
 
 
   .profile-popup {
+    margin-top: .5rem;
     margin-right: 2rem;
     position: absolute;
     top: 75%;

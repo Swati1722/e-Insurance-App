@@ -39,7 +39,7 @@ const CustomerNavbar = () => {
         let resp = await validate(authToken)
         console.log("username------>", resp.data.sub)
         let response = await getCustomerByUserName(resp.data.sub)
-      
+      console.log("response------",response)
    
         
         const dataToSend = {
@@ -51,7 +51,7 @@ const CustomerNavbar = () => {
           mobileNumber:response.data.userdetails.mobileNumber,
           dateOfBirth:response.data.userdetails.dateOfBirth,
           email:response.data.userdetails.emailId,
-          city:response.data.userdetails.city,
+          city:response.data.city,
           state:response.data.userdetails.state,
           pincode : response.data.pincode
         }
@@ -68,14 +68,12 @@ const CustomerNavbar = () => {
 
   return (
     <>
-        <nav className="customer-navbar navbar-expand-lg navbar-transparent navbar-light customer-fixed-top" id="nav">
+        <nav className="customer-navbar customer-fixed-top" id="nav">
           <div className="customer-nav-container">
               <a className="customer-navbar-brand" href="">
                  Insurance App
               </a>
-              {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-              </button> */}
+            
               <div className="customer-collapsed " id="navbarSupportedContent">
                 <ul className="customer-navbar-left mr-auto">
                     <li className="customer-nav-item ">

@@ -21,8 +21,8 @@ import EmployeePlan from './Component/EmployeeDashboard/EmployeePlan/EmployeePla
 import EmployeeScheme from "./Component/EmployeeDashboard/EmployeeScheme/EmployeeScheme"
 import AllQuery from './Component/CustomerDashboard/AllQuery/AllQuery';
 
-import AgentPlan from './Component/AgentDashboard/AgentPlan/AgentPlan';
-import AgentScheme from './Component/AgentDashboard/AgentScheme/AgentScheme'
+// import AgentPlan from './Component/AgentDashboard/AgentPlan/AgentPlan';
+// import AgentScheme from './Component/AgentDashboard/AgentScheme/AgentScheme'
 import Query from './Component/EmployeeDashboard/Query/Query';
 import Policy from './Component/EmployeeDashboard/Policy/Policy'
 import CustomerPolicy from './Component/CustomerDashboard/Policy/CustomerPolicy';
@@ -33,6 +33,7 @@ import AgentPolicy from './Component/AgentDashboard/AgentPolicy/AgentPolicy'
 import AgentViewCustomer from './Component/AgentDashboard/AgentViewCustomer/AgentViewCustomer';
 import Viewpolicy from './Component/AgentDashboard/ViewPolicy/Viewpolicy';
 import Installment from './Component/AgentDashboard/Installment/Installment';
+import AgentProfile from './Component/AgentDashboard/MyProfile/AgentProfile'
 
 function App() {
   return (
@@ -63,12 +64,13 @@ function App() {
        
 
        <Route exact path='/agentDashboard' element={<Agent/>} />
-       <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} />
-       <Route exact path='/agentDashboard/scheme' element={<AgentScheme/>} />
+       {/* <Route exact path='/agentDashboard/plandetails' element={<AgentPlan/>} /> */}
+       {/* <Route exact path='/agentDashboard/scheme' element={<AgentScheme/>} /> */}
        <Route exact path='/agentDashboard/Policy' element={<AgentPolicy/>} />
        <Route exact path='/agentDashboard/viewCustomer' element={<AgentViewCustomer/>} />
        <Route exact path='/agentDashboard/viewPolicy' element={<Viewpolicy/>} />
        <Route exact path='/agentDashboard/installment' element={<Installment/>} />
+       <Route exact path='/agentDashboard/profile' element={<AgentProfile/>} />
        
 
 
