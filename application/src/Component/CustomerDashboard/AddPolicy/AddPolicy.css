@@ -39,9 +39,13 @@
 
   }
 
-  /* .policy-button-1{
-    width:8rem
+  
+
+  .radio-button-container{
+    display: flex;
+    align-items: center;
   }
-  .policy-button-2{
-    width:8rem
-  } */
+  .radio-button{
+    margin-left: 2rem;
+  
+  }

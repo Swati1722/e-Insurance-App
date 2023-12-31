@@ -81,9 +81,12 @@ const CustomerPolicy = () => {
                 onClick={() => navigate(-1)}
                 style={{
                 width: '5rem',
+                height:"2rem",
+                borderRadius:"4px",
                 padding: '2px',
                 backgroundColor: 'rgb(34, 52, 100)',
-                marginLeft: '91%',
+                marginLeft: '90%',
+                border:"none",
                 color: 'white',
                 }}
             >

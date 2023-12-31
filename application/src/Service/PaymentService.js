@@ -1,18 +1,6 @@
 import axios from "axios";
 
-// export const addPayment = async(installmentNo,amount,policyNumber,cardNumber,nameOnCard)=>{
-//     let response = await axios.post(`http://localhost:8080/insuranceapp/payment/${policyNumber}`,{
-//           userdetails: {
-            
-//             installmentNo:installmentNo,
-//             amount:amount,
-//             cardNumber:cardNumber,
-//             nameOnCard:nameOnCard
-//           }
-//       })
-//       console.log('Data saved successfully:');
-//       return response;
-//     }
+
 
 export const  addPayment= async(installmentNo,amount,policyNumber,cardNumber,nameOnCard) => {
     try{ 

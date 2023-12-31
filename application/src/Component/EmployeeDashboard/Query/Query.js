@@ -170,6 +170,7 @@ const Query = () => {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Name</th>
               <th>Question</th>
               <th>Action</th>
               <th>Status</th>
@@ -180,6 +181,7 @@ const Query = () => {
               data.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
+                  <td>{item.firstName+" "+item.lastName}</td>
                   <td>{item.question}</td>
 
                   <td>
@@ -196,9 +198,24 @@ const Query = () => {
               ))}
           </tbody>
         </table>
-        <button className="goBack-button" onClick={() => navigate(-1)}>
+        
+        <button
+          className="btn btn-primary goBack-button" onClick={() => navigate(-1)}
+        
+          style={{
+          width: '6rem',
+          height: '2.5rem',
+          padding: '2px',
+          backgroundColor: 'rgb(34, 52, 100)',
+          border:'none',
+          marginLeft: '81%',
+          // marginTop:'1rem',
+          color: 'white',
+          }}
+      >
           Go Back
-        </button>
+      </button>
+                        
       </div>
 
       <Modal

@@ -73,7 +73,8 @@ const Table = ({data ,isinstallmentButton, installmentFunc }) => {
               <td>{data.planName}</td>
               <td>{data.schemeName}</td>
               <td>{data.totalPremiumAmount}</td>
-              <td>{data.installmentAmount}</td>
+              <td>{data.installmentAmount.toFixed(2)}</td>
+
               <td>
                 {data.premiumType === 3 && "Quarterly"}
                 {data.premiumType === 6 && "Half-Yearly"}

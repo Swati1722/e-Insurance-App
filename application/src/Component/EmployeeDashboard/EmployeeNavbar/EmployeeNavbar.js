@@ -48,7 +48,7 @@ const EmployeeNavbar = () => {
      }
   return (
     <>
-          <nav className="employee-navbar navbar-expand-lg navbar-transparent navbar-light employee-fixed-top" id="nav">
+          <nav className="employee-navbar  employee-fixed-top" id="nav">
           <div className="employee-nav-container">
               <a className="employee-navbar-brand" href="">
                  Insurance App
@@ -83,7 +83,7 @@ const EmployeeNavbar = () => {
                     
                     </li>
                     {isEmployeeProfileOpen && (
-                    <div className="profile-popup">
+                    <div className="employee-profile-popup" style={{marginRight:"4rem"}}>
                         
                         <Link to="" className='d-text' onClick={toggleMyProfile}>My Profile</Link>
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleEmployeeEditProfileModel(); }}>Edit Profile</a>

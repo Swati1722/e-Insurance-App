@@ -1,27 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, updateStatusActive,updateStatusInActive}) => {
-   const[isActive,setIsActive]= useState(true)
-   const[searchTerm, setSearchTerm] = useState('');
-   const[filteredData, setFilteredData] = useState([]);
-  
-   const handleSearch = () => {
-    const filtered = data.content.filter((item) => {
-      const values = Object.values(item).map((i) =>
-        i !== null ? i.toString().toLowerCase() : ''
-      );
-      return values.some((val) => val.includes(searchTerm.toLowerCase()));
-    });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-    setFilteredData(filtered);
+  useEffect(() => {
+    handleSearch();
+  }, [data, searchTerm, currentPage]);
+
+  const handleSearch = () => {
+    if (data && data.content) {
+      const filtered = data.content.filter((item) => {
+        const values = Object.values(item).map((i) =>
+          i !== null ? i.toString().toLowerCase() : ''
+        );
+        return values.some((val) => val.includes(searchTerm.toLowerCase()));
+      });
+  
+      setCurrentPage(1);
+  
+      setFilteredData(filtered);
+    }
   };
+  
 
   const handleClear = () => {
     setFilteredData([]);
     setSearchTerm('');
+    setCurrentPage(1); // Reset to the first page when clearing search
   };
    
     let rowsOfUsers =<></>

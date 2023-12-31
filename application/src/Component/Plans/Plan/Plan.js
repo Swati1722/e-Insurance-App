@@ -283,7 +283,7 @@ const Plan = () => {
             padding: '2px',
             height:"2.1rem",
             // backgroundColor: 'rgb(34, 52, 100)',
-            marginLeft: '92.5%',
+            marginLeft: '90.5%',
             color: 'white',
           }}
         >

@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
-
+import { getAllPayment } from '../../../../Service/PaymentService'
+import ClaimModel from '../../Models/ClaimModel'
 
 
 const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commission}) => {
@@ -8,13 +9,16 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
     const [date,setDates] =useState()
     const [disabledButtons, setDisabledButtons] = useState(Array(numberOfInstallment).fill(false));
     const [interest, setInterest] = useState([]);
-
+    const [isClaimModalOpen, setClaimModalOpen] = useState(false);
+    const [selectedClaimIndex, setSelectedClaimIndex] = useState(null);
+  
+    const [paymentStatus, setPaymentStatus] = useState();
+   
 
     
     const getNoOfInstallment = () =>{
         setNumberOfInstallment((numberOfYear*12)/premiumType)
    
-       
     }
    
    
@@ -23,6 +27,7 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
     },[]) 
 
     const calculateInterest = () => {
+      
         const calculatedInterest = Array.from({ length: numberOfInstallment }, (_, index) => {
           const interestPercentage = commission / 100;
           const interestAmount = installmentAmount * interestPercentage;
@@ -42,12 +47,31 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
         calculateInterest();
       }, [commission, numberOfInstallment, installmentAmount]);
     
-    const handleClaimButtonClick = (index) => {
-        const updatedButtons = [...disabledButtons];
-        updatedButtons[index] = true;
-        setDisabledButtons(updatedButtons);
+   
+
+      useEffect(() => {
+        const fetchPaymentStatus = async () => {
+          try {
+            let response = await getAllPayment();
+            console.log(response.data)
+            setPaymentStatus(response.data); // Assuming data is an array of payment statuses
+          } catch (error) {
+            console.error('Error fetching payment statuses:', error);
+          }
+        };
+      
+        fetchPaymentStatus();
+      }, [policyNumber]);
+
+       const handleClaimButtonClick = (index) => {
+          setSelectedClaimIndex(index);
+          setClaimModalOpen(true);
       };
 
+       const handleCloseclaimModal = () => {
+        setClaimModalOpen(false);
+        setSelectedClaimIndex(null);
+      };
    
     return (
     <>
@@ -57,8 +81,6 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
                     <th scope="col">Serial No.</th>
                     
                     <th scope="col">Installment Amount</th>
-                  
-                    
                     <th scope="col">Date</th>
                     <th scope="col">Intrest</th>
                     <th scope="col">Claims</th>
@@ -67,32 +89,59 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
                 
             </thead>
             <tbody>
-                {Array.from({ length: numberOfInstallment }, (_, index) => (
-                <tr key={index + 1}>
-                  <td>{index + 1}</td>
-                  <td>{installmentAmount}</td>
-                  <td>{date[index]}</td>
-                  
-                  <td>{interest[index]}</td>
+                {Array.from({ length: numberOfInstallment }, (_, index) => {
+                
+                const installmentData = paymentStatus && paymentStatus.find((payment) => payment.installmentNo === index + 1 && payment.policyNo === policyNumber);
+                const isPaid = installmentData && installmentData.status === 'paid';
+                
+                
+                return(
+                  <tr key={index + 1}>
+                    <td>{index + 1}</td>
+                    <td>{installmentAmount.toFixed(2)}</td>
+                    <td>{date[index]}</td>
+                    
+                    <td>{interest[index]}</td>
 
-                  <td>
-                    <button
-                      style={{width :"4rem", backgroundColor: 'rgb(34, 52, 100)', border: "none", color: 'white', height: '1.9rem' }}
-                      
-                      onClick={() => handleClaimButtonClick(index)}
-                    >
-                      {/* {Claims} */}
+                    <td>
+                      <button
+                        style={{width :"4rem",
+                              backgroundColor: isPaid?'rgb(34, 52, 100)': 'gray',
+                              border: "none", 
+                              color: 'white', 
+                              height: '1.9rem' }}
+                       
+                              disabled={isPaid === undefined }
+                       
+                        onClick={() => handleClaimButtonClick(index)}
+                      >
                       Claim
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                        
+                     
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
 
                   
                
             </tbody>
 
         </table>
+        {isClaimModalOpen && (
+        <ClaimModel
+          isOpen={isClaimModalOpen}
+          onClose={handleCloseclaimModal }
+          claimDetails={{
+            index: selectedClaimIndex,
+            date: date && date[selectedClaimIndex],
+            amount: interest[selectedClaimIndex],
+            policyNumber:policyNumber
+            
+          }}
+        />
+      )}
         
     </>
   )

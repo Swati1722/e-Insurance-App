@@ -80,20 +80,22 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount}) => {
             <tbody>
               {Array.from({ length: numberOfInstallment }, (_, index) => {
                 
-                const installmentData = paymentStatus && paymentStatus.find((payment) => payment.installmentNo === index + 1 );
+                const installmentData = paymentStatus && paymentStatus.find((payment) => payment.installmentNo === index + 1 && payment.policyNo === policyNumber);
                 const isPaid = installmentData && installmentData.status === 'paid';
 
                 return (
                   <tr key={index + 1}>
                     <td>{index + 1}</td>
-                    <td>{installmentAmount}</td>
+                    <td>{installmentAmount.toFixed(2)}</td>
+
                     <td>{date[index]?.toISOString().split('T')[0]}</td>
                     <td>
                       <button
                         style={{
                           width: '4rem',
-                          backgroundColor: disabledButtons[index] ? 'gray' : 'rgb(34, 52, 100)',
-                          border: 'none',
+                          backgroundColor: isPaid ? 'rgb(34, 52, 100)' : (isPaymentDatePassed(index) ? 'rgb(29 61 149)' : 'gray'),
+    
+                         border: 'none',
                           color: 'white',
                           height: '1.9rem',
                         }}

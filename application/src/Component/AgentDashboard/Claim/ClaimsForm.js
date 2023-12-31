@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import './PaymentForm.css'
-import { addPayment } from '../../../Service/PaymentService';
+import './ClaimsForm.css'
+import { addClaim } from '../../../Service/ClaimService';
 
-const PaymentForm = ({  paymentDetails }) => {
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [nameOnCard, setNameOnCard] = useState('');
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
- 
-
-const handlePaymentSuccess = () => {
-    setPaymentSuccess(true);
+const ClaimsForm = ({claimDetails}) => {
+    const [cardNumber, setCardNumber] = useState('');
+    const [expiryDate, setExpiryDate] = useState('');
+    const [cvv, setCvv] = useState('');
+    const [nameOnCard, setNameOnCard] = useState('');
+    const [claimSuccess, setClaimSuccess] = useState(false);
+   
+    
+const handleClaimSuccess = () => {
+    setClaimSuccess(true);
   };
+
 const handleSubmit = async (e) => {
-    // console.log("sublit")
+
     e.preventDefault();
     const cardNumberPattern = /^\d{16}$/;
     const cvvPattern = /^\d{3}$/;
@@ -40,33 +41,35 @@ const handleSubmit = async (e) => {
 
 
     try {
-        console.log(paymentDetails.index+1)
-        let resp = await addPayment(paymentDetails.index+1,paymentDetails.amount,paymentDetails.policyNumber,cardNumber,nameOnCard)
+       
+        let resp = await addClaim(claimDetails.index+1,claimDetails.amount,claimDetails.policyNumber,cardNumber,nameOnCard)
         if(resp)
         {
-            handlePaymentSuccess();
+            handleClaimSuccess();
         }
 
     } catch (error) {
+    
         alert('Payment failed:', error)
       console.error('Payment failed:', error);
      
     }
   };
+  
   return (
-    <>  
-        <div className='payment-form-box'>
+    <>
+        <div className='claim-form-box'>
         <form onSubmit={handleSubmit}>
-          {paymentSuccess ? (
-            <div className="payment-success-message">
-              Payment Successful! Thank you .
+          {claimSuccess ? (
+            <div className="claim-success-message">
+              Claim Successful! Thank you .
             </div>
           ) : (
             <>
-             <div className='payment-heading'>
+                    <div className='claim-heading'>
                         <h1>Card Details</h1>
                     </div>
-                    <div className="payment-form-group">
+                    <div className="claim-form-group">
                         <label htmlFor="cardNumber" style={{ marginRight: '20px' }}>Card Number:</label>
                         <input
                         type="text"
@@ -76,8 +79,8 @@ const handleSubmit = async (e) => {
                         required
                         />
                     </div>
-                    <div className="payment-form-group">
-                        <label htmlFor="expiryDate" style={{ marginRight: '35px' }}>Expiry Date:</label>
+                    <div className="claim-form-group">
+                        <label htmlFor="expiryDate" style={{ marginRight: '31px' }}>Expiry Date:</label>
                         <input
                         type="text"
                         id="expiryDate"
@@ -87,8 +90,8 @@ const handleSubmit = async (e) => {
                         required
                         />
                     </div>
-                    <div className="payment-form-group">
-                        <label htmlFor="cvv" style={{ marginRight: '90px' }}>CVV:</label>
+                    <div className="claim-form-group">
+                        <label htmlFor="cvv" style={{ marginRight: '81px' }}>CVV:</label>
                         <input
                         type="text"
                         id="cvv"
@@ -97,7 +100,7 @@ const handleSubmit = async (e) => {
                         required
                         />
                     </div>
-                    <div className="payment-form-group">
+                    <div className="claim-form-group">
                         <label htmlFor="nameOnCard" style={{ marginRight: '14px' }}>Name on Card:</label>
                         <input
                         type="text"
@@ -110,17 +113,18 @@ const handleSubmit = async (e) => {
                     
                  
               
-              <div className="payment-form-group" style={{ background: 'rgb(34, 52, 100);', color: 'white' }}>
-                <button type="submit" className="btn btn-primary payment-button">
-                  Pay Now
-                </button>
-              </div>
+                    <div className="claim-form-group" style={{ background: 'rgb(34, 52, 100);', color: 'white' }}>
+                        <button type="submit" className="btn btn-primary claim-button">
+                        Pay Now
+                        </button>
+                    </div>
             </>
           )}
         </form>
         </div>
-        </>
-  );
-};
+    
+    </>
+  )
+}
 
-export default PaymentForm;
+export default ClaimsForm

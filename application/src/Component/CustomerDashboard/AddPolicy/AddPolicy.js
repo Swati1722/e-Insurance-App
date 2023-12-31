@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import { validateUser as validate } from '../../../Service/Authentication';
 import { updateCustomerdetails } from '../../../Service/CustomerService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-import { Link } from 'react-router-dom';
 
 const AddPolicy = () => {
 const [mobileNumber,setMobileNumber] = useState()
@@ -122,7 +123,8 @@ const navigate = new useNavigate();
           let respose = await savePolicy(username,nominees, nomineesRelation,receivedData.schemeId,receivedData.noOfYear,receivedData.totalInvestmentAmount, receivedData.premiumType,receivedData.installmentAmount,receivedData.interestAmount,receivedData.totalAmount,receivedData.profitRatio, formattedDate,formattedMaturityDate,  formDataWithFiles)
           if(respose && resp)
           {
-            alert("data is saved")
+            toast.success('Policy is saved!');
+            navigate(-1)
           }
             setSelectedFiles([])
     }
@@ -162,7 +164,7 @@ const navigate = new useNavigate();
                         </div>
                         <div className="form-group ">
                             <label for="inputState">State</label>
-                            <select id="inputState" className="form-control" size="5"  value={selectedState}  onChange={(e) => setSelectedState(e.target.value)}>
+                            <select id="inputState" className="form-control" size="5"  value={selectedState}  onChange={(e) => setSelectedState(e.target.value)} style={{height:"6rem"}}>
                                 <option selected>Choose...</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -171,33 +173,33 @@ const navigate = new useNavigate();
                                 <option value="Chhattisgarh">Chhattisgarh</option>
                                 <option value="Goa">Goa</option>
                                 <option value="Gujarat">Gujarat</option>
-                                <option>Haryana</option>
-                                <option>Himachal Pradesh</option>
-                                <option>Jharkhand</option>
-                                <option>Karnataka</option>
-                                <option>Kerala</option>
-                                <option>Madhya Pradesh</option>
-                                <option>Maharashtra</option>
-                                <option>Manipur</option>
-                                <option>Meghalaya</option>
-                                <option>Mizoram</option>
-                                <option>Nagaland</option>
-                                <option>Odisha</option>
-                                <option>Punjab</option>
-                                <option>Rajasthan</option>
-                                <option>Sikkim</option>
-                                <option>Tamil Nadu</option>
-                                <option>Telangana</option>
-                                <option>Tripura</option>
-                                <option>Uttar Pradesh</option>
-                                <option>Uttarakhand</option>
-                                <option>West Bengal</option>
-                                <option>Andaman and Nicobar Islands</option>
-                                <option>Chandigarh</option>
-                                <option>Dadra and Nagar Haveli and Daman and Diu</option>
-                                <option>Delhi</option>
-                                <option>Lakshadweep</option>
-                                <option>Puducherry</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Daman and Diu"> Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -296,8 +298,48 @@ const navigate = new useNavigate();
                                 required
                             />
                         </div>
-                        <div>
-                            <div className="form-group" style={{marginTop:"1rem"}}>
+
+                        
+                        <div className="form-group" style={{ marginTop: '1rem' }}>
+                          <label style={{ marginRight: '1rem' }}>Select Document Type:</label>
+                            <div className='radio-button-container'>
+                              <div className='radio-button'>
+                                <label >
+                                  <input
+                                    type="radio"
+                                    value="aadhar"
+                                    name="documentType"
+                                    style={{marginRight:'.5rem'}}
+                                    
+                                  />
+                                  Aadhar Card
+                                </label>
+                              </div>
+                              <div className='radio-button'>
+                                <label>
+                                  <input
+                                    type="radio"
+                                    value="pancard"
+                                    name="documentType"
+                                    style={{marginRight:'.5rem'}}
+                                    
+                                  />
+                                  PAN Card
+                                </label>
+                              </div>
+                              <div className='radio-button'>
+                                <label>
+                                  <input
+                                    type="radio"
+                                    value="voterid"
+                                    name="documentType"
+                                    style={{marginRight:'.5rem'}}
+                                  />
+                                  Voter ID
+                                </label>
+                              </div>
+                          </div>
+                          <div className="form-group" style={{marginTop:"1rem"}}>
                               <label htmlFor="documentfile" style={{marginRight:"1rem"}}>Upload Document</label>
                               <input
                                   type="file"
@@ -307,8 +349,10 @@ const navigate = new useNavigate();
                                   multiple 
                               />
                             </div>
-                            {renderSelectedFiles()}
-                        </div>
+                      </div>
+
+                      {renderSelectedFiles()}
+    
                     </div>
                 
             

@@ -1,15 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./PlanTable.css"
 
 
 const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc ,isSchemeButton,SchemeFunc, isCalculateButton,CalculateFunc}) => {
-   const[isActive,setIsActive]= useState(true)
+  
+   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-   const updateActiveStatus = (value, newStatus) => {
-    console.log(`Updating active status of item ${value} to ${newStatus}`);
+  useEffect(() => {
+    handleSearch();
+  }, [data, searchTerm, currentPage]);
 
-    setIsActive(newStatus === 'true'); // Convert string to boolean
+  const handleSearch = () => {
+    if (data && data.content) {
+      const filtered = data.content.filter((item) => {
+        const values = Object.values(item).map((i) =>
+          i !== null ? i.toString().toLowerCase() : ''
+        );
+        return values.some((val) => val.includes(searchTerm.toLowerCase()));
+      });
+  
+      setCurrentPage(1);
+  
+      setFilteredData(filtered);
+    }
   };
+  
+
+  const handleClear = () => {
+    setFilteredData([]);
+    setSearchTerm('');
+    setCurrentPage(1); // Reset to the first page when clearing search
+  };
+   
     let rowsOfUsers =<></>
     let tableHeaderRow = <></>
     let keys =[]

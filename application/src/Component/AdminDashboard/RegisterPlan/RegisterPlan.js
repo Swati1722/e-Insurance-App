@@ -71,7 +71,7 @@ import image from '../../../Image/AddIdea.svg';
 import './RegisterPlan.css';
 import { addPlan, getAllPlans } from '../../../Service/PlanService';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPlan = () => {
@@ -147,11 +147,11 @@ const RegisterPlan = () => {
                 <label htmlFor="planDetails" style={{ marginRight: '13px' }}>
                   Plan Details:
                 </label>
-                <input type="text" className="register-plan-form-control-2" id="planDetails" value={planDetails} onChange={(e) => setPlanDetails(e.target.value)} />
+                <input type="text" className="register-plan-form-control-2" id="planDetails" value={planDetails} onChange={(e) => setPlanDetails(e.target.value)}  />
               </div>
 
               <div className="register-plan-button-group" style={{ marginTop: '1rem' }}>
-                <button type="button" className="btn btn-primary register-plan-button" onClick={registerNewPlan}>
+                <button type="button" className="btn btn-primary register-plan-button" onClick={registerNewPlan} style={{background: "rgb(34, 52, 100)"}} >
                   Register
                 </button>
               </div>
@@ -159,6 +159,7 @@ const RegisterPlan = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 };

@@ -270,8 +270,11 @@ const RegisterEmployee = () => {
       return;
     }
 
-    if (!isDateOfBirthValid(dateOfBirth)) {
-      toast.error('Date of Birth should not be a future or current date.');
+    const currentDate = new Date();
+    const enteredDate = new Date(dateOfBirth);
+
+    if (enteredDate > currentDate || (currentDate.getFullYear() - enteredDate.getFullYear()) < 18) {
+      toast.error('Please enter a valid date of birth (must be at least 18 years old).');
       return;
     }
 
@@ -289,7 +292,7 @@ const RegisterEmployee = () => {
 
       if (response) {
         toast.success('Employee added successfully');
-        navigate(-1); 
+        navigate('/adminDashboard'); 
       }
     } catch (error) {
       console.log(error);
@@ -309,7 +312,7 @@ const RegisterEmployee = () => {
             <h1 className="register-employee-heading">Register Employee</h1>
             <form className="register-employee-postdata">
               <div className="register-employee-form-group">
-                <label htmlFor="FirstName" style={{ marginRight: '49px' }}>
+                <label htmlFor="FirstName" style={{ marginRight: '50px' }}>
                   {' '}
                   First Name:
                 </label>
@@ -322,7 +325,7 @@ const RegisterEmployee = () => {
                 />
               </div>
               <div className="register-employee-form-group">
-                <label htmlFor="lastName" style={{ marginRight: '49px' }}>
+                <label htmlFor="lastName" style={{ marginRight: '52px' }}>
                   {' '}
                   Last Name:
                 </label>
@@ -335,7 +338,7 @@ const RegisterEmployee = () => {
                 />
               </div>
               <div className="register-employee-form-group">
-                <label htmlFor="userName" style={{ marginRight: '49px' }}>
+                <label htmlFor="userName" style={{ marginRight: '54px' }}>
                   {' '}
                   UserName:
                 </label>
@@ -349,7 +352,7 @@ const RegisterEmployee = () => {
               </div>
 
               <div className="register-employee-form-group">
-                <label htmlFor="password" style={{ marginRight: '56px' }}>
+                <label htmlFor="password" style={{ marginRight: '58px' }}>
                   {' '}
                   Password:
                 </label>
@@ -388,7 +391,7 @@ const RegisterEmployee = () => {
                 />
               </div>
               <div className="register-employee-form-group">
-                <label htmlFor="mobileNumber" style={{ marginRight: '15px' }}>
+                <label htmlFor="mobileNumber" style={{ marginRight: '28px' }}>
                   {' '}
                   MobileNumber:
                 </label>
@@ -401,7 +404,7 @@ const RegisterEmployee = () => {
                 />
               </div>
               <div className="register-employee-form-group">
-                <label htmlFor="dateOfBirth" style={{ marginRight: '40px' }}>
+                <label htmlFor="dateOfBirth" style={{ marginRight: '48px' }}>
                   {' '}
                   DateOfBirth:
                 </label>
@@ -415,7 +418,7 @@ const RegisterEmployee = () => {
               </div>
               <div className="register-employee-button-group">
                 <button type="button" className="btn btn-primary register-employee-button" onClick={AddEmployees}>
-                  register-employee
+                  Register-Employee
 
                 </button>
               </div>

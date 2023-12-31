@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { validateUser as validate } from '../../../Service/Authentication';
 import { getCustomerByUserName } from '../../../Service/CustomerService';
 import './PolicyDetails.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const PolicyDetails = ({value,schemeId}) => {
 
     const [maxAmount, setMaxAmount] = useState(value?.maxAmount || "");
@@ -85,7 +88,33 @@ const PolicyDetails = ({value,schemeId}) => {
         }
 
     }
+    // const calculateInterest = () => {
+
+    //     const parsedNoOfYear = parseFloat(noOfYear);
+    //     const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
+    //     const parsedPremiumType = parseFloat(premiumType);
+
+    //     if (isNaN(parsedNoOfYear) || isNaN(parsedTotalInvestmentAmount) || isNaN(parsedPremiumType)) {
+
+    //         console.error("Invalid input. Please enter valid numbers.");
+    //         return;
+    //     }
+
+    //     const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
+    //     setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
+
+    //     const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
+    //     setInterestAmount(interest);
+        
+    //     const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
+    //     setTotalAmount(sum);
+    // };
+
     const calculateInterest = () => {
+        if (!noOfYear || !totalInvestmentAmount || !premiumType) {
+            toast.error('Please enter all required fields.');
+            return;
+        }
 
         const parsedNoOfYear = parseFloat(noOfYear);
         const parsedTotalInvestmentAmount = parseFloat(totalInvestmentAmount);
@@ -96,18 +125,29 @@ const PolicyDetails = ({value,schemeId}) => {
             console.error("Invalid input. Please enter valid numbers.");
             return;
         }
+        if (parsedNoOfYear < minTime || parsedNoOfYear > maxTime) {
+            toast.error('Number of years should be between Min Policy Term and Max Policy Term.');
+            return;
+        }
 
+        // Validate totalInvestmentAmount against min and max investment amount
+        if (
+            parsedTotalInvestmentAmount < minAmount ||
+            parsedTotalInvestmentAmount > maxAmount
+        ) {
+            toast.error('Total Investment Amount should be between Min and Max Investment Amount.');
+            return;
+        }
         const noOfInstallment = (parsedNoOfYear * 12) / parsedPremiumType;
         setInstallmentAmount(parsedTotalInvestmentAmount / noOfInstallment);
 
         const interest = (profitRatio / 100) * parsedTotalInvestmentAmount;
         setInterestAmount(interest);
-        
+
         const sum = interest * parsedNoOfYear + parsedTotalInvestmentAmount;
         setTotalAmount(sum);
+        toast.success('Calculated successful!');
     };
-
-   
    
 
 

@@ -83,7 +83,8 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
               <td>{data.schemeName}</td>
               <td>{data.noOfYear}</td>
               <td>{data.totalPremiumAmount}</td>
-              <td>{data.installmentAmount}</td>
+              <td>{data.installmentAmount.toFixed(2)}</td>
+
               <td>
                 {data.premiumType === 3 && "Quarterly"}
                 {data.premiumType === 6 && "Half-Yearly"}
@@ -100,7 +101,7 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
                     onClick={() => {
                       paymentFunc(data)
                     }}
-                    style={{  backgroundColor: data.status ? 'rgb(29 61 149)' : 'rgb(34, 52, 100)',border:"none", color: 'white', height: '1.9rem' }}
+                    style={{  backgroundColor: data.status ? 'rgb(29 61 149)' : 'rgb(34, 52, 100)',border:"none", color: 'white', height: '1.9rem' , borderRadius:"4px"}}
                   >
                     Payment
                   </button>
