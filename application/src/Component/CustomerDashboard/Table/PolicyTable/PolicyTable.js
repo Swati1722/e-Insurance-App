@@ -97,11 +97,11 @@ const Table = ({data,isPaymentButton, paymentFunc}) => {
               {isPaymentButton && (
                 <td>
                   <button
-                     disabled={!data.status}
+                     disabled={!data.status || !data.active}
                     onClick={() => {
                       paymentFunc(data)
                     }}
-                    style={{  backgroundColor: data.status ? 'rgb(29 61 149)' : 'rgb(34, 52, 100)',border:"none", color: 'white', height: '1.9rem' , borderRadius:"4px"}}
+                    style={{  backgroundColor: (!data.status || !data.active) ? 'rgb(34, 52, 100)' : 'rgb(29 61 149)',border:"none", color: 'white', height: '1.9rem' , borderRadius:"4px"}}
                   >
                     Payment
                   </button>

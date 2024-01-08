@@ -155,29 +155,79 @@ export const updateCustomerActive = async(username,status) => {
 }
 
 
-export const updateCustomer = async(username,firstName,lastName,email,mobileNumber,dateOfBirth,address,state,city,pincode) => {
-  let response = await axios.put('http://localhost:8080/insuranceapp/customer',{
-        firstname:firstName,
-        lastname:lastName,
-        email:email,
-        mobileNumber:mobileNumber,
-        dateOfBirth:dateOfBirth,
-        address:address,
-        state:state,
-        city:city,
-        pincode:pincode
-      },
-      {
-        params:{
-          username:username
-        },
-        
-      })
+// export const updateCustomer = async(username,firstName,lastName,email,mobileNumber,dateOfBirth,address,state,city,pincode) => {
+//   console.log("in update customer")
+//   let response = await axios.put('http://localhost:8080/insuranceapp/updatecustomerdetails',{
+//         username:username,
+//         firstname:firstName,
+//         lastname:lastName,
+//         email:email,
+//         mobileNumber:mobileNumber,
+//         dateOfBirth:dateOfBirth,
+//         address:address,
+//         state:state,
+//         city:city,
+//         pincode:pincode
+//       },
+//       )
   
-   console.log('Data saved successfully:', response.data)
-   return response
-}
+//    console.log('Data saved successfully:', response.data)
+//    return response
+// }
 
+
+// export const updateCustomer = async (username, firstName, lastName, email, mobileNumber, dateOfBirth, address, state, city, pincode) => {
+//   console.log("in update customer");
+  
+//   const requestData = {
+//     username: username,
+//     firstname: firstName,
+//     lastname: lastName,
+//     email: email,
+//     mobileNumber: mobileNumber,
+//     dateOfBirth: dateOfBirth,
+//     address: address,
+//     state: state,
+//     city: city,
+//     pincode: pincode
+//   };
+  
+  
+
+//   try {
+//     let response = await axios.put('http://localhost:8080/insuranceapp/updatecustomerdetails', requestData);
+  
+//     console.log('Data saved successfully:', response.data);
+//     return response;
+//   } catch (error) {
+//     console.error('Error updating customer:', error);
+//     throw error;
+//   }
+// };
+export const updateCustomer = async (username, dataForUpdate, authToken) => {
+  try {
+    const response = await axios.put(
+      `http://localhost:8080/insuranceapp/updatecustomer/${username}`,
+      {
+        firstname: dataForUpdate.firstName,
+        lastname: dataForUpdate.lastName,
+        emailId: dataForUpdate.email,
+        ...dataForUpdate,
+      }
+      // {
+      //   headers: {
+      //     Authorization: Bearer ${authToken},
+      //     'Content-Type': 'application/json',
+      //   },
+      // }
+    );
+    console.log('Customer details updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating customer details:', error);
+    throw error;
+  }
+};
 
 export const getAllCustomerByActiveAndAgent = async(pageNumber, pageSize,username)=>{
   console.log("username----------",username)
@@ -198,4 +248,18 @@ export const getAllCustomerByActiveAndAgent = async(pageNumber, pageSize,usernam
  catch (error){
    throw error
  }
+
 }
+
+export const updatePassword = async (username,  newPassword) => {
+  try {
+    const response = await axios.put(`http://localhost:8080/insuranceapp/updatepassword/${username}`, {
+      newPassword,
+    });
+    console.log('Password updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating password:', error);
+    throw error;
+  }
+};

@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { validateUser as validate } from '../../../Service/Authentication';
 import { updateCustomerdetails } from '../../../Service/CustomerService';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -72,6 +73,8 @@ const navigate = new useNavigate();
     setSelectedFiles([...selectedFiles, ...validFiles])
   }
 
+
+  
   const renderSelectedFiles = () =>{
     if (selectedFiles.length === 0) {
         return <p>No files selected.</p>
@@ -104,6 +107,49 @@ const navigate = new useNavigate();
 
   const handleSubmit =  async(e)  =>{
     e.preventDefault()
+
+    if (selectedFiles.length === 0) {
+      toast.error('Please select at least one document file.');
+      return;
+    }
+
+     // New user validations
+     if (!receivedData.dateOfBirth) {
+      if (!mobileNumber || !dateOfBirth || !address || !selectedState || !city || !zip) {
+        toast.error('Please fill in all required fields for new users.');
+        return;
+      }
+
+      const mobileRegex = /^\d{10}$/;
+      if (!mobileRegex.test(mobileNumber)) {
+        toast.error('Please enter a valid 10-digit Mobile Number for new users.');
+        return;
+      }
+
+      const currentDate = new Date();
+      const selectedDate = new Date(dateOfBirth);
+      const age = currentDate.getFullYear() - selectedDate.getFullYear();
+
+      if (age < 18 || selectedDate > currentDate) {
+        toast.error('Invalid date of birth. Age must be 18 or above for new users.');
+        return;
+      }
+
+      const zipRegex = /^\d{6}$/;
+      if (!zipRegex.test(zip)) {
+        toast.error('ZIP code must be a valid 6-digit number for new users.');
+        return;
+      }
+    }
+
+    // Old user validations
+    if (receivedData.dateOfBirth) {
+      const nameRegex = /^[a-zA-Z\s]+$/;
+      if (!nameRegex.test(nominees) || !nameRegex.test(nomineesRelation)) {
+        toast.error('Nominees and relation should only contain letters and spaces for old users.');
+        return;
+      }
+    }
 
     if (selectedFiles.length > 0) { 
         const formDataWithFiles = []
@@ -378,6 +424,7 @@ const navigate = new useNavigate();
                 </form>
             </div>
         </div>
+        <ToastContainer position='top-center' autoClose={3000} />
     </>
   )
 }

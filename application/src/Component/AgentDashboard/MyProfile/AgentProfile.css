@@ -9,13 +9,17 @@
   .agent-resume-box {
 
     display: flex;
-    max-width: 800px; /* Adjust the maximum width as needed */
+    /* margin-top: 1rem; */
+    width: 1200px;/* Adjust the maximum width as needed */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for the right content */
   }
   
   .agent-resume_left {
     flex: 1;
-    padding: 20px;
+    padding-top: 2px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-left: 130px;
   }
   
   .agent-resume_profile img {

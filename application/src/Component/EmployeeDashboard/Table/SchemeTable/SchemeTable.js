@@ -54,6 +54,9 @@ const Table = ({data,isUpdateButton, updateFunc, isDeleteButton, deleteFunc }) =
               else if(k=="Update"){
                 return <th scope="col">Update</th>;
             }
+              else if(k=="commission"){
+                return <th scope="col">Commission</th>;
+            }
 
             
             else if(k=="active"){

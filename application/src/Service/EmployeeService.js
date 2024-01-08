@@ -65,3 +65,36 @@ export const updateEmployeeActive = async(username,status) => {
   }
 
 }
+
+export const updatePassword = async (username,  newPassword) => {
+  try {
+    const response = await axios.put(`http://localhost:8080/insuranceapp/updatepassword/${username}`, {
+     
+      newPassword,
+    });
+    console.log('Password updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating password:', error);
+    throw error;
+  }
+};
+
+export const updateEmployeeDetails = async (username, dataForUpdate, authToken) => {
+  try {
+    const response = await axios.put(
+      `http://localhost:8080/insuranceapp/updateemployee/${username}`,
+      {
+        firstname: dataForUpdate.firstName,
+        lastname: dataForUpdate.lastName,
+        emailId: dataForUpdate.email,
+      }
+      
+    );
+    console.log('Employee details updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating Employee details:', error);
+    throw error;
+  }
+};

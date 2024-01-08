@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import { getAllPayment } from '../../../../Service/PaymentService'
 import ClaimModel from '../../Models/ClaimModel'
-
+import { getAllClaim } from '../../../../Service/ClaimService'
 
 const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commission}) => {
    
@@ -13,7 +13,7 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
     const [selectedClaimIndex, setSelectedClaimIndex] = useState(null);
   
     const [paymentStatus, setPaymentStatus] = useState();
-   
+    const [claimStatus, setClaimStatus] = useState();
 
     
     const getNoOfInstallment = () =>{
@@ -53,8 +53,12 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
         const fetchPaymentStatus = async () => {
           try {
             let response = await getAllPayment();
+            let resp = await getAllClaim();
             console.log(response.data)
-            setPaymentStatus(response.data); // Assuming data is an array of payment statuses
+            setPaymentStatus(response.data); 
+            console.log(resp.data)
+            setClaimStatus(resp.data)
+            // Assuming data is an array of payment statuses
           } catch (error) {
             console.error('Error fetching payment statuses:', error);
           }
@@ -93,7 +97,9 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
                 
                 const installmentData = paymentStatus && paymentStatus.find((payment) => payment.installmentNo === index + 1 && payment.policyNo === policyNumber);
                 const isPaid = installmentData && installmentData.status === 'paid';
-                
+                const claimedData = claimStatus && claimStatus.find((claim) => claim.installmentNo=== index + 1 && claim.policyNo === policyNumber);
+                const isClaimed = claimedData && claimedData.status === 'Claimed';
+          
                 
                 return(
                   <tr key={index + 1}>
@@ -105,17 +111,18 @@ const Table = ({policyNumber,numberOfYear, premiumType, installmentAmount,commis
 
                     <td>
                       <button
-                        style={{width :"4rem",
+                        style={{width :"4.5rem",
                               backgroundColor: isPaid?'rgb(34, 52, 100)': 'gray',
                               border: "none", 
                               color: 'white', 
                               height: '1.9rem' }}
                        
-                              disabled={isPaid === undefined }
+                              disabled={isPaid === undefined || isClaimed}
                        
-                        onClick={() => handleClaimButtonClick(index)}
+                          onClick={() => handleClaimButtonClick(index)}
                       >
-                      Claim
+                      {console.log(isClaimed)}
+                      {isClaimed ? 'Claimed' : 'Claim'}
                         
                      
                       </button>

@@ -18,3 +18,16 @@ export const  addClaim= async(installmentNo,amount,policyNumber,cardNumber,nameO
     }
   
   }
+
+  export const getAllClaim = async()=>{
+    try{
+         let response = await axios.get('http://localhost:8080/insuranceapp/claims')
+         console.log('Geting data:', response);
+         return response;
+       
+   }
+   catch (error){
+     throw error
+   }
+ }
+  

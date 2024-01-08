@@ -26,7 +26,7 @@ const CustomerPolicy = () => {
             if(response.data){
                     setData(response.data)
                 }
-          console.log('recode',response.headers['x-total-count'])
+        //   console.log('recode',response.headers['x-total-count'])
             let totalNumberOfRecords = response.headers['x-total-count']
             setTotalNumberOfRecord(totalNumberOfRecords)
             setNumberOfPages(Math.ceil(totalNumberOfRecords /pageSize)) 

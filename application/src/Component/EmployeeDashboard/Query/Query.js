@@ -93,6 +93,10 @@ import Modal from 'react-modal';
 import { FindAllQuery, SaveQueryAnswer } from '../../../Service/QueryService';
 import { useNavigate } from 'react-router-dom';
 import './Query.css';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Query = () => {
@@ -130,22 +134,51 @@ const Query = () => {
     setAnswers(newAnswers);
   };
 
+  // const handleAnswerSubmit = async () => {
+  //   try {
+  //     const response = await SaveQueryAnswer(
+  //       selectedQuery.id,
+  //       answers[selectedQuery.id]
+  //     );
+  //     console.log('save querydata', response);
+
+  //     // Fetch the latest status from the backend
+  //     await getAllQuery();
+
+  //     setModalIsOpen(false);
+  //     setSelectedQuery(null);
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert('Error submitting answer');
+  //   }
+  // };
+
   const handleAnswerSubmit = async () => {
     try {
-      const response = await SaveQueryAnswer(
-        selectedQuery.id,
-        answers[selectedQuery.id]
-      );
-      console.log('save querydata', response);
-
-      // Fetch the latest status from the backend
-      await getAllQuery();
-
-      setModalIsOpen(false);
-      setSelectedQuery(null);
+      
+      if (!answers[selectedQuery.id] || answers[selectedQuery.id].trim() === '') {
+        
+        toast.error('Answer cannot be empty. Please provide an answer.');
+        return;
+      }
+      const response = await SaveQueryAnswer(selectedQuery.id, answers[selectedQuery.id]);
+      console.log('save query data', response);
+      if (response && response.status === 201) {
+       
+        toast.success('Query submitted successfully!');
+       
+        await getAllQuery();
+        setModalIsOpen(false);
+        setSelectedQuery(null);
+        setAnswers({});
+      } else {
+        
+        toast.error('Error submitting answer. Please try again.');
+      }
     } catch (error) {
+      
       console.error(error);
-      alert('Error submitting answer');
+      toast.error('Error submitting answer. Please try again.');
     }
   };
 
@@ -246,6 +279,7 @@ const Query = () => {
         </button> */}
         </div>
       </Modal>
+      <ToastContainer position="top-center" autoClose={3000} />
 
 
     </>

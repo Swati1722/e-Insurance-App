@@ -2,15 +2,45 @@ import React, {useState} from 'react'
 import "./AgentNavbar.css"
 import { Link } from 'react-router-dom';
 import AgentEditProfileModel from '../Models/AgentEditProfileModel';
+import { validateUser as validate } from '../../../Service/Authentication';
+import { getAgentByUserName } from '../../../Service/AgentService';
+
+import { useNavigate } from 'react-router-dom';
+
 
 const AgentNavbar = () => {
   const [isAgentProfileOpen, setIsAgentProfileOpen] = useState(false);
   const [isAgentEditProfileModalOpen,setIsAgentEditProfileModalOpen] =useState(false);
+  const navigate = new useNavigate();
+
 
   const toggleAgentProfile = () => {
+    
     setIsAgentProfileOpen(!isAgentProfileOpen);
-  };
-
+  } 
+  const toggleMyProfile= async() =>{
+    try{
+        const authToken = localStorage.getItem('authentication')
+        let resp = await validate(authToken)
+        console.log("username------>", resp.data.sub)
+        let response = await getAgentByUserName(resp.data.sub)
+      
+        const dataToSend = {
+          username :response.data.userdetails.username,
+          firstName:response.data.userdetails.firstname,
+          lastName:response.data.userdetails.lastname,
+          mobileNumber:response.data.userdetails.mobileNumber,
+          dateOfBirth:response.data.userdetails.dateOfBirth,
+          email:response.data.userdetails.emailId,
+          salary :response.data.salary
+        }
+       navigate('/agentDashboard/profile', { state: dataToSend });
+    }
+    catch(error){
+        console.log(error)
+        alert(error.message)
+      }
+   }
   
   const toggleAgentEditProfileModel = () => {
     // console.log("indide")
@@ -57,7 +87,7 @@ const AgentNavbar = () => {
                     {isAgentProfileOpen && (
                     <div className="profile-popup">
                         
-                        <Link to="/agentDashboard/profile" className='d-text' >MyProfile</Link>
+                        <Link to="" className='d-text' onClick={toggleMyProfile} >MyProfile</Link>
                         
                         <a href="" className='d-text' onClick={(e) => { e.preventDefault(); toggleAgentEditProfileModel(); }}>Edit Profile</a>
    
